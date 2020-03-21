@@ -1,0 +1,23 @@
+{
+  "name": "pomodoro-timer",
+  "version": "1.0.0",
+  "description": "Pomodoro timer web app",
+  "main": "index.js",
+  "scripts": {
+    "build": "postcss css/tailwind.css -o public/tailwind.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NLNT/Pomodoro-timer.git"
+  },
+  "author": "Thanh Nguyen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NLNT/Pomodoro-timer/issues"
+  },
+  "homepage": "https://github.com/NLNT/Pomodoro-timer#readme",
+  "dependencies": {
+    "postcss-cli": "^7.1.0",
+    "tailwindcss": "^1.2.0"
+  }
+}
