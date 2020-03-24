@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-  <title>Pomodoro Timer Online</title>
+  <title>Pomodoro Online</title>
   <!-- CSS -->
   <link rel="stylesheet" href="tailwind.css">
   <!-- Fonts -->
@@ -12,13 +12,17 @@
 </head>
 <body class="font-inter bg-gray-100">
 
-
-
   <div class="lg:mt-8">
     <main class="shadow-xl max-w-5xl mx-auto bg-red-200 p-px md:p-0 rounded-b-2xl md:rounded-2xl md:flex md:items-center">
       <!-- Illustration -->
       <div class="p-2 md:p-2 opacity-75" style="flex: 100;">
-        <img class="" src="https://raw.githubusercontent.com/NLNT/Pomodoro-timer/master/img/focus-illustration.svg?sanitize=true" alt="Woman working illustration">
+        <img src="https://raw.githubusercontent.com/NLNT/Pomodoro-timer/master/img/focus-illustration.svg?sanitize=true" alt="Woman working illustration">
+
+        <!-- Break -->
+        <!-- <img src="https://raw.githubusercontent.com/NLNT/Pomodoro-timer/master/img/break-illustration.svg?sanitize=true" alt="Woman mediatating illustration"> -->
+
+        <!-- Long break -->
+        <!-- <img src="https://raw.githubusercontent.com/NLNT/Pomodoro-timer/master/img/long-break-illustartion.svg?sanitize=true" alt="two people resting on a log illustration"> -->
       </div>
 
       <!-- Right side -->
@@ -47,6 +51,66 @@
           <a class="flex-1 py-6 transition-color duration-200 text-gray-600 hover:text-gray-800 rounded-xl sm:flex-shrink-0" href="#">Long Break</a>
         </div>
       </div>
+
+
+
+
+      <!-- Break -->
+      <!-- Right side
+      <div class="shadow-xl self-stretch flex flex-col justify-between bg-white rounded-xl m-xs mt-3 md:mt-xs" style="flex: 85;">
+        ===timer===
+        <div class="flex flex-col flex-1 items-center p-6 mb-3 rounded-xl">
+          <h6 class="font-medium text-gray-700 text-lg">Pomodoro Timer</h6>
+          <h2 class="text-6xl mt-4 md:mt-8 text-gray-900 font-bold leading-tight" style="font-size: 5.5rem;">5:00</h2>
+          
+          ===Pause & Reset===
+          <div class="flex justify-evenly items-center font-medium">
+            <a class="flex font-semibold text-xl items-center py-1 px-6 border-r fill-current transition-color duration-200 text-red-700 hover:text-red-800" href="#"><span><svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><defs/><path d="M16 10v28l22-14z"/></svg></span> Start</a>
+
+             ===<a class="flex text-lg items-center py-1 px-6 border-r fill-current transition-color duration-200 text-gray-700 hover:text-gray-900" href="#"><span><svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs/><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg></span> Pause</a>===
+
+            <a class="flex text-xl items-center py-1 px-6 fill-current transition-color duration-200 text-gray-700 hover:text-gray-900" href="#"><span><svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs/><path d="M12 5V1L7 6l5 5V7a6 6 0 11-6 6H4a8 8 0 108-8z"/></svg></span> Reset</a>
+          </div>
+          
+        </div>
+
+        ===Tabs===
+        <div class="flex font-semibold bg-gray-100 rounded-xl text-center shadow-inset">
+          <a class="flex-1 py-6 transition-color duration-200 text-gray-600  rounded-xl" href="#">Focus</a>
+          <a class="flex-1 py-6 transition-color duration-200 text-gray-800 bg-gray-300 shadow-sm hover:text-gray-800 rounded-xl" href="#">Break</a>
+          <a class="flex-1 py-6 transition-color duration-200 text-gray-600 hover:text-gray-800 rounded-xl sm:flex-shrink-0" href="#">Long Break</a>
+        </div>
+      </div> -->
+
+
+
+
+
+      <!-- Long break -->
+      <!--
+      <div class="shadow-xl self-stretch flex flex-col justify-between bg-white rounded-xl m-xs mt-3 md:mt-xs" style="flex: 85;">
+        <!-- Timer 
+        <div class="flex flex-col flex-1 items-center p-6 mb-3 rounded-xl">
+          <h6 class="font-medium text-gray-700 text-lg">Pomodoro Timer</h6>
+          <h2 class="text-6xl mt-4 md:mt-8 text-gray-900 font-bold leading-tight" style="font-size: 5.5rem;">30:00</h2>
+          
+          <!-- Pause & Reset 
+          <div class="flex justify-evenly items-center font-medium">
+            <a class="flex font-semibold text-xl items-center py-1 px-6 border-r fill-current transition-color duration-200 text-red-700 hover:text-red-800" href="#"><span><svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><defs/><path d="M16 10v28l22-14z"/></svg></span> Start</a>
+
+            <!-- <a class="flex text-lg items-center py-1 px-6 border-r fill-current transition-color duration-200 text-gray-700 hover:text-gray-900" href="#"><span><svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs/><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg></span> Pause</a>
+
+            <a class="flex text-xl items-center py-1 px-6 fill-current transition-color duration-200 text-gray-700 hover:text-gray-900" href="#"><span><svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs/><path d="M12 5V1L7 6l5 5V7a6 6 0 11-6 6H4a8 8 0 108-8z"/></svg></span> Reset</a>
+          </div>
+        </div>
+
+        <!-- Tabs 
+        <div class="flex font-semibold bg-gray-100 rounded-xl text-center shadow-inset">
+          <a class="flex-1 py-6 transition-color duration-200 text-gray-600  rounded-xl" href="#">Focus</a>
+          <a class="flex-1 py-6 transition-color duration-200 text-gray-600  hover:text-gray-800 rounded-xl" href="#">Break</a>
+          <a class="flex-1 py-6 transition-color duration-200 text-gray-800 bg-gray-300 shadow-sm hover:text-gray-800 rounded-xl sm:flex-shrink-0" href="#">Long Break</a>
+        </div>
+      </div> -->
 
     </main>
   </div>
@@ -139,7 +203,7 @@
   </div>
 
 
-
-
+  <!-- Scripts -->
+  <script type="text/javascript" src="bundle.js"></script>
 </body>
 </html>
