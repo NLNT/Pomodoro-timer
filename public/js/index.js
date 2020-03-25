@@ -39,31 +39,44 @@ elements.focusStart.addEventListener('click',(e) => {
 
 // Check when tab is change
 function controlTab() {
-  // check if there's any running timer
-    // yes => run timer on changed tab
+  // Tab is changed
+  if (state.currentTab !== state.newTab) {
+    // 1) Update previous tab in state
+    state.previousTab = state.currentTab;
 
-  // check if the new tab is same to the previous currentTab
-    // update the UI (bg - illustration - timer - tab)
-    View.renderTab(state.currentTab);
+    // 1) update currentTab in state
+    state.currentTab = state.newTab;
 
-  // test
-  //console.log(state.currentTab);
+    // 2) update the UI (bg - illustration - timer - tab)
+    View.renderTab(state.currentTab, state.previousTab);
+
+
+    // 3) check if there's any running timer
+      // yes => run timer on changed tab
+      // no => do nothing
+  }
+
+  //-------- Tab isn't changed
+  else if (state.currentTab === state.newTab) {
+    state.newTab = "";
+  }
+
 }
 
 
 // Focus tab - listener
 elements.focusTab.addEventListener('click', () => {
-  state.currentTab = "focus";
+  state.newTab = "focus";
   controlTab();
 });
 // Break tab - listener
 elements.breakTab.addEventListener('click', () => {
-  state.currentTab = "break";
+  state.newTab = "break";
   controlTab();
 });
 // Long break - listener
 elements.longBreakTab.addEventListener('click', () => {
-  state.currentTab = "longBreak";
+  state.newTab = "longBreak";
   controlTab();
 });
 
@@ -73,6 +86,7 @@ elements.longBreakTab.addEventListener('click', () => {
 // Init - set default state
 const init = () => {
   state.currentTab = "focus";
-  // Render focus timer block
+  state.newTab = "";
+  state.previousTab = "";
 }
-init()
+init();
