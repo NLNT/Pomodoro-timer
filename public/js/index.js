@@ -12,35 +12,67 @@ const Model = new modelClass('focus');
 // + Modified countdown timer object                  //
 //                                                    //
 ////////////////////////////////////////////////////////
-const state = {
-  currentTab: 'focus'
-};
+var state = {};
 
 
-
-
-
+// Control the timer data & UI
 const controlTimer = () => {
   // 1. Get current tab
 
     // 2. Execute timer in model with currentTab as parameter
 
-    // 3. Update state
+    // 3. Update title
 
-    // 4. Update UI with currentTab as parameter
+    // 4. Update state
+
+    // 5. Update UI with currentTab as parameter
 }
-
-
-const controlTab = () => {
-  //
-}
-
-
-
-
-
 
 // event listener
 elements.focusStart.addEventListener('click',(e) => {
   console.log('Timer started');
 });
+
+
+
+
+
+// Check when tab is change
+function controlTab() {
+  // check if there's any running timer
+    // yes => run timer on changed tab
+
+  // check if the new tab is same to the previous currentTab
+    // update the UI (bg - illustration - timer - tab)
+    View.renderTab(state.currentTab);
+
+  // test
+  //console.log(state.currentTab);
+}
+
+
+// Focus tab - listener
+elements.focusTab.addEventListener('click', () => {
+  state.currentTab = "focus";
+  controlTab();
+});
+// Break tab - listener
+elements.breakTab.addEventListener('click', () => {
+  state.currentTab = "break";
+  controlTab();
+});
+// Long break - listener
+elements.longBreakTab.addEventListener('click', () => {
+  state.currentTab = "longBreak";
+  controlTab();
+});
+
+
+
+
+// Init - set default state
+const init = () => {
+  state.currentTab = "focus";
+  // Render focus timer block
+}
+init()

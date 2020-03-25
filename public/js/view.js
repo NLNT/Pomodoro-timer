@@ -2,12 +2,38 @@ import { elements } from './base';
 
 // View
 export default {
-  currentTab: 'focus',
-  markup: "markup html",
 
-  renderTab() {
 
-  }
+  renderTab(currentTab) {
+    console.log(currentTab);
+    // Change background
+
+    // Change the timer
+
+    // Change the tab style
+
+    // Change the illustration
+  },
+
+  renderBackgroundColor(currentTab) {
+    
+  },
+
+
+  renderIllustration(currentTab) {
+
+  },
+
+
+  renderTimer(currentTab) {
+
+  },
+
+
+  renderTabStyle(currentTab) {
+
+  },
+
 }
 
 
