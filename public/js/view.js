@@ -5,6 +5,9 @@ import { elements } from './base';
 
 // View
 export default {
+  tabs: {
+    activeTab: ['text-gray-800', 'bg-gray-300', 'shadow-sm']
+  },
   focus: {
     bgClass: 'bg-red-200',
     illustration: `<img class="my-px pt-px md:p-0 md:m-0" src="https://raw.githubusercontent.com/NLNT/Pomodoro-timer/master/img/focus-illustration.svg?sanitize=true" alt="Woman working illustration">`,
@@ -23,14 +26,16 @@ export default {
     // 1) Change background color
     this.renderBackgroundColor(currentTab, previousTab);
     
-    // 2) Change the tab style (bg & shadow)
+    // 2) Change the tab style (bg & shadow & text)
+    this.renderTabStyle(currentTab, previousTab);
 
     // 3) Update illustration
     this.renderIllustration(currentTab);
 
     // 4) Change the timer
 
-    // 5) Change the illustration
+    // 5) Change the suggestion list
+    
   },
 
 
@@ -49,7 +54,23 @@ export default {
   },
 
 
-  renderTabStyle(currentTab) {
+  // Switch active styles from previous tab to current tab
+  renderTabStyle(currentTab, previousTab) {
+    let active,nonActive;
+    // 1) Get previousTab DOM element
+    if (previousTab === 'focus') {active = elements.focusTab}
+    else if (previousTab === 'break') {active = elements.breakTab}
+    else if (previousTab === 'longBreak') {active = elements.longBreakTab};
+
+    // 2) Get currentTab DOM element
+    if (currentTab === 'focus') {nonActive = elements.focusTab}
+    else if (currentTab === 'break') {nonActive = elements.breakTab}
+    else if (currentTab === 'longBreak') {nonActive = elements.longBreakTab};
+
+    // 3) remove active styles from previousTab
+    this.tabs.activeTab.forEach(item => active.classList.remove(item));
+    // 4) add active styles to currentTab
+    this.tabs.activeTab.forEach(item => nonActive.classList.add(item));
 
   },
 
@@ -64,18 +85,9 @@ export default {
   renderTimer(currentTab) {
     
   },
+  
 
+  renderSuggestion(currentTab) {
+
+  },
 }
-
-
-/*
-
-list of things to update when tab is change"
-  + Illustration
-  + bg-color
-  + timer
-  + active tab (shadow & color)
-  + suggestion list
-
-
-*/

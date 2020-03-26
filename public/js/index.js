@@ -1,8 +1,6 @@
-import modelClass from "./model";
+import Model from "./model";
 import View from "./view";
 import { elements } from './base';
-// Classes from model and view
-const Model = new modelClass('focus');
 
 ////////////////////////////////////////////////////////
 //                                                    //
@@ -12,26 +10,26 @@ const Model = new modelClass('focus');
 // + Modified countdown timer object                  //
 //                                                    //
 ////////////////////////////////////////////////////////
-var state = {};
+window.state = {};
 
 
 // Control the timer data & UI
-const controlTimer = () => {
-  // 1. Get current tab
+function startTimer() {
+  // 1. Update state
+  state.activeTimer = true;
 
-    // 2. Execute timer in model with currentTab as parameter
+  // 2. Run timer
+  Model.runTimer();
 
-    // 3. Update title
+  // 3. Update title
+  // Model.runTimerTitle();
 
-    // 4. Update state
+  // 4. Update UI (start the timer, replace start with pause)
 
-    // 5. Update UI with currentTab as parameter
 }
 
 // event listener
-elements.focusStart.addEventListener('click',(e) => {
-  console.log('Timer started');
-});
+elements.start.addEventListener('click', startTimer);
 
 
 
@@ -88,5 +86,10 @@ const init = () => {
   state.currentTab = "focus";
   state.newTab = "";
   state.previousTab = "";
+  state.activeTimer = false;
+
+  state.focusTime = 25;
+  state.breakTime = 5;
+  state.longBreakTime = 30;
 }
 init();
