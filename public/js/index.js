@@ -15,7 +15,7 @@ window.state = {};
 
 // Control the timer data & UI
 function startTimer() {
-  state.activeTimer = 'true';
+  state.activeTimer = true;
 
   Model.runTimer();
 }
@@ -26,13 +26,20 @@ elements.start.addEventListener('click', startTimer);
 
 
 
-function cleartime() {
+function pauseTimer() {
   clearInterval(state.timerId);
   state.pausedTimer = true;
 }
-elements.pause.addEventListener('click', cleartime);
+elements.pause.addEventListener('click', pauseTimer);
 
 
+
+function resetTimer() {
+  state.resetTimer = true;
+  Model.clearTimer();
+  Model.runTimer();
+}
+elements.reset.addEventListener('click', resetTimer);
 
 
 
@@ -52,8 +59,10 @@ function controlTab() {
     // 3) update the UI (bg - illustration - timer - tab)
     View.renderTab(state.currentTab, state.previousTab);
 
-    // 4) check if there's any running timer
+    // 4) if there's running timer => runTimer on new tab
     if (state.activeTimer) {
+  state.resetTimer = true;
+
       Model.clearTimer();
       startTimer();
     }
@@ -97,6 +106,7 @@ const init = () => {
   state.previousTab = "";
   state.activeTimer = false;
   state.pausedTimer = false;
+  state.resetTimer = false;
 
   state.remainingTime = 0;
   state.focus.time = 25;
