@@ -15,14 +15,11 @@ window.state = {};
 
 // Control the timer data & UI
 function startTimer() {
-  // 1. Update state
-  state.activeTimer = true;
-
   // 2. Run timer
   Model.runTimer();
 
   // 3. Update title
-  // Model.runTimerTitle();
+
 
   // 4. Update UI (start the timer, replace start with pause)
 
@@ -42,14 +39,17 @@ function controlTab() {
     // 1) Update previous tab in state
     state.previousTab = state.currentTab;
 
-    // 1) update currentTab in state
+    // 2) update currentTab in state
     state.currentTab = state.newTab;
 
-    // 2) update the UI (bg - illustration - timer - tab)
+    // 3) update the UI (bg - illustration - timer - tab)
     View.renderTab(state.currentTab, state.previousTab);
 
-
-    // 3) check if there's any running timer
+    // 4) check if there's any running timer
+    if (state.activeTimer) {
+      Model.clearTimer();
+      startTimer();
+    }
       // yes => run timer on changed tab
       // no => do nothing
   }
@@ -83,13 +83,18 @@ elements.longBreakTab.addEventListener('click', () => {
 
 // Init - set default state
 const init = () => {
+  state.focus = {}; 
+  state.break = {};
+  state.longBreak = {};
+
   state.currentTab = "focus";
   state.newTab = "";
   state.previousTab = "";
   state.activeTimer = false;
 
-  state.focusTime = 25;
-  state.breakTime = 5;
-  state.longBreakTime = 30;
+  state.remainingTime = 0;
+  state.focus.time = 25;
+  state.break.time = 5;
+  state.longBreak.time = 30;
 }
 init();
