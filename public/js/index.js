@@ -1,8 +1,6 @@
-import modelClass from "./model";
+import Model from "./model";
 import View from "./view";
 import { elements } from './base';
-// Classes from model and view
-const Model = new modelClass('focus');
 
 ////////////////////////////////////////////////////////
 //                                                    //
@@ -12,26 +10,37 @@ const Model = new modelClass('focus');
 // + Modified countdown timer object                  //
 //                                                    //
 ////////////////////////////////////////////////////////
-var state = {};
+window.state = {};
 
 
 // Control the timer data & UI
-const controlTimer = () => {
-  // 1. Get current tab
+function startTimer() {
+  state.activeTimer = true;
 
-    // 2. Execute timer in model with currentTab as parameter
-
-    // 3. Update title
-
-    // 4. Update state
-
-    // 5. Update UI with currentTab as parameter
+  Model.runTimer();
 }
 
 // event listener
-elements.focusStart.addEventListener('click',(e) => {
-  console.log('Timer started');
-});
+elements.start.addEventListener('click', startTimer);
+
+
+
+
+function pauseTimer() {
+  clearInterval(state.timerId);
+  state.pausedTimer = true;
+}
+elements.pause.addEventListener('click', pauseTimer);
+
+
+
+function resetTimer() {
+  state.resetTimer = true;
+  Model.clearTimer();
+  Model.runTimer();
+}
+elements.reset.addEventListener('click', resetTimer);
+
 
 
 
@@ -44,16 +53,19 @@ function controlTab() {
     // 1) Update previous tab in state
     state.previousTab = state.currentTab;
 
-    // 1) update currentTab in state
+    // 2) update currentTab in state
     state.currentTab = state.newTab;
 
-    // 2) update the UI (bg - illustration - timer - tab)
+    // 3) update the UI (bg - illustration - timer - tab)
     View.renderTab(state.currentTab, state.previousTab);
 
+    // 4) if there's running timer => runTimer on new tab
+    if (state.activeTimer) {
+  state.resetTimer = true;
 
-    // 3) check if there's any running timer
-      // yes => run timer on changed tab
-      // no => do nothing
+      Model.clearTimer();
+      startTimer();
+    }
   }
 
   //-------- Tab isn't changed
@@ -85,8 +97,20 @@ elements.longBreakTab.addEventListener('click', () => {
 
 // Init - set default state
 const init = () => {
+  state.focus = {}; 
+  state.break = {};
+  state.longBreak = {};
+
   state.currentTab = "focus";
   state.newTab = "";
   state.previousTab = "";
+  state.activeTimer = false;
+  state.pausedTimer = false;
+  state.resetTimer = false;
+
+  state.remainingTime = 0;
+  state.focus.time = 25;
+  state.break.time = 5;
+  state.longBreak.time = 30;
 }
 init();
