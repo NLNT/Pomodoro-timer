@@ -31,13 +31,7 @@ export default {
 
     // 3) Update illustration
     this.renderIllustration(currentTab);
-
-    // 4) Change the timer
-
-    // 5) Change the suggestion list
-    
   },
-
 
   renderBackgroundColor(currentTab, previousTab) {
     let removeBgClass, addBgClass;
@@ -56,7 +50,7 @@ export default {
 
   // Switch active styles from previous tab to current tab
   renderTabStyle(currentTab, previousTab) {
-    let active,nonActive;
+    let active, nonActive;
     // 1) Get previousTab DOM element
     if (previousTab === 'focus') {active = elements.focusTab}
     else if (previousTab === 'break') {active = elements.breakTab}

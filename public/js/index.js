@@ -15,18 +15,25 @@ window.state = {};
 
 // Control the timer data & UI
 function startTimer() {
-  // 2. Run timer
+  state.activeTimer = 'true';
+
   Model.runTimer();
-
-  // 3. Update title
-
-
-  // 4. Update UI (start the timer, replace start with pause)
-
 }
 
 // event listener
 elements.start.addEventListener('click', startTimer);
+
+
+
+
+function cleartime() {
+  clearInterval(state.timerId);
+  state.pausedTimer = true;
+}
+elements.pause.addEventListener('click', cleartime);
+
+
+
 
 
 
@@ -50,8 +57,6 @@ function controlTab() {
       Model.clearTimer();
       startTimer();
     }
-      // yes => run timer on changed tab
-      // no => do nothing
   }
 
   //-------- Tab isn't changed
@@ -91,6 +96,7 @@ const init = () => {
   state.newTab = "";
   state.previousTab = "";
   state.activeTimer = false;
+  state.pausedTimer = false;
 
   state.remainingTime = 0;
   state.focus.time = 25;

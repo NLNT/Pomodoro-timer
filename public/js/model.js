@@ -10,29 +10,35 @@ export default {
 
   runTimer() {
     // 1) Update state
-    state.activeTimer = true;
+    state.activeTimer = 'true';
+    let dis = this;
 
     // 2) get the current tab's time value
-    if (state.currentTab === 'focus') {state.remainingTime = state.focus.time * 60}
-    else if (state.currentTab === 'break') {state.remainingTime = state.break.time * 60}
-    else if (state.currentTab === 'longBreak') {state.remainingTime = state.longBreak.time * 60};
-
+    if (state.pausedTimer !== true){
+      if (state.currentTab === 'focus') {state.remainingTime = state.focus.time * 60}
+      else if (state.currentTab === 'break') {state.remainingTime = state.break.time * 60}
+      else if (state.currentTab === 'longBreak') {state.remainingTime = state.longBreak.time * 60};
+    }
     // Start the timing function
     state.timerId = setInterval(duringInterval, 1000);
 
-    // Do during a timer interval
+    // Do every 1s when timer started
     function duringInterval() {
-      // 1) Update remainingTime
-      console.log(state.remainingTime = state.remainingTime - 1);
-      // 2) Clear timer when finished
-      if (state.remainingTime === 0) {this.clearTimer()};
-    };
-
+      state.remainingTime = state.remainingTime - 1;
+      console.log(state.remainingTime)
+      if (state.remainingTime === 0) {dis.clearTimer()};
+    }
   },
+  
 
   clearTimer() {
     clearInterval(state.timerId);
-    state.clearTimer = false
+    state.clearTimer = false;
+  },
+
+  pauseTimer() {
+    clearInterval(state.timerId);
+    console.log("ASFAS")
   },
 
 

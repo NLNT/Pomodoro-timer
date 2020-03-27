@@ -1,6 +1,11 @@
 export const elements = {
-  // Start btn
+  // Start/Pause/Reset buttons
   start: document.getElementById('js-start'),
+  pause: document.getElementById('js-pause'),
+  reset: document.getElementById('js-reset'),
+
+  // Timer
+  timer: document.getElementById('js-timer'),
 
   // Tabs
   focusTab: document.getElementById('js-focus-tab'),
