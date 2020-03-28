@@ -8,13 +8,13 @@ import { elements } from './base';
 export default {
 
   resetTime() {
-    // 2) reset the timer if it's not pause but if you click reset, run this => add or here
-    if (state.pausedTimer === false){
+    // Reset timer only if pausedTimer is set to false
+    if (state.resetTimer === false){
       if (state.currentTab === 'focus') {state.remainingTime = state.focus.time * 60}
       else if (state.currentTab === 'break') {state.remainingTime = state.break.time * 60}
       else if (state.currentTab === 'longBreak') {state.remainingTime = state.longBreak.time * 60};
     } 
-    else if (state.pausedTimer === true) {state.pausedTimer = false};
+    else if (state.resetTimer === true) {state.resetTimer = false};
   },
   
 

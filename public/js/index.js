@@ -22,22 +22,16 @@ function startTimer() {
   // 1) setting state of activeTimer to true - here
   state.activeTimer = true;
 
-  // 2) change or reset to timer value to current tab (except when pausedTimer is false or resetTimer is true) - call func
+  // 2) Reset timer
   Model.resetTime();
 
   // 3) Start the timming setInterval function - here
-  state.timerId = setInterval(Model.interval, 1000); // add calculate time and render time in this callback later
+  state.timerId = setInterval(Model.interval, 1000);
 
-    // 4) Function of things to do in interval - call func
-      
-    // 4.1) Reduce remainingTime
-    // 4.2) Log the remaintingTime
-    // 4.3) Clear the Interval when Timer is finish
 
+  // 4) Update things to do in interval
     // 4.4) Calculate the remaining time to minute & second
     // 4.5) Render the time to block & title
-
-  //Model.runTimer();
 }
 
 // event listener
@@ -55,7 +49,7 @@ function pauseTimer() {
   // 1) Clear the existing interval (aka pause)
   clearInterval(state.timerId);
   // 2) set the pausedTimer to true => So timer won't reset time value
-  state.pausedTimer = true;
+  state.resetTimer = true;
   
 }
 elements.pause.addEventListener('click', pauseTimer);
@@ -69,10 +63,8 @@ elements.pause.addEventListener('click', pauseTimer);
 /////////////////////////////////
 function resetTimer() {
 
-  // 1) Set resetTimer to true => So timer will reset
-  //state.resetTimer = true;
-
-  state.pausedTimer = false;
+  // 1) set paused timer to false so reset timer will reset during pause
+  state.resetTimer = false;
 
   // 2) Clear the existing Interval => To avoid duplicating timer
   Model.clearTimer();
@@ -83,17 +75,6 @@ function resetTimer() {
 
   // 3) Start the timming setInterval function - here
   state.timerId = setInterval(Model.interval, 1000); // add calculate time and render time in this callback later
-
-    // 4.1) setting state of activeTimer to true
-
-    // 4.2) Reset time value
-    // 4.3) Start the timming setInterval functio
-    // 4.4) Function of things to do in interval
-      // 4.1) Reduce remainingTime
-      // 4.2) Log the remaintingTime
-      // 4.3) Clear the Interval when Timer is finish
-      // 4.4) Calculate the remaining time to minute & second
-      // 4.5) Render the time to block & title
 }
 elements.reset.addEventListener('click', resetTimer);
 
@@ -121,7 +102,7 @@ function controlTab() {
 
     // 4) if there's running timer => runTimer on new tab
     if (state.activeTimer) {
-      state.resetTimer = true;
+      state.resetTimer = false;
 
       Model.clearTimer();
       startTimer();
@@ -163,9 +144,7 @@ const init = () => {
   state.newTab = "";
   state.previousTab = "";
   state.activeTimer = false;
-
-  state.pausedTimer = false;
-  //state.resetTimer = false;
+  state.resetTimer = false;
 
   state.remainingTime = 0;
   state.focus.time = 25;
