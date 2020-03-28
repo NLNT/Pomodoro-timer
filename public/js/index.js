@@ -19,19 +19,19 @@ window.state = {};
 //                             //
 /////////////////////////////////
 function startTimer() {
-  // 1) setting state of activeTimer to true - here
+
+  // 1) setting state of activeTimer to true
   state.activeTimer = true;
 
-  // 2) Reset timer
+  // 2) Toggle to pause button
+
+
+  // 3) Reset timer
   Model.resetTime();
 
-  // 3) Start the timming setInterval function - here
+  // 4) Start the timming setInterval function
   state.timerId = setInterval(Model.interval, 1000);
 
-
-  // 4) Update things to do in interval
-    // 4.4) Calculate the remaining time to minute & second
-    // 4.5) Render the time to block & title
 }
 
 // event listener
@@ -46,10 +46,14 @@ elements.start.addEventListener('click', startTimer);
 /////////////////////////////////
 function pauseTimer() {
 
+  // 1) Toggle to start button
+
+
   // 1) Clear the existing interval (aka pause)
   clearInterval(state.timerId);
   // 2) set the pausedTimer to true => So timer won't reset time value
-  state.resetTimer = true;
+
+  state.resetTimer = false;
   
 }
 elements.pause.addEventListener('click', pauseTimer);
@@ -62,19 +66,19 @@ elements.pause.addEventListener('click', pauseTimer);
 //                             //
 /////////////////////////////////
 function resetTimer() {
-
-  // 1) set paused timer to false so reset timer will reset during pause
-  state.resetTimer = false;
-
+  // 1) incase timer is paused, change back to reset
+  state.resetTimer = true;
+  
   // 2) Clear the existing Interval => To avoid duplicating timer
   Model.clearTimer();
-
+  
   // 3) Run the timer
-  state.activeTimer = true;
   Model.resetTime();
-
+  
   // 3) Start the timming setInterval function - here
-  state.timerId = setInterval(Model.interval, 1000); // add calculate time and render time in this callback later
+  state.timerId = setInterval(Model.interval, 1000);
+  state.activeTimer = true;
+
 }
 elements.reset.addEventListener('click', resetTimer);
 
@@ -88,6 +92,7 @@ elements.reset.addEventListener('click', resetTimer);
 //         Change Tab          //
 //                             //
 /////////////////////////////////
+
 function controlTab() {
   // Tab is changed
   if (state.currentTab !== state.newTab) {
@@ -102,10 +107,8 @@ function controlTab() {
 
     // 4) if there's running timer => runTimer on new tab
     if (state.activeTimer) {
-      state.resetTimer = false;
-
       Model.clearTimer();
-      startTimer();
+      resetTimer();
     }
   }
   // Tab isn't changed
@@ -144,7 +147,7 @@ const init = () => {
   state.newTab = "";
   state.previousTab = "";
   state.activeTimer = false;
-  state.resetTimer = false;
+  state.resetTimer = true;
 
   state.remainingTime = 0;
   state.focus.time = 25;

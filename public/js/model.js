@@ -9,13 +9,16 @@ export default {
 
   resetTime() {
     // Reset timer only if pausedTimer is set to false
-    if (state.resetTimer === false){
+
+    if (state.resetTimer === true){
       if (state.currentTab === 'focus') {state.remainingTime = state.focus.time * 60}
       else if (state.currentTab === 'break') {state.remainingTime = state.break.time * 60}
       else if (state.currentTab === 'longBreak') {state.remainingTime = state.longBreak.time * 60};
     } 
-    else if (state.resetTimer === true) {state.resetTimer = false};
+
+    else if (state.resetTimer === false) {state.resetTimer = true};
   },
+
   
 
   interval() {
