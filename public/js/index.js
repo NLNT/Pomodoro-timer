@@ -2,22 +2,36 @@ import Model from "./model";
 import View from "./view";
 import { elements } from './base';
 
-////////////////////////////////////////////////////////
-//                                                    //
-// Global State                                       //
-// - Current tab                                      //
-// - Current running timer (focus/break/longbreak)    //
-// + Modified countdown timer object                  //
-//                                                    //
-////////////////////////////////////////////////////////
+/////////////////////////////////
+//                             //
+//        Global State         //
+//                             //
+/////////////////////////////////
 window.state = {};
 
 
-// Control the timer data & UI
+
+
+
+/////////////////////////////////
+//                             //
+//        Start Event          //
+//                             //
+/////////////////////////////////
 function startTimer() {
+  // 1) setting state of activeTimer to true - here
   state.activeTimer = true;
 
-  Model.runTimer();
+  // 2) Reset timer
+  Model.resetTime();
+
+  // 3) Start the timming setInterval function - here
+  state.timerId = setInterval(Model.interval, 1000);
+
+
+  // 4) Update things to do in interval
+    // 4.4) Calculate the remaining time to minute & second
+    // 4.5) Render the time to block & title
 }
 
 // event listener
@@ -25,19 +39,42 @@ elements.start.addEventListener('click', startTimer);
 
 
 
-
+/////////////////////////////////
+//                             //
+//        Pause Event          //
+//                             //
+/////////////////////////////////
 function pauseTimer() {
+
+  // 1) Clear the existing interval (aka pause)
   clearInterval(state.timerId);
-  state.pausedTimer = true;
+  // 2) set the pausedTimer to true => So timer won't reset time value
+  state.resetTimer = true;
+  
 }
 elements.pause.addEventListener('click', pauseTimer);
 
 
 
+/////////////////////////////////
+//                             //
+//         Reset Event         //
+//                             //
+/////////////////////////////////
 function resetTimer() {
-  state.resetTimer = true;
+
+  // 1) set paused timer to false so reset timer will reset during pause
+  state.resetTimer = false;
+
+  // 2) Clear the existing Interval => To avoid duplicating timer
   Model.clearTimer();
-  Model.runTimer();
+
+  // 3) Run the timer
+  state.activeTimer = true;
+  Model.resetTime();
+
+  // 3) Start the timming setInterval function - here
+  state.timerId = setInterval(Model.interval, 1000); // add calculate time and render time in this callback later
 }
 elements.reset.addEventListener('click', resetTimer);
 
@@ -46,7 +83,11 @@ elements.reset.addEventListener('click', resetTimer);
 
 
 
-// Check when tab is change
+/////////////////////////////////
+//                             //
+//         Change Tab          //
+//                             //
+/////////////////////////////////
 function controlTab() {
   // Tab is changed
   if (state.currentTab !== state.newTab) {
@@ -61,18 +102,16 @@ function controlTab() {
 
     // 4) if there's running timer => runTimer on new tab
     if (state.activeTimer) {
-  state.resetTimer = true;
+      state.resetTimer = false;
 
       Model.clearTimer();
       startTimer();
     }
   }
-
-  //-------- Tab isn't changed
+  // Tab isn't changed
   else if (state.currentTab === state.newTab) {
     state.newTab = "";
   }
-
 }
 
 
@@ -105,7 +144,6 @@ const init = () => {
   state.newTab = "";
   state.previousTab = "";
   state.activeTimer = false;
-  state.pausedTimer = false;
   state.resetTimer = false;
 
   state.remainingTime = 0;
