@@ -20,20 +20,24 @@ window.state = {};
 /////////////////////////////////
 function startTimer() {
   // 1) setting state of activeTimer to true - here
+  state.activeTimer = true;
 
   // 2) change or reset to timer value to current tab (except when pausedTimer is false or resetTimer is true) - call func
+  Model.resetTime();
 
   // 3) Start the timming setInterval function - here
+  state.timerId = setInterval(Model.interval, 1000); // add calculate time and render time in this callback later
 
     // 4) Function of things to do in interval - call func
       
     // 4.1) Reduce remainingTime
     // 4.2) Log the remaintingTime
     // 4.3) Clear the Interval when Timer is finish
+
     // 4.4) Calculate the remaining time to minute & second
     // 4.5) Render the time to block & title
 
-  Model.runTimer();
+  //Model.runTimer();
 }
 
 // event listener
@@ -49,10 +53,10 @@ elements.start.addEventListener('click', startTimer);
 function pauseTimer() {
 
   // 1) Clear the existing interval (aka pause)
-
-  // 2) set the pausedTimer to true => So timer won't reset time value
   clearInterval(state.timerId);
+  // 2) set the pausedTimer to true => So timer won't reset time value
   state.pausedTimer = true;
+  
 }
 elements.pause.addEventListener('click', pauseTimer);
 
@@ -66,10 +70,19 @@ elements.pause.addEventListener('click', pauseTimer);
 function resetTimer() {
 
   // 1) Set resetTimer to true => So timer will reset
+  //state.resetTimer = true;
+
+  state.pausedTimer = false;
 
   // 2) Clear the existing Interval => To avoid duplicating timer
+  Model.clearTimer();
 
   // 3) Run the timer
+  state.activeTimer = true;
+  Model.resetTime();
+
+  // 3) Start the timming setInterval function - here
+  state.timerId = setInterval(Model.interval, 1000); // add calculate time and render time in this callback later
 
     // 4.1) setting state of activeTimer to true
 
@@ -81,11 +94,6 @@ function resetTimer() {
       // 4.3) Clear the Interval when Timer is finish
       // 4.4) Calculate the remaining time to minute & second
       // 4.5) Render the time to block & title
-
-
-  state.resetTimer = true;
-  Model.clearTimer();
-  Model.runTimer();
 }
 elements.reset.addEventListener('click', resetTimer);
 
@@ -157,7 +165,7 @@ const init = () => {
   state.activeTimer = false;
 
   state.pausedTimer = false;
-  state.resetTimer = false;
+  //state.resetTimer = false;
 
   state.remainingTime = 0;
   state.focus.time = 25;
