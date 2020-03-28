@@ -16,6 +16,7 @@ export default {
     } 
     else if (state.resetTimer === false) {state.resetTimer = true};
   },
+
   
 
   interval() {
