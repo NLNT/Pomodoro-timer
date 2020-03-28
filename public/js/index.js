@@ -19,6 +19,7 @@ window.state = {};
 //                             //
 /////////////////////////////////
 function startTimer() {
+
   // 1) setting state of activeTimer to true
   state.activeTimer = true;
 
@@ -30,6 +31,7 @@ function startTimer() {
 
   // 4) Start the timming setInterval function
   state.timerId = setInterval(Model.interval, 1000);
+
 }
 
 // event listener
@@ -43,12 +45,14 @@ elements.start.addEventListener('click', startTimer);
 //                             //
 /////////////////////////////////
 function pauseTimer() {
+
   // 1) Toggle to start button
 
 
   // 1) Clear the existing interval (aka pause)
   clearInterval(state.timerId);
   // 2) set the pausedTimer to true => So timer won't reset time value
+
   state.resetTimer = false;
   
 }
@@ -74,6 +78,7 @@ function resetTimer() {
   // 3) Start the timming setInterval function - here
   state.timerId = setInterval(Model.interval, 1000);
   state.activeTimer = true;
+
 }
 elements.reset.addEventListener('click', resetTimer);
 
