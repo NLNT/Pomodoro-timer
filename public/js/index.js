@@ -30,7 +30,10 @@ function startTimer() {
   Model.resetTime();
 
   // 4) Start the timming setInterval function
-  state.timerId = setInterval(Model.interval, 1000);
+  state.timerId = setInterval( () => {
+    Model.interval();
+    View.formatTimer();
+  }, 1000);
 
 }
 
@@ -75,7 +78,10 @@ function resetTimer() {
   Model.resetTime();
   
   // 3) Start the timming setInterval function - here
-  state.timerId = setInterval(Model.interval, 1000);
+  state.timerId = setInterval( () => {
+    Model.interval();
+    View.formatTimer();
+  }, 1000);
   state.activeTimer = true;
 
 }
@@ -101,6 +107,9 @@ function controlTab() {
     // 2) update currentTab in state
     state.currentTab = state.newTab;
 
+    // Update default time in timer
+    View.renderTimer();
+
     // 3) update the UI (bg - illustration - timer - tab)
     View.renderTab(state.currentTab, state.previousTab);
 
@@ -108,7 +117,7 @@ function controlTab() {
     if (state.activeTimer) {
       Model.clearTimer();
       resetTimer();
-    }
+    }    
   }
   // Tab isn't changed
   else if (state.currentTab === state.newTab) {

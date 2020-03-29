@@ -9,20 +9,22 @@ export default {
     activeTab: ['text-gray-800', 'bg-gray-300', 'shadow-sm']
   },
   focus: {
+    time: '25:00',
     bgClass: 'bg-red-200',
     illustration: `<img class="my-px pt-px md:p-0 md:m-0" src="https://raw.githubusercontent.com/NLNT/Pomodoro-timer/master/img/focus-illustration.svg?sanitize=true" alt="Woman working illustration">`,
   },
   break: {
+    time: '05:00',
     bgClass: 'bg-teal-200',
     illustration: `<img class="py-1 -my-px md:my-px md:py-px" src="https://raw.githubusercontent.com/NLNT/Pomodoro-timer/master/img/break-illustration.svg?sanitize=true" alt="Woman mediatating illustration">`,
   },
   longBreak: {
+    time: '30:00',
     bgClass: 'bg-blue-200',
     illustration: `<img class="my-1 pt-px" src="https://raw.githubusercontent.com/NLNT/Pomodoro-timer/master/img/long-break-illustartion.svg?sanitize=true" alt="two people resting during a trip illustration">`,
   },
   markup: {
-    start: '<a id="js-start" class="flex font-semibold text-xl items-center py-1 px-6 border-r fill-current transition-color duration-200 text-red-700 cursor-pointer hover:text-red-800"><span><svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><defs/><path d="M16 10v28l22-14z"/></svg></span>Start</a>',
-    pause: '<a id="js-pause" class="flex text-lg items-center py-1 px-6 border-r fill-current transition-color duration-200 text-gray-700 cursor-pointer hover:text-gray-900"><span><svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs/><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg></span>Pause</a>',
+
   },
 
 
@@ -72,20 +74,33 @@ export default {
 
   },
 
-
+  // Changing illustration
   renderIllustration(currentTab) {
-    // get HTML code using:   this.[focus/break/longBreak].illustration
     let illustrationMarkup = this[currentTab].illustration;
     elements.blockIllustration.innerHTML = illustrationMarkup;
   },
-
-
-  renderTimer(currentTab) {
-    
-  },
   
+  // Change default time value in timer
+  renderTimer() {
+    elements.timer.innerHTML = this[state.currentTab].time;
+  },
 
-  renderSuggestion(currentTab) {
+  // Turn remaining time into timer format
+  formatTimer() {
+    let minute = Math.floor(state.remainingTime / 60);
+    let second = state.remainingTime % 60;
+
+    // Add 0 infront of number < 10
+    minute < 10 ? minute = `0${minute}` : minute = minute;
+    second < 10 ? second = `0${second}` : second = second;
+    if (state.remainingTime == 0) {
+      elements.timer.innerHTML = `00:00`;
+    }
+
+    elements.timer.innerHTML = `${minute}:${second}`;
+  },
+
+  renderSuggestion() {
 
   },
 
