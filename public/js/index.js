@@ -24,7 +24,7 @@ function startTimer() {
   state.activeTimer = true;
 
   // 2) Toggle to pause button
-
+  View.toggleStartPause();
 
   // 3) Reset timer
   Model.resetTime();
@@ -47,12 +47,11 @@ elements.start.addEventListener('click', startTimer);
 function pauseTimer() {
 
   // 1) Toggle to start button
-
+  View.togglePauseStart();
 
   // 1) Clear the existing interval (aka pause)
   clearInterval(state.timerId);
   // 2) set the pausedTimer to true => So timer won't reset time value
-
   state.resetTimer = false;
   
 }

@@ -20,6 +20,10 @@ export default {
     bgClass: 'bg-blue-200',
     illustration: `<img class="my-1 pt-px" src="https://raw.githubusercontent.com/NLNT/Pomodoro-timer/master/img/long-break-illustartion.svg?sanitize=true" alt="two people resting during a trip illustration">`,
   },
+  markup: {
+    start: '<a id="js-start" class="flex font-semibold text-xl items-center py-1 px-6 border-r fill-current transition-color duration-200 text-red-700 cursor-pointer hover:text-red-800"><span><svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><defs/><path d="M16 10v28l22-14z"/></svg></span>Start</a>',
+    pause: '<a id="js-pause" class="flex text-lg items-center py-1 px-6 border-r fill-current transition-color duration-200 text-gray-700 cursor-pointer hover:text-gray-900"><span><svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs/><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg></span>Pause</a>',
+  },
 
 
   renderTab(currentTab, previousTab) {
@@ -83,5 +87,15 @@ export default {
 
   renderSuggestion(currentTab) {
 
+  },
+
+  toggleStartPause() {
+    elements.start.classList.add('hidden');
+    elements.pause.classList.remove('hidden');
+  },
+
+  togglePauseStart() {
+    elements.pause.classList.add('hidden');
+    elements.start.classList.remove('hidden');
   },
 }

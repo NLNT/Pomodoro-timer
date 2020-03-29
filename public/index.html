@@ -27,12 +27,11 @@
           <h2 id="js-timer" class="text-6xl mt-4 md:mt-8 text-gray-900 font-bold leading-tight" style="font-size: 5.5rem;">25:00</h2>
           
           <!-- Pause & Reset -->
-          <div class="flex justify-evenly items-center font-medium">
+          <div class="flex items-center font-medium">
+            <a id="js-start" class="flex font-semibold text-xl items-center py-1 px-6 border-r fill-current transition-color duration-200 text-red-700 cursor-pointer hover:text-red-800"><span><svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><defs/><path d="M16 10v28l22-14z"/></svg></span>Start</a>
 
-            <a id="js-start" class="flex font-semibold text-xl items-center py-1 px-6 border-r fill-current transition-color duration-200 text-red-700 cursor-pointer hover:text-red-800"><span><svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><defs/><path d="M16 10v28l22-14z"/></svg></span> Start</a>
-
-            <a id="js-pause" class="flex text-lg items-center py-1 px-6 border-r fill-current transition-color duration-200 text-gray-700 cursor-pointer hover:text-gray-900"><span><svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs/><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg></span> Pause</a>
-
+            <a id="js-pause" class="flex text-lg items-center py-1 px-6 border-r fill-current transition-color duration-200 text-gray-700 cursor-pointer hover:text-gray-900 hidden"><span><svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs/><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg></span>Pause</a>
+          
             <a id="js-reset" class="flex text-xl items-center py-1 px-6 fill-current transition-color duration-200 text-gray-700 cursor-pointer hover:text-gray-900"><span><svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs/><path d="M12 5V1L7 6l5 5V7a6 6 0 11-6 6H4a8 8 0 108-8z"/></svg></span> Restart</a>
           </div>
           <!-- Start -->
