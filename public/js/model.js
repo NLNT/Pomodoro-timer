@@ -24,7 +24,7 @@ export default {
   interval() {
     state.remainingTime = state.remainingTime - 1;
     console.log(state.remainingTime);
-    if (state.remainingTime <= 0) {dis.clearTimer()};
+    if (state.remainingTime <= 0) {this.clearTimer()};
   },
 
   clearTimer() {
