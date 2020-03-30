@@ -1,12 +1,12 @@
 {
   "name": "pomodoro-timer",
   "version": "1.0.0",
-  "description": "Pomodoro timer web app",
+  "description": "Pomodoro timer for productivity web app",
   "main": "index.js",
   "scripts": {
     "build": "postcss css/tailwind.css -o public/tailwind.css",
     "bundle:js": "webpack",
-    "dev": "webpack-dev-server --mode development --open"
+    "dev": "webpack-dev-server --mode production --open"
   },
   "repository": {
     "type": "git",
