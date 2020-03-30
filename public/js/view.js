@@ -96,8 +96,10 @@ export default {
     if (state.remainingTime == 0) {
       elements.timer.innerHTML = `00:00`;
     }
-
     elements.timer.innerHTML = `${minute}:${second}`;
+
+    // If the setting allow:
+    elements.title.innerHTML = `${minute}:${second} - Pomodoro Online`;
   },
 
   renderSuggestion() {

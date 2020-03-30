@@ -4,6 +4,9 @@ export const elements = {
   pause: document.getElementById('js-pause'),
   reset: document.getElementById('js-reset'),
 
+  // Title
+  title: document.getElementById('js-title'),
+
   // Timer
   timer: document.getElementById('js-timer'),
 
