@@ -12,7 +12,7 @@ export default {
 
     if (state.resetTimer === true){
       if (state.currentTab === 'focus') {state.remainingTime = state.focus.time * 60}
-      else if (state.currentTab === 'break') {state.remainingTime = state.break.time}
+      else if (state.currentTab === 'break') {state.remainingTime = state.break.time * 60}
       else if (state.currentTab === 'longBreak') {state.remainingTime = state.longBreak.time * 60};
     } 
 

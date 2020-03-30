@@ -48,14 +48,15 @@ elements.start.addEventListener('click', startTimer);
 /////////////////////////////////
 function pauseTimer() {
 
-  // 1) Toggle to start button
-  View.togglePauseStart();
-
-  // 1) Clear the existing interval (aka pause)
-  clearInterval(state.timerId);
-  // 2) set the pausedTimer to true => So timer won't reset time value
-  state.resetTimer = false;
-  
+  // Run only before timer has finished
+  if (state.remainingTime > 0) {
+    // 1) Toggle start/pause button
+    View.togglePauseStart();
+    // 2) Clear the existing interval (aka pause)
+    clearInterval(state.timerId);
+    // 3) set the pausedTimer to true => So timer won't reset time value
+    state.resetTimer = false;
+  }
 }
 elements.pause.addEventListener('click', pauseTimer);
 
