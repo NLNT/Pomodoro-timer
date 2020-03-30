@@ -34,7 +34,6 @@ function startTimer() {
     Model.interval();
     View.formatTimer();
   }, 1000);
-
 }
 
 // event listener
@@ -115,7 +114,7 @@ function controlTab() {
 
     // 4) if there's running timer => runTimer on new tab
     if (state.activeTimer) {
-      Model.clearTimer();
+      // Model.clearTimer();
       resetTimer();
     }    
   }

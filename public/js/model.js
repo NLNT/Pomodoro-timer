@@ -12,7 +12,7 @@ export default {
 
     if (state.resetTimer === true){
       if (state.currentTab === 'focus') {state.remainingTime = state.focus.time * 60}
-      else if (state.currentTab === 'break') {state.remainingTime = state.break.time * 60}
+      else if (state.currentTab === 'break') {state.remainingTime = state.break.time}
       else if (state.currentTab === 'longBreak') {state.remainingTime = state.longBreak.time * 60};
     } 
 
@@ -24,11 +24,15 @@ export default {
   interval() {
     state.remainingTime = state.remainingTime - 1;
     console.log(state.remainingTime);
-    if (state.remainingTime <= 0) {this.clearTimer()};
+    if (state.remainingTime <= 0) {this.clearTimer(); this.playAudio()};
   },
 
   clearTimer() {
     clearInterval(state.timerId);
-    state.activeTimer = false;
+    // state.activeTimer = false;
   },
+
+  playAudio() {
+    elements.audio.play();
+  }
 }

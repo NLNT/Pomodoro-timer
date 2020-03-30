@@ -7,6 +7,9 @@ export const elements = {
   // Title
   title: document.getElementById('js-title'),
 
+  // Audio
+  audio: document.getElementById('js-alarm'),
+
   // Timer
   timer: document.getElementById('js-timer'),
 
