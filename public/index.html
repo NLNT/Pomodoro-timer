@@ -15,17 +15,16 @@
 
   <audio id="js-alarm" src="alarm.mp3" preload="auto"></audio>
 
+  <main class="md:m-4 lg:mt-8">
   <!-- Block - component -->
-
-    <main class="md:m-4 lg:mt-8">
     <div id="js-block-background" class="transition-colors duration-200 shadow-xl max-w-5xl mx-auto bg-red-200 p-px md:p-0 rounded-b-2xl md:rounded-2xl md:flex md:items-center">
       <!-- Illustration -->
-      <div id="js-block-illustration" class="p-2 py-5 pt-6 md:py-2 opacity-75" style="flex: 100;">
+      <div id="js-block-illustration" class="m-6 md:ml-2 lg:m-6 opacity-75" style="flex: 100;">
         <img class="my-px pt-px md:p-0 md:m-0" src="https://raw.githubusercontent.com/NLNT/Pomodoro-timer/master/img/focus-illustration.svg?sanitize=true" alt="Woman working illustration">
       </div>
 
       <!-- Right side -->
-      <div class="shadow-xl self-stretch flex flex-col justify-between bg-white rounded-xl m-xs mt-3 md:mt-xs" style="flex: 85;">
+      <div class="shadow-xl self-stretch flex flex-col justify-between bg-white rounded-xl m-xs mt-3 md:mt-xs" style="flex: 90;">
         <!-- Timer -->
         <div class="flex flex-col flex-1 items-center p-6 mb-3 rounded-xl">
           <h6 class="font-medium text-gray-700 sm:text-lg">Pomodoro Timer</h6>
@@ -51,20 +50,141 @@
       </div>
     </div>
     <!-- End - Block Component -->
+    
 
-    <div class="max-w-5xl mx-auto mt-6">
-      <div class="md:flex p-2 py-10">
-        <!-- Card - component -->
-        <div class="flex-1 bg-white rounded p-4 mr-10">
-          CARD
+
+
+
+
+
+
+    <div class="max-w-5xl mx-auto mt-24">
+      <div class="flex justify-center md:justify-start">
+
+
+
+        <!-- Tab - component  -->
+        <div class="inline-flex font-medium bg-white text-center border border-gray-200 text-gray-600" style="border-radius: .9rem">
+          <a class="flex-1 px-16 py-4 transition-colors duration-200 text-gray-800 bg-gray-300 shadow-sm cursor-pointer" style="border-radius: .9rem">Settings</a>
+          <a class="flex-1 px-16 py-4 transition-colors duration-200 hover:text-gray-800 cursor-pointer" style="border-radius: .9rem">History</a>
         </div>
-        <div class="flex-1 bg-white mr-10">
-          CARD
-        </div>
-        <div class="flex-1 bg-white">
-          CARD
-        </div>
-        <!-- End - Card component -->
+        <!-- End - Tab component  -->
+      </div>
+      
+      <!-- Tab Content -->
+      <div class="mt-8">
+        <form action="#" class="md:flex flex-1">
+          <!-- Left Side -->
+          <div class="md:w-5/12 bg-white p-10 rounded-xl shadow">
+            <h5 class="text-lg font-medium text-gray-800 border-b pb-4">Custom timer</h5>
+            <!-- Input - component -->
+            <div class="my-8">
+              <label class="font-medium text-gray-700 ml-1" for="custom-focus">Focus duration</label>
+              <div class="border mt-2 rounded-lg p-2 flex justify-between">
+                <input class="w-full p-2 focus:outline-none font-medium text-gray-800" type="number" name="custom-focus" id="js-custom-focus" value="25" min="1" max="60">
+                <span class="p-2 text-gray-600">Minutes</span>
+              </div>
+            </div>
+            <!-- End - Input Component -->
+            <!-- Input - component -->
+            <div class="my-8">
+              <label class="font-medium text-gray-700 ml-1" for="custom-break">Short break duration</label>
+              <div class="border mt-2 rounded-lg p-2 flex justify-between">
+                <input class="w-full p-2 focus:outline-none font-medium text-gray-800" type="number" name="custom-break" id="js-custom-break" value="5" min="1" max="60">
+                <span class="p-2 text-gray-600">Minutes</span>
+              </div>
+            </div>
+            <!-- End - Input Component -->
+            <!-- Input - component -->
+            <div class="my-8">
+              <label class="font-medium text-gray-700 ml-1" for="custom-longBreak">Long break duration</label>
+              <div class="border mt-2 rounded-lg p-2 flex justify-between">
+                <input class="w-full p-2 focus:outline-none font-medium text-gray-800" type="number" name="custom-longBreak" id="js-custom-focus" value="30" min="1" max="60">
+                <span class="p-2 text-gray-600">Minutes</span>
+              </div>
+            </div>
+            <!-- End - Input Component -->
+            <!-- Input - component -->
+            <div class="mt-8 mb-2">
+              <label class="font-medium text-gray-700 ml-1" for="custom-longBreak">Take a long break every</label>
+              <div class="border mt-2 rounded-lg p-2 flex justify-start relative">
+                <input class="w-12 p-2 focus:outline-none font-medium text-gray-800" type="number" name="custom-longBreak" id="js-custom-focus" value="4" min="1" max="20">
+                <span class="p-2 absolute scale-y-50 ml-8 font-medium text-gray-600">th Break</span>
+              </div>
+            </div>
+            <!-- End - Input Component -->
+          </div>
+          
+
+
+
+
+          <!-- Right Side -->
+          <div class="md:w-7/12 md:ml-8 mt-8 sm:mt-16 md:mt-0 bg-white rounded-xl p-10 shadow">
+            <h5 class="text-lg font-medium text-gray-800 border-b pb-4">General Settings</h5>
+
+            <h6 class="mt-8 mb-2 font-medium text-gray-700">Alarm sounds</h6>
+            <!-- Row -->
+            <div class="flex">
+              <!-- Radio - Component -->
+              <div class="flex-1 mr-4 shadow-xs p-6 py-4 cursor-pointer relative flex items-center justify-between rounded-lg">
+                <label class="absolute inset-0 rounded-lg cursor-pointer" for="alarm-sound">&nbsp;</label>
+                <p class="font-medium">Ring</p>
+                <input type="radio" name="alarms" id="alarm-sound" checked>       
+              </div>
+              <!-- End - Radio Component -->
+
+              <!-- Radio - Component -->
+              <div class="flex-1 shadow-xs p-6 py-4 cursor-pointer relative flex items-center justify-between rounded-lg">
+                <label class="absolute inset-0 rounded-lg cursor-pointer" for="alarm-2">&nbsp;</label>
+                <p class="font-medium">Birds</p>
+                <input type="radio" name="alarms" id="alarm-2">       
+              </div>
+              <!-- End - Radio Component -->
+            </div>
+            <!-- Row -->
+            <div class="flex mt-4">
+              <!-- Radio - Component -->
+              <div class="flex-1 mr-4 shadow-xs p-6 py-4 cursor-pointer relative flex items-center justify-between rounded-lg">
+                <label class="absolute inset-0 rounded-lg cursor-pointer" for="alarm-3">&nbsp;</label>
+                <p class="font-medium">Wave</p>
+                <input type="radio" name="alarms" id="alarm-3">       
+              </div>
+              <!-- End - Radio Component -->
+
+              <!-- Radio - Component -->
+              <div class="flex-1 shadow-xs p-6 py-4 cursor-pointer relative flex items-center justify-between rounded-lg">
+                <label class="absolute inset-0 rounded-lg cursor-pointer" for="alarm-4">&nbsp;</label>
+                <p class="font-medium">Water</p>
+                <input type="radio" name="alarms" id="alarm-4">       
+              </div>
+              <!-- End - Radio Component -->
+            </div>
+            <!-- End Alarm sound -->
+
+
+            <!-- Toggles -->
+            <h6 class="mt-8 mb-2 font-medium text-gray-700">Others</h6>
+              <!-- Row -->
+                <!-- Checkbox - Component -->
+                <div class="flex-1 shadow-xs p-6 py-4 cursor-pointer relative flex items-center justify-between rounded-lg">
+                  <label class="absolute inset-0 rounded-lg cursor-pointer" for="time-on-title">&nbsp;</label>
+                  <p class="font-medium">Display timer in the title</p>
+                  <input type="checkbox" name="time-title" id="time-on-title" checked>       
+                </div>
+                <!-- End - Checkbox Component -->    
+                <!-- Checkbox - Component -->
+                <div class="flex-1 mt-4 shadow-xs p-6 py-4 cursor-pointer relative flex items-center justify-between rounded-lg">
+                  <label class="absolute inset-0 rounded-lg cursor-pointer" for="sound-alarm">&nbsp;</label>
+                  <p class="font-medium">Sound notification</p>
+                  <input type="checkbox" name="sound-alarm" id="sound-alarm" checked>       
+                </div>
+                <!-- End - Checkbox Component -->    
+              </div>
+            
+          </div>
+        </form>
+
       </div>
     </div>
 
