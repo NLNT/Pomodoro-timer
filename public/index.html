@@ -60,6 +60,9 @@
 
     <div class="max-w-5xl mx-auto mt-24">
       <div class="flex justify-center md:justify-start">
+
+
+
         <!-- Tab - component  -->
         <div class="inline-flex font-medium bg-white text-center border border-gray-200 text-gray-600" style="border-radius: .9rem">
           <a class="flex-1 px-16 py-4 transition-colors duration-200 text-gray-800 bg-gray-300 shadow-sm cursor-pointer" style="border-radius: .9rem">Settings</a>
@@ -68,20 +71,18 @@
         <!-- End - Tab component  -->
       </div>
       
-
-
-
-      <div class="bg-white mt-8 p-10 rounded-xl ">
+      <!-- Tab Content -->
+      <div class="mt-8">
         <form action="#" class="md:flex flex-1">
           <!-- Left Side -->
-          <div class="md:w-5/12 lg:w-4/12 md:pr-6">
-            <h5 class="text-lg font-medium text-gray-800">Custom timer</h5>
+          <div class="md:w-5/12 bg-white p-10 rounded-xl shadow">
+            <h5 class="text-lg font-medium text-gray-800 border-b pb-4">Custom timer</h5>
             <!-- Input - component -->
             <div class="my-8">
               <label class="font-medium text-gray-700 ml-1" for="custom-focus">Focus duration</label>
               <div class="border mt-2 rounded-lg p-2 flex justify-between">
-                <input class="w-full p-2 focus:outline-none" type="number" name="custom-focus" id="js-custom-focus" value="25" min="1" max="60">
-                <span class="p-2">Minutes</span>
+                <input class="w-full p-2 focus:outline-none font-medium text-gray-800" type="number" name="custom-focus" id="js-custom-focus" value="25" min="1" max="60">
+                <span class="p-2 text-gray-600">Minutes</span>
               </div>
             </div>
             <!-- End - Input Component -->
@@ -89,8 +90,8 @@
             <div class="my-8">
               <label class="font-medium text-gray-700 ml-1" for="custom-break">Short break duration</label>
               <div class="border mt-2 rounded-lg p-2 flex justify-between">
-                <input class="w-full p-2 focus:outline-none" type="number" name="custom-break" id="js-custom-break" value="5" min="1" max="60">
-                <span class="p-2">Minutes</span>
+                <input class="w-full p-2 focus:outline-none font-medium text-gray-800" type="number" name="custom-break" id="js-custom-break" value="5" min="1" max="60">
+                <span class="p-2 text-gray-600">Minutes</span>
               </div>
             </div>
             <!-- End - Input Component -->
@@ -98,24 +99,28 @@
             <div class="my-8">
               <label class="font-medium text-gray-700 ml-1" for="custom-longBreak">Long break duration</label>
               <div class="border mt-2 rounded-lg p-2 flex justify-between">
-                <input class="w-full p-2 focus:outline-none" type="number" name="custom-longBreak" id="js-custom-focus" value="30" min="1" max="60">
-                <span class="p-2">Minutes</span>
+                <input class="w-full p-2 focus:outline-none font-medium text-gray-800" type="number" name="custom-longBreak" id="js-custom-focus" value="30" min="1" max="60">
+                <span class="p-2 text-gray-600">Minutes</span>
               </div>
             </div>
             <!-- End - Input Component -->
             <!-- Input - component -->
-            <div class="my-8">
+            <div class="mt-8 mb-2">
               <label class="font-medium text-gray-700 ml-1" for="custom-longBreak">Take a long break every</label>
               <div class="border mt-2 rounded-lg p-2 flex justify-start relative">
-                <input class="w-12 p-2 focus:outline-none" type="number" name="custom-longBreak" id="js-custom-focus" value="4" min="1" max="20">
-                <span class="p-2 absolute scale-y-50 ml-8">th Break</span>
+                <input class="w-12 p-2 focus:outline-none font-medium text-gray-800" type="number" name="custom-longBreak" id="js-custom-focus" value="4" min="1" max="20">
+                <span class="p-2 absolute scale-y-50 ml-8 font-medium text-gray-600">th Break</span>
               </div>
             </div>
             <!-- End - Input Component -->
           </div>
           
+
+
+
+
           <!-- Right Side -->
-          <div class="w-7/12 md:ml-20 mt-16 md:mt-0">
+          <div class="w-7/12 md:ml-8 mt-16 md:mt-0 bg-white rounded-xl p-10 shadow">
             <h5 class="text-lg font-medium text-gray-800">General Settings</h5>
 
             <h6 class="mt-8 mb-2 font-medium text-gray-700">Alarm sounds</h6>
@@ -135,8 +140,6 @@
                 <input type="radio" name="alarms" id="alarm-2">       
               </div>
               <!-- End - Radio Component -->
-
-
             </div>
 
           </div>
