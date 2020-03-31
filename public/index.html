@@ -120,10 +120,11 @@
 
 
           <!-- Right Side -->
-          <div class="w-7/12 md:ml-8 mt-16 md:mt-0 bg-white rounded-xl p-10 shadow">
-            <h5 class="text-lg font-medium text-gray-800">General Settings</h5>
+          <div class="md:w-7/12 md:ml-8 mt-8 sm:mt-16 md:mt-0 bg-white rounded-xl p-10 shadow">
+            <h5 class="text-lg font-medium text-gray-800 border-b pb-4">General Settings</h5>
 
             <h6 class="mt-8 mb-2 font-medium text-gray-700">Alarm sounds</h6>
+            <!-- Row -->
             <div class="flex">
               <!-- Radio - Component -->
               <div class="flex-1 mr-4 shadow-xs p-6 py-4 cursor-pointer relative flex items-center justify-between rounded-lg">
@@ -136,12 +137,51 @@
               <!-- Radio - Component -->
               <div class="flex-1 shadow-xs p-6 py-4 cursor-pointer relative flex items-center justify-between rounded-lg">
                 <label class="absolute inset-0 rounded-lg cursor-pointer" for="alarm-2">&nbsp;</label>
-                <p class="font-medium">Ring</p>
+                <p class="font-medium">Birds</p>
                 <input type="radio" name="alarms" id="alarm-2">       
               </div>
               <!-- End - Radio Component -->
             </div>
+            <!-- Row -->
+            <div class="flex mt-4">
+              <!-- Radio - Component -->
+              <div class="flex-1 mr-4 shadow-xs p-6 py-4 cursor-pointer relative flex items-center justify-between rounded-lg">
+                <label class="absolute inset-0 rounded-lg cursor-pointer" for="alarm-3">&nbsp;</label>
+                <p class="font-medium">Wave</p>
+                <input type="radio" name="alarms" id="alarm-3">       
+              </div>
+              <!-- End - Radio Component -->
 
+              <!-- Radio - Component -->
+              <div class="flex-1 shadow-xs p-6 py-4 cursor-pointer relative flex items-center justify-between rounded-lg">
+                <label class="absolute inset-0 rounded-lg cursor-pointer" for="alarm-4">&nbsp;</label>
+                <p class="font-medium">Water</p>
+                <input type="radio" name="alarms" id="alarm-4">       
+              </div>
+              <!-- End - Radio Component -->
+            </div>
+            <!-- End Alarm sound -->
+
+
+            <!-- Toggles -->
+            <h6 class="mt-8 mb-2 font-medium text-gray-700">Others</h6>
+              <!-- Row -->
+                <!-- Checkbox - Component -->
+                <div class="flex-1 shadow-xs p-6 py-4 cursor-pointer relative flex items-center justify-between rounded-lg">
+                  <label class="absolute inset-0 rounded-lg cursor-pointer" for="time-on-title">&nbsp;</label>
+                  <p class="font-medium">Display timer in the title</p>
+                  <input type="checkbox" name="time-title" id="time-on-title" checked>       
+                </div>
+                <!-- End - Checkbox Component -->    
+                <!-- Checkbox - Component -->
+                <div class="flex-1 mt-4 shadow-xs p-6 py-4 cursor-pointer relative flex items-center justify-between rounded-lg">
+                  <label class="absolute inset-0 rounded-lg cursor-pointer" for="sound-alarm">&nbsp;</label>
+                  <p class="font-medium">Sound notification</p>
+                  <input type="checkbox" name="sound-alarm" id="sound-alarm" checked>       
+                </div>
+                <!-- End - Checkbox Component -->    
+              </div>
+            
           </div>
         </form>
 
