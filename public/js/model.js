@@ -19,11 +19,8 @@ export default {
     else if (state.resetTimer === false) {state.resetTimer = true};
   },
 
-  
-
   interval() {
     state.remainingTime = state.remainingTime - 1;
-    console.log(state.remainingTime);
     if (state.remainingTime <= 0) {this.clearTimer(); this.playAudio()};
   },
 

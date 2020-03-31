@@ -11,6 +11,14 @@ window.state = {};
 
 
 
+// Missing Features
+// 1) Suggestion on how many focus left until long break
+// 2) Settings
+//  2.1)
+//  2.2)
+//  2.3)
+// 3) Data dashboard
+
 
 
 /////////////////////////////////
