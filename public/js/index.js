@@ -152,6 +152,31 @@ elements.longBreakTab.addEventListener('click', () => {
 
 
 
+/////////////////////////////////
+//                             //
+//           Setting           //
+//                             //
+/////////////////////////////////
+
+function settingControl(event) {
+  // 1) submit form value to localStorage
+  Model.updateLocalStorage();
+};
+
+
+// Event Listenner
+elements.settingSubmit.addEventListener('click', (e) => {
+  e.preventDefault();
+  settingControl();
+});
+
+
+
+// Init plans
+// 1) Check localStorage for setting infomation
+//  2) There're info => put those info to the form - in seperate function (view)
+//  2) There're no info => submit default info to localStorage - inseperate function (modal)
+
 
 // Init - set default state
 const init = () => {

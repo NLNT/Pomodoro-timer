@@ -6,7 +6,7 @@
   "scripts": {
     "build": "postcss css/tailwind.css -o public/tailwind.css",
     "bundle:js": "webpack",
-    "dev": "webpack-dev-server --mode production --open"
+    "dev": "webpack-dev-server --mode development --open"
   },
   "repository": {
     "type": "git",

@@ -31,5 +31,30 @@ export default {
 
   playAudio() {
     elements.audio.play();
-  }
+  },
+
+
+
+  /////////////////////
+  //     Setting     //
+  /////////////////////
+  updateLocalStorage() {
+    // 1) push focus/break/longBreak
+    localStorage.setItem('focus', elements.settingFocus.value);
+    localStorage.setItem('break', elements.settingBreak.value);
+    localStorage.setItem('longBreak', elements.settingLongBreak.value);
+
+    // 2) Push loop
+    localStorage.setItem('loop', elements.settingLoop.value);
+
+    // 3) Alarm sound
+    localStorage.setItem('alarm', elements.settingAlarm.value);
+    // 4) Others
+    localStorage.setItem('title', elements.settingTitle.value);
+    localStorage.setItem('notification', elements.settingNotification.value);
+
+    //TEST
+    console.log(localStorage);
+  },
+
 }
