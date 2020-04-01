@@ -102,10 +102,6 @@ export default {
     elements.title.innerHTML = `${minute}:${second} - Pomodoro Online`;
   },
 
-  renderSuggestion() {
-
-  },
-
   toggleStartPause() {
     elements.start.classList.add('hidden');
     elements.pause.classList.remove('hidden');
@@ -115,4 +111,21 @@ export default {
     elements.pause.classList.add('hidden');
     elements.start.classList.remove('hidden');
   },
+
+  // Settings
+  updateSettingForm() {
+    // 1) push focus/break/longBreak
+    elements.settingFocus.value = localStorage.getItem('focus');
+    elements.settingBreak.value = localStorage.getItem('break');
+    elements.settingLongBreak.value = localStorage.getItem('longBreak');
+    // 2) Push loop
+    elements.settingLoop.value = localStorage.getItem('loop');
+
+    // 3) Alarm sound
+    localStorage.getItem('alarm');
+
+    // 4) Others
+    localStorage.getItem('title');
+    localStorage.getItem('notification');
+  }
 }

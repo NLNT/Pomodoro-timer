@@ -49,6 +49,7 @@ export default {
 
     // 3) Alarm sound
     localStorage.setItem('alarm', elements.settingAlarm.value);
+    
     // 4) Others
     localStorage.setItem('title', elements.settingTitle.value);
     localStorage.setItem('notification', elements.settingNotification.value);

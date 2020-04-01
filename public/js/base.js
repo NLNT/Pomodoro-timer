@@ -34,6 +34,13 @@ export const elements = {
 
   settingAlarm: document.querySelector('input[name="alarms"]:checked'),
   
+  settingAlarm1: document.getElementById('setting-alarm-ring'),
+  settingAlarm2: document.getElementById('setting-alarm-2'),
+  settingAlarm3: document.getElementById('setting-alarm-3'),
+  settingAlarm4: document.getElementById('setting-alarm-4'),
+
+
+  
   settingTitle: document.getElementById('setting-title'),
   settingNotification: document.getElementById('setting-notification'),
 

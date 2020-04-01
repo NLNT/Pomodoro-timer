@@ -158,24 +158,31 @@ elements.longBreakTab.addEventListener('click', () => {
 //                             //
 /////////////////////////////////
 
-function settingControl(event) {
-  // 1) submit form value to localStorage
+// run this upon onload
+function settingSubmit(event) {
+  // 1) Form => local storage
   Model.updateLocalStorage();
+
+  // 2) Reload
+
 };
-
-
-// Event Listenner
+// Submit event Listenner
 elements.settingSubmit.addEventListener('click', (e) => {
   e.preventDefault();
-  settingControl();
+  settingSubmit();
 });
 
 
 
-// Init plans
-// 1) Check localStorage for setting infomation
-//  2) There're info => put those info to the form - in seperate function (view)
-//  2) There're no info => submit default info to localStorage - inseperate function (modal)
+// Save form after reload, keep storage not empty
+function settingOnload() {
+  if (localStorage.getItem('focus') === null) {
+    Model.updateLocalStorage();
+
+  } else if (localStorage.getItem('focus') !== null) {
+    View.updateSettingForm();
+  }
+};
 
 
 // Init - set default state
@@ -194,5 +201,7 @@ const init = () => {
   state.focus.time = 25;
   state.break.time = 5;
   state.longBreak.time = 30;
+
+  settingOnload();
 }
 init();
