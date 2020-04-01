@@ -152,6 +152,38 @@ elements.longBreakTab.addEventListener('click', () => {
 
 
 
+/////////////////////////////////
+//                             //
+//           Setting           //
+//                             //
+/////////////////////////////////
+
+// run this upon onload
+function settingSubmit(event) {
+  // 1) Form => local storage
+  Model.updateLocalStorage();
+
+  // 2) Reload
+
+};
+// Submit event Listenner
+elements.settingSubmit.addEventListener('click', (e) => {
+  e.preventDefault();
+  settingSubmit();
+});
+
+
+
+// Save form after reload, keep storage not empty
+function settingOnload() {
+  if (localStorage.getItem('focus') === null) {
+    Model.updateLocalStorage();
+
+  } else if (localStorage.getItem('focus') !== null) {
+    View.updateSettingForm();
+  }
+};
+
 
 // Init - set default state
 const init = () => {
@@ -169,5 +201,7 @@ const init = () => {
   state.focus.time = 25;
   state.break.time = 5;
   state.longBreak.time = 30;
+
+  settingOnload();
 }
 init();

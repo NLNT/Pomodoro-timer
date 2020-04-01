@@ -22,4 +22,26 @@ export const elements = {
   blockBackgound: document.getElementById('js-block-background'),
   blockIllustration: document.getElementById('js-block-illustration'),
 
+
+  // Setting - Custom time
+  settingSubmit: document.getElementById('js-setting-submit'),
+
+  settingFocus: document.getElementById('setting-focus'),
+  settingBreak: document.getElementById('setting-break'),
+  settingLongBreak: document.getElementById('setting-longBreak'),
+
+  settingLoop: document.getElementById('setting-loop'),
+
+  settingAlarm: document.querySelector('input[name="alarms"]:checked'),
+  
+  settingAlarm1: document.getElementById('setting-alarm-ring'),
+  settingAlarm2: document.getElementById('setting-alarm-2'),
+  settingAlarm3: document.getElementById('setting-alarm-3'),
+  settingAlarm4: document.getElementById('setting-alarm-4'),
+
+
+  
+  settingTitle: document.getElementById('setting-title'),
+  settingNotification: document.getElementById('setting-notification'),
+
 }
