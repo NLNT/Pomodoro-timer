@@ -160,11 +160,7 @@ elements.longBreakTab.addEventListener('click', () => {
 
 // run this upon onload
 function settingSubmit(event) {
-  // 1) Form => local storage
   Model.updateLocalStorage();
-
-  // 2) Reload
-
 };
 // Submit event Listenner
 elements.settingSubmit.addEventListener('click', (e) => {

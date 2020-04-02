@@ -59,23 +59,23 @@
 
     <!-- Tab & Pannels -->
     <div class="max-w-5xl mx-auto mt-24">
-      <div class="flex justify-between">
+      <div class="flex flex-col sm:flex-row justify-center sm:justify-between">
         <!-- Tab - component  -->
-        <div class="inline-flex font-medium bg-white text-center border border-gray-200 text-gray-600" style="border-radius: .9rem">
-          <a class="flex-1 px-16 py-4 transition-colors duration-200 text-gray-800 bg-gray-300 shadow-sm cursor-pointer" style="border-radius: .9rem">Settings</a>
-          <a class="flex-1 px-16 py-4 transition-colors duration-200 hover:text-gray-800 cursor-pointer" style="border-radius: .9rem">History</a>
+        <div class="inline-flex self-center font-medium bg-white text-center border border-gray-200 text-gray-600" style="border-radius: .9rem">
+          <a class="flex-1 px-10 sm:px-16 py-4 transition-colors duration-200 text-gray-800 bg-gray-300 shadow-sm cursor-pointer" style="border-radius: .9rem">Settings</a>
+          <a class="flex-1 px-10 sm:px-16 py-4 transition-colors duration-200 hover:text-gray-800 cursor-pointer" style="border-radius: .9rem">History</a>
         </div>
         <!-- End - Tab component  -->
-        <button id="js-setting-submit" type="submit" form="setting" class="bg-white shadow-md font-medium px-8 py-4 transition-shadow duration-300 hover:shadow-lg text-gray-800 cursor-pointer" style="border-radius: .9rem">Save Settings</button>
+        <button id="js-setting-submit" type="submit" form="setting" class="bg-white shadow-md font-medium px-8 py-4 transition-shadow duration-300 hover:shadow-lg text-gray-800 cursor-pointer mt-10 sm:mt-0" style="border-radius: .9rem">Save Settings</button>
       </div>
       
 
 
       <!-- Tab Content -->
-      <div class="mt-8">
+      <div class="mt-4 sm:mt-8">
         <form action="#" id="setting" class="md:flex flex-1">
           <!-- Left Side -->
-          <div class="md:w-5/12 bg-white p-10 rounded-xl shadow">
+          <div class="md:w-5/12 bg-white p-10 rounded-t-xl md:rounded-xl md:shadow">
             <h5 class="text-lg font-medium text-gray-800 border-b pb-3">Custom timer</h5>
 
             <!-- Input - component -->
@@ -125,51 +125,30 @@
 
 
           <!-- Right Side -->
-          <div class="md:w-7/12 md:ml-8 mt-8 sm:mt-16 md:mt-0 bg-white rounded-xl p-10 shadow">
+          <div class="md:w-7/12 md:ml-8 bg-white rounded-b-xl md:rounded-xl pt-5 sm:pt-10 p-10 md:shadow">
             <h5 class="text-lg font-medium text-gray-800 border-b pb-3">General Settings</h5>
 
             <h6 class="mt-10 mb-2 font-medium text-gray-700">Alarm sounds</h6>
-            <!-- Row -->
-            <div class="flex">
 
-              <!-- Radio - Component -->
-              <div class="flex-1 mr-4 shadow-xs p-6 py-4 cursor-pointer relative flex items-center justify-between rounded-lg">
-                <label class="absolute inset-0 rounded-lg cursor-pointer" for="setting-alarm-ring">&nbsp;</label>
-                <p class="font-medium">Ring</p>
-                <input type="radio" name="alarms" id="setting-alarm-ring" value="setting-alarm-ring" checked>       
+              <!-- Select -->
+              <div class="flex">
+                <div class="flex pr-6 flex-1 rounded-lg overflow-hidden border">
+                  <select id="alarm-select" class="text-gray-800 font-medium cursor-pointer focus:outline-none p-6 py-4 flex-1 bg-white">
+                    <option value="alarm-ring">Ring alarm</option>
+                    <option value="alarm-2">Chime alarm</option>
+                    <option value="alarm-2">Chime alarm</option>
+                    <option value="alarm-2">Chime alarm</option>
+                    
+                  </select>
+                </div>
+                  
+                <!-- Test sound button -->
+                <div class="flex">
+                  <a class="cursor-pointer rounded-lg shadow flex items-center px-6 ml-4 hover:shadow-md transition-shadow duration-200">Sound<span><svg class="w-5 h-5 ml-2 stroke-current text-gray-800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs/><path d="M16 8a5 5 0 010 8m2-10a9 9 0 010 12M6 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h2l4-5 2 1v14l-2 1-4-5z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span></a>
+                </div>
               </div>
-              <!-- End - Radio Component -->
 
-              <!-- Radio - Component -->
-              <div class="flex-1 shadow-xs p-6 py-4 cursor-pointer relative flex items-center justify-between rounded-lg">
-                <label class="absolute inset-0 rounded-lg cursor-pointer" for="setting-alarm-2">&nbsp;</label>
-                <p class="font-medium">Birds</p>
-                <input type="radio" name="alarms" id="setting-alarm-2" value="setting-alarm-2">       
-              </div>
-              <!-- End - Radio Component -->
 
-            </div>
-            <!-- Row -->
-            <div class="flex mt-4">
-
-              <!-- Radio - Component -->
-              <div class="flex-1 mr-4 shadow-xs p-6 py-4 cursor-pointer relative flex items-center justify-between rounded-lg">
-                <label class="absolute inset-0 rounded-lg cursor-pointer" for="setting-alarm-3">&nbsp;</label>
-                <p class="font-medium">Wave</p>
-                <input type="radio" name="alarms" id="setting-alarm-3" value="setting-alarm-3">       
-              </div>
-              <!-- End - Radio Component -->
-
-              <!-- Radio - Component -->
-              <div class="flex-1 shadow-xs p-6 py-4 cursor-pointer relative flex items-center justify-between rounded-lg">
-                <label class="absolute inset-0 rounded-lg cursor-pointer" for="setting-alarm-4">&nbsp;</label>
-                <p class="font-medium">Water</p>
-                <input type="radio" name="alarms" id="setting-alarm-4" value="setting-alarm-4">       
-              </div>
-              <!-- End - Radio Component -->
-
-            </div>
-            <!-- End Alarm settings -->
 
 
               <!-- Toggles -->
@@ -179,7 +158,7 @@
                 <!-- Checkbox - Component -->
                 <div class="flex-1 shadow-xs p-6 py-4 cursor-pointer relative flex items-center justify-between rounded-lg">
                   <label class="absolute inset-0 rounded-lg cursor-pointer" for="setting-title">&nbsp;</label>
-                  <p class="font-medium">Display timer in the title</p>
+                  <p class="font-medium text-gray-800">Display timer in the title</p>
                   <input type="checkbox" name="setting-title" id="setting-title" checked>       
                 </div>
                 <!-- End - Checkbox Component -->
@@ -187,7 +166,7 @@
                 <!-- Checkbox - Component -->
                 <div class="flex-1 mt-4 shadow-xs p-6 py-4 cursor-pointer relative flex items-center justify-between rounded-lg">
                   <label class="absolute inset-0 rounded-lg cursor-pointer" for="setting-notification">&nbsp;</label>
-                  <p class="font-medium">Sound notification</p>
+                  <p class="font-medium text-gray-800">Sound notification</p>
                   <input type="checkbox" name="setting-notification" id="setting-notification" checked>       
                 </div>
                 <!-- End - Checkbox Component -->    
