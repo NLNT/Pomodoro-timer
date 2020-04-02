@@ -122,10 +122,13 @@ export default {
     elements.settingLoop.value = localStorage.getItem('loop');
 
     // 3) Alarm sound
-    localStorage.getItem('alarm');
+    elements.settingAlarm.value = localStorage.getItem('alarm');
 
     // 4) Others
-    localStorage.getItem('title');
+    if (localStorage.getItem('title') === 'on') {
+      elements.settingTitle.checked = true;
+    } else {elements.settingTitle.checked = false;}
+    
     localStorage.getItem('notification');
   }
 }
