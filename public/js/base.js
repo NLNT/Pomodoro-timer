@@ -32,14 +32,7 @@ export const elements = {
 
   settingLoop: document.getElementById('setting-loop'),
 
-  settingAlarm: document.querySelector('input[name="alarms"]:checked'),
-  
-  settingAlarm1: document.getElementById('setting-alarm-ring'),
-  settingAlarm2: document.getElementById('setting-alarm-2'),
-  settingAlarm3: document.getElementById('setting-alarm-3'),
-  settingAlarm4: document.getElementById('setting-alarm-4'),
-
-
+  settingAlarm: document.getElementById('setting-alarms'),
   
   settingTitle: document.getElementById('setting-title'),
   settingNotification: document.getElementById('setting-notification'),

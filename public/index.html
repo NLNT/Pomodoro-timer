@@ -133,12 +133,11 @@
               <!-- Select -->
               <div class="flex">
                 <div class="flex pr-6 flex-1 rounded-lg overflow-hidden border">
-                  <select id="alarm-select" class="text-gray-800 font-medium cursor-pointer focus:outline-none p-6 py-4 flex-1 bg-white">
+                  <select name="setting-alarms" id="setting-alarms" class="text-gray-800 font-medium cursor-pointer focus:outline-none p-6 py-4 flex-1 bg-white">
+                    <option value="alarm-piano">Piano alarm</option>
                     <option value="alarm-ring">Ring alarm</option>
-                    <option value="alarm-2">Chime alarm</option>
-                    <option value="alarm-2">Chime alarm</option>
-                    <option value="alarm-2">Chime alarm</option>
-                    
+                    <option value="alarm-quack">Duck alarm</option>
+                    <option value="alarm-chime">Wind chime alarm</option>
                   </select>
                 </div>
                   
@@ -159,7 +158,7 @@
                 <div class="flex-1 shadow-xs p-6 py-4 cursor-pointer relative flex items-center justify-between rounded-lg">
                   <label class="absolute inset-0 rounded-lg cursor-pointer" for="setting-title">&nbsp;</label>
                   <p class="font-medium text-gray-800">Display timer in the title</p>
-                  <input type="checkbox" name="setting-title" id="setting-title" checked>       
+                  <input type="checkbox" name="setting-title" id="setting-title">
                 </div>
                 <!-- End - Checkbox Component -->
 
@@ -167,7 +166,7 @@
                 <div class="flex-1 mt-4 shadow-xs p-6 py-4 cursor-pointer relative flex items-center justify-between rounded-lg">
                   <label class="absolute inset-0 rounded-lg cursor-pointer" for="setting-notification">&nbsp;</label>
                   <p class="font-medium text-gray-800">Sound notification</p>
-                  <input type="checkbox" name="setting-notification" id="setting-notification" checked>       
+                  <input type="checkbox" name="setting-notification" id="setting-notification">       
                 </div>
                 <!-- End - Checkbox Component -->    
 
