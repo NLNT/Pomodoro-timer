@@ -34,10 +34,13 @@ function startTimer() {
   // 2) Toggle to pause button
   View.toggleStartPause();
 
-  // 3) Reset timer
+  // 3) Check & update timer setting
+  settingSubmit();
+
+  // 4) Reset timer
   Model.resetTime();
 
-  // 4) Start the timming setInterval function
+  // 5) Start the timming setInterval function
   state.timerId = setInterval( () => {
     Model.interval();
     View.formatTimer();
@@ -115,15 +118,17 @@ function controlTab() {
     // 2) update currentTab in state
     state.currentTab = state.newTab;
 
-    // Update default time in timer
+    // 3) Update timer settings
+    settingSubmit();
+
+    // 4) Update default time in timer
     View.renderTimer();
 
-    // 3) update the UI (bg - illustration - timer - tab)
+    // 5) update the UI (bg - illustration - timer - tab)
     View.renderTab(state.currentTab, state.previousTab);
 
-    // 4) if there's running timer => runTimer on new tab
+    // 6) if there's running timer => runTimer on new tab
     if (state.activeTimer) {
-      // Model.clearTimer();
       resetTimer();
     }    
   }
@@ -159,15 +164,19 @@ elements.longBreakTab.addEventListener('click', () => {
 /////////////////////////////////
 
 // run this upon onload
-function settingSubmit(event) {
+function settingSubmit() {
   Model.updateLocalStorage();
 };
 // Submit event Listenner
 elements.settingSubmit.addEventListener('click', (e) => {
   e.preventDefault();
   settingSubmit();
+  if (state.activeTimer === false) {View.renderTimer();}
 });
 
+
+// Save setting form before refresh
+window.addEventListener('beforeunload', settingSubmit);
 
 
 // Save form after reload, keep storage not empty
