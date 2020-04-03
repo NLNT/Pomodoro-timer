@@ -11,6 +11,7 @@ export const elements = {
   audio: document.getElementById('js-alarm'),
 
   // Timer
+  timerTitle: document.getElementById('js-timer-title'),
   timer: document.getElementById('js-timer'),
 
   // Tabs

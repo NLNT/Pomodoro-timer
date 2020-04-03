@@ -21,24 +21,21 @@ export default {
 
   interval() {
     state.remainingTime = state.remainingTime - 1;
-    if (state.remainingTime <= 0) {this.clearTimer(); this.playAudio(); this.updateHistory()};
-  },
-
-  updateHistory() {
-    if (state.currentTab === 'focus') {
-      localStorage.totalPomodoro = parseInt(localStorage.totalPomodoro) + 1;
-    }
   },
 
   clearTimer() {
     clearInterval(state.timerId);
   },
-
+  
   playAudio() {
     elements.audio.play();
   },
-
-
+  
+  updateHistory() {
+    if (state.currentTab === 'focus') {
+      localStorage.totalPomodoro = parseInt(localStorage.totalPomodoro) + 1;
+    }
+  },
 
   /////////////////////
   //     Setting     //
@@ -55,12 +52,15 @@ export default {
     // 3) Alarm sound
     localStorage.setItem('alarm', elements.settingAlarm.value);
     
-    // 4) Others
+    // 4) Others - not in sync with ui
     localStorage.setItem('title', elements.settingTitle.value);
     localStorage.setItem('notification', elements.settingNotification.value);
 
     //TEST
     console.log(localStorage);
   },
+
+
+
 
 }

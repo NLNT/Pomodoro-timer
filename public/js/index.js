@@ -38,16 +38,22 @@ function startTimer() {
   // 2) Toggle to pause button
   View.toggleStartPause();
 
-  // 3) Check & update timer setting
+  // 3) Change timer title
+  elements.timerTitle.innerHTML = 'Pomodoro Timer';
+
+  // 4) Check & update timer setting
   settingSubmit();
 
-  // 4) Reset timer
+  // 5) Reset timer
   Model.resetTime();
 
-  // 5) Start the timming setInterval function
+  // 6) Start the timming setInterval function
   state.timerId = setInterval( () => {
     Model.interval();
     View.formatTimer();
+    if (state.remainingTime <= 0) {
+      timerFinished();
+    };
   }, 1000);
 }
 
@@ -88,20 +94,42 @@ function resetTimer() {
   
   // 2) Clear the existing Interval => To avoid duplicating timer
   Model.clearTimer();
+
+  // 3) Change timer title
+  elements.timerTitle.innerHTML = 'Pomodoro Timer';
+
+  // 4) Check & update timer setting
+  settingSubmit();
   
-  // 3) Run the timer
+  // 5) Run the timer
   Model.resetTime();
   
-  // 3) Start the timming setInterval function - here
+  // 6) Start the timming setInterval function - here
   state.timerId = setInterval( () => {
     Model.interval();
     View.formatTimer();
+    if (state.remainingTime <= 0) {
+      timerFinished();
+    };
   }, 1000);
   state.activeTimer = true;
 
 }
 elements.reset.addEventListener('click', resetTimer);
 
+
+
+/////////////////////////////////
+//                             //
+//       Timer Finished        //
+//                             //
+/////////////////////////////////
+function timerFinished() {
+  Model.clearTimer(); 
+  Model.playAudio(); 
+  Model.updateHistory();
+  View.renderTimerFinished();
+};
 
 
 
@@ -213,7 +241,6 @@ const init = () => {
   if (localStorage.getItem('totalPomodoro') === null) {
     localStorage.setItem('totalPomodoro', 0);
   }
-  
 
   View.renderTimer();
 }
