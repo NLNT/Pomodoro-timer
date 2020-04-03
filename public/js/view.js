@@ -82,7 +82,9 @@ export default {
   
   // Change default time value in timer
   renderTimer() {
-    elements.timer.innerHTML = this[state.currentTab].time;
+    let zero;
+    localStorage[state.currentTab] < 10 ? zero = "0" : zero = "";
+    elements.timer.innerHTML = `${zero}${localStorage[state.currentTab]}:00`;
   },
 
   // Turn remaining time into timer format
