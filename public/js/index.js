@@ -187,6 +187,8 @@ const init = () => {
   state.break = {};
   state.longBreak = {};
 
+  settingOnload();
+
   state.currentTab = "focus";
   state.newTab = "";
   state.previousTab = "";
@@ -194,10 +196,10 @@ const init = () => {
   state.resetTimer = true;
 
   state.remainingTime = 0;
-  state.focus.time = 25;
-  state.break.time = 5;
-  state.longBreak.time = 30;
+  // state.focus.time = 25;
+  // state.break.time = 5;
+  // state.longBreak.time = 30;
 
-  settingOnload();
+  View.renderTimer();
 }
 init();
