@@ -13,6 +13,10 @@ window.state = {};
 
 // Missing Features
 // 1) Suggestion on how many focus left until long break
+// Need: + How many full pomodoro has passed
+//       + Reset suggestion every 4th pomodoro
+//       + Save how many pomodoro have been done by that i meant focus
+
 // 2) Settings
 //  2.1)
 //  2.2)
@@ -205,9 +209,11 @@ const init = () => {
   state.resetTimer = true;
 
   state.remainingTime = 0;
-  // state.focus.time = 25;
-  // state.break.time = 5;
-  // state.longBreak.time = 30;
+
+  if (localStorage.totalPomodoro == '0') {
+    localStorage.setItem('totalPomodoro', 0)
+  };
+  
 
   View.renderTimer();
 }
