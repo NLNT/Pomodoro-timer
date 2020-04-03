@@ -235,8 +235,8 @@ const init = () => {
 
   state.remainingTime = 0;
 
-  if (localStorage.getItem('totalPomodoro') === null) {
-    localStorage.setItem('totalPomodoro', 0);
+  if (localStorage.getItem('totalPomodoro') == null || localStorage.getItem('totalPomodoro') == "NaN") {
+    localStorage.setItem('totalPomodoro', '0');
   }
 
   View.renderTimer();
