@@ -9,17 +9,17 @@ export default {
     activeTab: ['text-gray-800', 'bg-gray-300', 'shadow-sm']
   },
   focus: {
-    time: '25:00',
+    //time: '25:00',
     bgClass: 'bg-red-200',
     illustration: `<img class="my-px pt-px md:p-0 md:m-0" src="https://raw.githubusercontent.com/NLNT/Pomodoro-timer/master/img/focus-illustration.svg?sanitize=true" alt="Woman working illustration">`,
   },
   break: {
-    time: '05:00',
+    //time: '05:00',
     bgClass: 'bg-teal-200',
     illustration: `<img class="py-1 -my-px md:my-px md:py-px" src="https://raw.githubusercontent.com/NLNT/Pomodoro-timer/master/img/break-illustration.svg?sanitize=true" alt="Woman mediatating illustration">`,
   },
   longBreak: {
-    time: '30:00',
+    //time: '30:00',
     bgClass: 'bg-blue-200',
     illustration: `<img class="my-1 pt-px" src="https://raw.githubusercontent.com/NLNT/Pomodoro-timer/master/img/long-break-illustartion.svg?sanitize=true" alt="two people resting during a trip illustration">`,
   },
