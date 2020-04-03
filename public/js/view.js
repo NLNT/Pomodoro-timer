@@ -9,7 +9,6 @@ export default {
     activeTab: ['text-gray-800', 'bg-gray-300', 'shadow-sm']
   },
   focus: {
-    //time: '25:00',
     bgClass: 'bg-red-200',
     illustration: `<img class="my-px pt-px md:p-0 md:m-0" src="https://raw.githubusercontent.com/NLNT/Pomodoro-timer/master/img/focus-illustration.svg?sanitize=true" alt="Woman working illustration">`,
   },
@@ -19,12 +18,8 @@ export default {
     illustration: `<img class="py-1 -my-px md:my-px md:py-px" src="https://raw.githubusercontent.com/NLNT/Pomodoro-timer/master/img/break-illustration.svg?sanitize=true" alt="Woman mediatating illustration">`,
   },
   longBreak: {
-    //time: '30:00',
     bgClass: 'bg-blue-200',
     illustration: `<img class="my-1 pt-px" src="https://raw.githubusercontent.com/NLNT/Pomodoro-timer/master/img/long-break-illustartion.svg?sanitize=true" alt="two people resting during a trip illustration">`,
-  },
-  markup: {
-
   },
 
 
@@ -104,6 +99,22 @@ export default {
     elements.title.innerHTML = `${minute}:${second} - Pomodoro Online`;
   },
 
+  renderTimerFinished() {
+    let title,plural;
+    let timeToLongBreak = localStorage.loop - (parseInt(localStorage.totalPomodoro) % localStorage.loop);
+
+    if (timeToLongBreak === localStorage.loop && state.currentTab === 'focus') {
+      title = 'Have a long break';
+    } else if (state.currentTab === 'longBreak'){
+      title = 'Start working';
+    } else {
+      timeToLongBreak > 1 ? plural = "s" : plural = "";
+      title = `${timeToLongBreak} pomodoro${plural} untill long break`;
+    };
+
+    elements.timerTitle.innerHTML = title;
+  },
+
   toggleStartPause() {
     elements.start.classList.add('hidden');
     elements.pause.classList.remove('hidden');
@@ -132,5 +143,5 @@ export default {
     } else {elements.settingTitle.checked = false;}
     
     localStorage.getItem('notification');
-  }
+  },
 }

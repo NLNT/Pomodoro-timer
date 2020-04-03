@@ -12,15 +12,12 @@ window.state = {};
 
 
 // Missing Features
-// 1) Suggestion on how many focus left until long break
-// Need: + How many full pomodoro has passed
-//       + Reset suggestion every 4th pomodoro
-//       + Save how many pomodoro have been done by that i meant focus
+// 1) Reset pomodoro till long break everyday - done using pomodoro today
+// Formula: timeToBreak = loop - (pomoToday % loop)
+// Reset pomoToday every 24hrs at 2am
+// pomoToday&totalPomo = pomoToday&totalPomo +1 every pomo finished 
 
-// 2) Settings
-//  2.1)
-//  2.2)
-//  2.3)
+// 2) Reset setting
 // 3) Data dashboard
 
 
@@ -38,16 +35,22 @@ function startTimer() {
   // 2) Toggle to pause button
   View.toggleStartPause();
 
-  // 3) Check & update timer setting
+  // 3) Change timer title
+  elements.timerTitle.innerHTML = 'Pomodoro Timer';
+
+  // 4) Check & update timer setting
   settingSubmit();
 
-  // 4) Reset timer
+  // 5) Reset timer
   Model.resetTime();
 
-  // 5) Start the timming setInterval function
+  // 6) Start the timming setInterval function
   state.timerId = setInterval( () => {
     Model.interval();
     View.formatTimer();
+    if (state.remainingTime <= 0) {
+      timerFinished();
+    };
   }, 1000);
 }
 
@@ -88,20 +91,42 @@ function resetTimer() {
   
   // 2) Clear the existing Interval => To avoid duplicating timer
   Model.clearTimer();
+
+  // 3) Change timer title
+  elements.timerTitle.innerHTML = 'Pomodoro Timer';
+
+  // 4) Check & update timer setting
+  settingSubmit();
   
-  // 3) Run the timer
+  // 5) Run the timer
   Model.resetTime();
-  
-  // 3) Start the timming setInterval function - here
+
+  // 6) Start the timming setInterval function - here
   state.timerId = setInterval( () => {
     Model.interval();
     View.formatTimer();
+    if (state.remainingTime <= 0) {
+      timerFinished();
+    };
   }, 1000);
   state.activeTimer = true;
 
 }
 elements.reset.addEventListener('click', resetTimer);
 
+
+
+/////////////////////////////////
+//                             //
+//       Timer Finished        //
+//                             //
+/////////////////////////////////
+function timerFinished() {
+  Model.clearTimer(); 
+  Model.playAudio(); 
+  Model.updateHistory();
+  View.renderTimerFinished();
+};
 
 
 
@@ -210,10 +235,9 @@ const init = () => {
 
   state.remainingTime = 0;
 
-  if (localStorage.totalPomodoro == '0') {
-    localStorage.setItem('totalPomodoro', 0)
-  };
-  
+  if (localStorage.getItem('totalPomodoro') === null) {
+    localStorage.setItem('totalPomodoro', 0);
+  }
 
   View.renderTimer();
 }
