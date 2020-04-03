@@ -12,15 +12,12 @@ window.state = {};
 
 
 // Missing Features
-// 1) Suggestion on how many focus left until long break
-// Need: + How many full pomodoro has passed
-//       + Reset suggestion every 4th pomodoro
-//       + Save how many pomodoro have been done by that i meant focus
+// 1) Reset pomodoro till long break everyday - done using pomodoro today
+// Formula: timeToBreak = loop - (pomoToday % loop)
+// Reset pomoToday every 24hrs at 2am
+// pomoToday&totalPomo = pomoToday&totalPomo +1 every pomo finished 
 
-// 2) Settings
-//  2.1)
-//  2.2)
-//  2.3)
+// 2) Reset setting
 // 3) Data dashboard
 
 
@@ -103,7 +100,7 @@ function resetTimer() {
   
   // 5) Run the timer
   Model.resetTime();
-  
+
   // 6) Start the timming setInterval function - here
   state.timerId = setInterval( () => {
     Model.interval();

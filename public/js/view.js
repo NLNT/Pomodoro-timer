@@ -103,13 +103,12 @@ export default {
     let title,plural;
     let timeToLongBreak = localStorage.loop - (parseInt(localStorage.totalPomodoro) % localStorage.loop);
 
-    timeToLongBreak > 1 ? plural = "s" : plural = "";
-
-    if (timeToLongBreak === 4 && state.currentTab === 'focus') {
+    if (timeToLongBreak === localStorage.loop && state.currentTab === 'focus') {
       title = 'Have a long break';
     } else if (state.currentTab === 'longBreak'){
       title = 'Start working';
     } else {
+      timeToLongBreak > 1 ? plural = "s" : plural = "";
       title = `${timeToLongBreak} pomodoro${plural} untill long break`;
     };
 
