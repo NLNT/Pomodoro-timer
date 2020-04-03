@@ -21,12 +21,17 @@ export default {
 
   interval() {
     state.remainingTime = state.remainingTime - 1;
-    if (state.remainingTime <= 0) {this.clearTimer(); this.playAudio()};
+    if (state.remainingTime <= 0) {this.clearTimer(); this.playAudio(); this.updateHistory()};
+  },
+
+  updateHistory() {
+    if (state.currentTab === 'focus') {
+      localStorage.totalPomodoro = parseInt(localStorage.totalPomodoro) + 1;
+    }
   },
 
   clearTimer() {
     clearInterval(state.timerId);
-    // state.activeTimer = false;
   },
 
   playAudio() {
