@@ -25,53 +25,46 @@ export default {
 
   renderTab(currentTab, previousTab) {
     // 1) Change background color
-    this.renderBackgroundColor(currentTab, previousTab);
+    this.renderBackgroundColor();
     
     // 2) Change the tab style (bg & shadow & text)
-    this.renderTabStyle(currentTab, previousTab);
+    this.renderTabStyle();
 
     // 3) Update illustration
-    this.renderIllustration(currentTab);
+    this.renderIllustration();
   },
 
-  renderBackgroundColor(currentTab, previousTab) {
-    let removeBgClass, addBgClass;
-    // 1) convert the previous tab parameter to tailwind bg class
-    if (previousTab === "focus") {removeBgClass = this.focus.bgClass}
-    else if (previousTab === "break") {removeBgClass = this.break.bgClass}
-    else if (previousTab === "longBreak") {removeBgClass = this.longBreak.bgClass};
-    // 2) convert the current tab parameter to tailwind bg class
-    if (currentTab === "focus") {addBgClass = this.focus.bgClass}
-    else if (currentTab === "break") {addBgClass = this.break.bgClass}
-    else if (currentTab === "longBreak") {addBgClass = this.longBreak.bgClass};
-    // 3) Replace previous bg with new bg
-    elements.blockBackgound.classList.replace(removeBgClass, addBgClass);
+  // Replace previousTab background with currentTab background
+  renderBackgroundColor() {
+    elements.blockBackgound.classList.replace(this[state.previousTab].bgClass, this[state.currentTab].bgClass);
   },
 
 
   // Switch active styles from previous tab to current tab
-  renderTabStyle(currentTab, previousTab) {
+  renderTabStyle() {
     let active, nonActive;
+    let prevTab = state.previousTab;
+    let currTab = state.currentTab;
     // 1) Get previousTab DOM element
-    if (previousTab === 'focus') {active = elements.focusTab}
-    else if (previousTab === 'break') {active = elements.breakTab}
-    else if (previousTab === 'longBreak') {active = elements.longBreakTab};
+    if (prevTab === 'focus') {active = elements.focusTab}
+    else if (prevTab === 'break') {active = elements.breakTab}
+    else if (prevTab === 'longBreak') {active = elements.longBreakTab};
 
     // 2) Get currentTab DOM element
-    if (currentTab === 'focus') {nonActive = elements.focusTab}
-    else if (currentTab === 'break') {nonActive = elements.breakTab}
-    else if (currentTab === 'longBreak') {nonActive = elements.longBreakTab};
+    if (currTab === 'focus') {nonActive = elements.focusTab}
+    else if (currTab === 'break') {nonActive = elements.breakTab}
+    else if (currTab === 'longBreak') {nonActive = elements.longBreakTab};
 
     // 3) remove active styles from previousTab
     this.tabs.activeTab.forEach(item => active.classList.remove(item));
     // 4) add active styles to currentTab
     this.tabs.activeTab.forEach(item => nonActive.classList.add(item));
-
   },
 
+
   // Changing illustration
-  renderIllustration(currentTab) {
-    let illustrationMarkup = this[currentTab].illustration;
+  renderIllustration() {
+    let illustrationMarkup = this[state.currentTab].illustration;
     elements.blockIllustration.innerHTML = illustrationMarkup;
   },
   

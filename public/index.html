@@ -10,10 +10,21 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700,800,900&display=swap&subset=vietnamese" rel="stylesheet">
   <link rel="shortcut icon" type="icon/png" href="https://raw.githubusercontent.com/NLNT/Pomodoro-timer/master/img/spinners.png"/>
+
+  <!-- Prefetch -->
+  <link rel="preload" href="https://raw.githubusercontent.com/NLNT/Pomodoro-timer/master/img/break-illustration.svg?sanitize=true" as="image" />
+  <link rel="preload" href="https://raw.githubusercontent.com/NLNT/Pomodoro-timer/master/img/long-break-illustartion.svg?sanitize=true" as="image" />
+
 </head>
 <body class="font-inter bg-gray-100">
 
-  <audio id="js-alarm" src="alarm.mp3" preload="auto"></audio>
+  <audio id="js-alarm" src="alarms/beep-alarm.mp3" preload="auto"></audio>
+  <!-- <audio id="js-alarm" src="alarms/chime-alarm.mp3" preload="auto"></audio> -->
+  <!-- <audio id="js-alarm" src="alarms/piano-alarm.mp3" preload="auto"></audio> -->
+  <!-- <audio id="js-alarm" src="alarms/ring-alarm.mp3" preload="auto"></audio> -->
+  <!-- <audio id="js-alarm" src="alarms/soft-alarm.mp3" preload="auto"></audio> -->
+  
+
 
   <main class="md:m-4 lg:mt-8">
   <!-- Block - component -->
@@ -134,10 +145,11 @@
               <div class="flex">
                 <div class="flex pr-6 flex-1 rounded-lg overflow-hidden border">
                   <select name="setting-alarms" id="setting-alarms" class="text-gray-800 font-medium cursor-pointer focus:outline-none p-6 py-4 flex-1 bg-white">
-                    <option value="alarm-piano">Piano alarm</option>
-                    <option value="alarm-ring">Ring alarm</option>
-                    <option value="alarm-quack">Duck alarm</option>
-                    <option value="alarm-chime">Wind chime alarm</option>
+                    <option value="beep-alarm">Beep alarm</option>
+                    <option value="ring-alarm">Ring alarm</option>
+                    <option value="chime-alarm">Chime alarm</option>
+                    <option value="piano-alarm">Piano alarm</option>
+                    <option value="piano-alarm">Soft alarm</option>
                   </select>
                 </div>
                   

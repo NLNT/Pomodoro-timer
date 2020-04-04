@@ -7,18 +7,16 @@ import { elements } from './base';
 
 export default {
 
+  // Reset time when start(not paused) or restart is clicked
   resetTime() {
-    // Reset timer only if pausedTimer is set to false
-
     if (state.resetTimer === true){
-      if (state.currentTab === 'focus') {state.remainingTime = localStorage.focus * 60}
-      else if (state.currentTab === 'break') {state.remainingTime = localStorage.break * 60}
-      else if (state.currentTab === 'longBreak') {state.remainingTime = localStorage.longBreak * 60};
+      state.remainingTime = localStorage[state.currentTab] * 60;
     } 
 
     else if (state.resetTimer === false) {state.resetTimer = true};
   },
 
+  // Timer function - run every 1s once timer has started
   interval() {
     state.remainingTime = state.remainingTime - 1;
   },
@@ -31,6 +29,7 @@ export default {
     elements.audio.play();
   },
   
+  // Update total & today pomodoro every focus is finished
   updateHistory() {
     if (state.currentTab === 'focus') {
       localStorage.totalPomodoro = parseInt(localStorage.totalPomodoro) + 1;
@@ -38,9 +37,13 @@ export default {
     }
   },
 
+
+
+
   /////////////////////
   //     Setting     //
   /////////////////////
+
   updateLocalStorage() {
     // 1) push focus/break/longBreak
     localStorage.setItem('focus', elements.settingFocus.value);
@@ -60,6 +63,10 @@ export default {
     //TEST
     console.log(localStorage);
   },
+
+
+
+
 
 
   /////////////////////
