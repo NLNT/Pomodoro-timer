@@ -20,6 +20,9 @@ window.state = {};
 // 2) Reset setting
 // 3) Data dashboard
 
+// Bugs
+// 1) if user double click start too fast, there will be 2 timer
+// 2) if custom timer in setting = 0, the timer becomes negative
 
 
 /////////////////////////////////
@@ -28,11 +31,10 @@ window.state = {};
 //                             //
 /////////////////////////////////
 function startTimer() {
-
-  // 1) setting state of activeTimer to true
+  // 1) Update State
   state.activeTimer = true;
 
-  // 2) Toggle to pause button
+  // 2) Toggle start -> pause
   View.toggleStartPause();
 
   // 3) Change timer title
@@ -40,11 +42,11 @@ function startTimer() {
 
   // 4) Check & update timer setting
   settingSubmit();
-
-  // 5) Reset timer
+  
+  // 5) Run the timer
   Model.resetTime();
 
-  // 6) Start the timming setInterval function
+  // 6) Start the timming setInterval function - here
   state.timerId = setInterval( () => {
     Model.interval();
     View.formatTimer();
@@ -92,27 +94,11 @@ function resetTimer() {
   // 2) Clear the existing Interval => To avoid duplicating timer
   Model.clearTimer();
 
-  // 3) Change timer title
-  elements.timerTitle.innerHTML = 'Pomodoro Timer';
-
-  // 4) Check & update timer setting
-  settingSubmit();
-  
-  // 5) Run the timer
-  Model.resetTime();
-
-  // 6) Start the timming setInterval function - here
-  state.timerId = setInterval( () => {
-    Model.interval();
-    View.formatTimer();
-    if (state.remainingTime <= 0) {
-      timerFinished();
-    };
-  }, 1000);
-  state.activeTimer = true;
-
-}
+  // 3) Start timer
+  startTimer();
+};
 elements.reset.addEventListener('click', resetTimer);
+
 
 
 
@@ -159,7 +145,8 @@ function controlTab() {
     // 6) if there's running timer => runTimer on new tab
     if (state.activeTimer) {
       resetTimer();
-    }    
+      View.toggleStartPause();
+    }
   }
   // Tab isn't changed
   else if (state.currentTab === state.newTab) {
@@ -186,6 +173,8 @@ elements.longBreakTab.addEventListener('click', () => {
 
 
 
+
+
 /////////////////////////////////
 //                             //
 //           Setting           //
@@ -200,16 +189,15 @@ function settingSubmit() {
 elements.settingSubmit.addEventListener('click', (e) => {
   e.preventDefault();
   settingSubmit();
-  if (state.activeTimer === false) {View.renderTimer();}
+  if (state.activeTimer === false) {View.renderTimer();} // if there's no runnnig timer, show changes
 });
-
 
 // Save setting form before refresh
 window.addEventListener('beforeunload', settingSubmit);
 
 
-// Create (default or custom) setting
-function settingOnload() {
+// init setting
+function settingInit() {
   if (localStorage.getItem('focus') === null) {
     Model.updateLocalStorage();
 
@@ -227,33 +215,21 @@ function settingOnload() {
 //                             //
 /////////////////////////////////
 
-function historyCheck() {
+function historyInit() {
   // Total pomodoro
-  if (localStorage.getItem('totalPomodoro') === null /*|| localStorage.getItem('totalPomodoro') == "NaN"*/) {
+  if (localStorage.getItem('totalPomodoro') === null) {
     localStorage.setItem('totalPomodoro', '0');
-  }
+  };
   // Today pomodoro
-  if (localStorage.getItem('todayPomodoro') === null /*|| localStorage.getItem('todayPomodoro') == "NaN"*/) {
+  if (localStorage.getItem('todayPomodoro') === null) {
     localStorage.setItem('todayPomodoro', '0');
   }
 }
 
+// Manage & reset pomodoro today everyday
 function resetPomodoroToday() {
-  let today = new Date();
-
-  // Check if it's a new day ? reset = yes : reset = no;
-  if (today.getFullYear() > localStorage.lastOnlineYear) {
-    localStorage.setItem('todayPomodoro', '0');
-  } else if (today.getMonth() > localStorage.lastOnlineMonth) {
-    localStorage.setItem('todayPomodoro', '0');
-  } else if (today.getDate() > localStorage.lastOnlineDate && today.getMonth() == localStorage.lastOnlineMonth) {
-    localStorage.setItem('todayPomodoro', '0');
-  }
-
-  // Update last online dates
-  localStorage.setItem('lastOnlineDate', today.getDate());
-  localStorage.setItem('lastOnlineMonth', today.getMonth());
-  localStorage.setItem('lastOnlineYear', today.getFullYear());
+  Model.checkNewDay();
+  Model.updateLastOnline();
 }
 
 
@@ -265,7 +241,7 @@ const init = () => {
   state.longBreak = {};
 
   // Get setting
-  settingOnload();
+  settingInit();
 
   state.currentTab = "focus";
   state.newTab = "";
@@ -276,7 +252,7 @@ const init = () => {
   state.remainingTime = 0;
 
   // Check & create history if it doesn't exist
-  historyCheck();
+  historyInit();
   // Check for new date & reset today pomodoro
   resetPomodoroToday();
   // Render default timer
