@@ -22,7 +22,7 @@ window.state = {};
 
 // Bugs
 // 1) if user double click start too fast, there will be 2 timer
-// 2) Start -> Pause -> Restart : start button exist
+// 2) if custom timer in setting = 0, the timer becomes negative
 
 
 /////////////////////////////////
@@ -31,31 +31,29 @@ window.state = {};
 //                             //
 /////////////////////////////////
 function startTimer() {
-
-  // 1) setting state of activeTimer to true
+  // 1) Update State
   state.activeTimer = true;
 
-  // 2) Toggle to pause button
-  //View.toggleStartPause();
+  // 2) Toggle start -> pause
+  View.toggleStartPause();
 
-  // // 3) Change timer title
-  // elements.timerTitle.innerHTML = 'Pomodoro Timer';
+  // 3) Change timer title
+  elements.timerTitle.innerHTML = 'Pomodoro Timer';
 
-  // // 4) Check & update timer setting
-  // settingSubmit();
+  // 4) Check & update timer setting
+  settingSubmit();
+  
+  // 5) Run the timer
+  Model.resetTime();
 
-  // // 5) Reset timer
-  // Model.resetTime();
-
-  // // 6) Start the timming setInterval function
-  // state.timerId = setInterval( () => {
-  //   Model.interval();
-  //   View.formatTimer();
-  //   if (state.remainingTime <= 0) {
-  //     timerFinished();
-  //   };
-  // }, 1000);
-  runTimer();
+  // 6) Start the timming setInterval function - here
+  state.timerId = setInterval( () => {
+    Model.interval();
+    View.formatTimer();
+    if (state.remainingTime <= 0) {
+      timerFinished();
+    };
+  }, 1000);
 }
 
 // event listener
@@ -96,60 +94,11 @@ function resetTimer() {
   // 2) Clear the existing Interval => To avoid duplicating timer
   Model.clearTimer();
 
- // View.toggleStartPause();
-
-  // // 3) Change timer title
-  // elements.timerTitle.innerHTML = 'Pomodoro Timer';
-
-  // // 4) Check & update timer setting
-  // settingSubmit();
-  
-  // // 5) Run the timer
-  // Model.resetTime();
-
-  // // 6) Start the timming setInterval function - here
-  // state.timerId = setInterval( () => {
-  //   Model.interval();
-  //   View.formatTimer();
-  //   if (state.remainingTime <= 0) {
-  //     timerFinished();
-  //   };
-  // }, 1000);
-  state.activeTimer = true;
-  runTimer();
+  // 3) Start timer
+  startTimer();
 };
 elements.reset.addEventListener('click', resetTimer);
 
-
-
-/////////////////////////////////
-//                             //
-//          Run Timer          //
-//                             //
-/////////////////////////////////
-
-function runTimer() {
-// 1) Toggle start -> pause
-  View.toggleStartPause();
-
-  // 1) Change timer title
-  elements.timerTitle.innerHTML = 'Pomodoro Timer';
-
-  // 2) Check & update timer setting
-  settingSubmit();
-  
-  // 3) Run the timer
-  Model.resetTime();
-
-  // 4) Start the timming setInterval function - here
-  state.timerId = setInterval( () => {
-    Model.interval();
-    View.formatTimer();
-    if (state.remainingTime <= 0) {
-      timerFinished();
-    };
-  }, 1000);
-}
 
 
 
