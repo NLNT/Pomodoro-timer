@@ -140,7 +140,7 @@ function controlTab() {
     View.renderTimer();
 
     // 5) update the UI (bg - illustration - timer - tab)
-    View.renderTab(state.currentTab, state.previousTab);
+    View.renderTab();
 
     // 6) if there's running timer => runTimer on new tab
     if (state.activeTimer) {
