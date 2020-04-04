@@ -62,6 +62,34 @@ export default {
   },
 
 
+  /////////////////////
+  //     History     //
+  /////////////////////
+
+  // Check if it's a new day ? yes = reset
+  checkNewDay() {
+    let today = new Date();
+
+    if (today.getFullYear() > localStorage.lastOnlineYear) {
+      resetPomoToday();
+    } else if (today.getMonth() > localStorage.lastOnlineMonth) {
+      resetPomoToday();
+    } else if (today.getDate() > localStorage.lastOnlineDate && today.getMonth() == localStorage.lastOnlineMonth) {
+      resetPomoToday();
+    };
+    
+    function resetPomoToday() {
+      localStorage.setItem('todayPomodoro', '0');
+    };
+  },
+
+  updateLastOnline() {
+    let today = new Date();
+
+    localStorage.setItem('lastOnlineDate', today.getDate());
+    localStorage.setItem('lastOnlineMonth', today.getMonth());
+    localStorage.setItem('lastOnlineYear', today.getFullYear());
+  },
 
 
 }

@@ -159,7 +159,8 @@ function controlTab() {
     // 6) if there's running timer => runTimer on new tab
     if (state.activeTimer) {
       resetTimer();
-    }    
+      View.toggleStartPause();
+    }
   }
   // Tab isn't changed
   else if (state.currentTab === state.newTab) {
@@ -186,6 +187,8 @@ elements.longBreakTab.addEventListener('click', () => {
 
 
 
+
+
 /////////////////////////////////
 //                             //
 //           Setting           //
@@ -200,16 +203,15 @@ function settingSubmit() {
 elements.settingSubmit.addEventListener('click', (e) => {
   e.preventDefault();
   settingSubmit();
-  if (state.activeTimer === false) {View.renderTimer();}
+  if (state.activeTimer === false) {View.renderTimer();} // if there's no runnnig timer, show changes
 });
-
 
 // Save setting form before refresh
 window.addEventListener('beforeunload', settingSubmit);
 
 
-// Create (default or custom) setting
-function settingOnload() {
+// init setting
+function settingInit() {
   if (localStorage.getItem('focus') === null) {
     Model.updateLocalStorage();
 
@@ -227,33 +229,21 @@ function settingOnload() {
 //                             //
 /////////////////////////////////
 
-function historyCheck() {
+function historyInit() {
   // Total pomodoro
-  if (localStorage.getItem('totalPomodoro') === null /*|| localStorage.getItem('totalPomodoro') == "NaN"*/) {
+  if (localStorage.getItem('totalPomodoro') === null) {
     localStorage.setItem('totalPomodoro', '0');
-  }
+  };
   // Today pomodoro
-  if (localStorage.getItem('todayPomodoro') === null /*|| localStorage.getItem('todayPomodoro') == "NaN"*/) {
+  if (localStorage.getItem('todayPomodoro') === null) {
     localStorage.setItem('todayPomodoro', '0');
   }
 }
 
+// Manage & reset pomodoro today everyday
 function resetPomodoroToday() {
-  let today = new Date();
-
-  // Check if it's a new day ? reset = yes : reset = no;
-  if (today.getFullYear() > localStorage.lastOnlineYear) {
-    localStorage.setItem('todayPomodoro', '0');
-  } else if (today.getMonth() > localStorage.lastOnlineMonth) {
-    localStorage.setItem('todayPomodoro', '0');
-  } else if (today.getDate() > localStorage.lastOnlineDate && today.getMonth() == localStorage.lastOnlineMonth) {
-    localStorage.setItem('todayPomodoro', '0');
-  }
-
-  // Update last online dates
-  localStorage.setItem('lastOnlineDate', today.getDate());
-  localStorage.setItem('lastOnlineMonth', today.getMonth());
-  localStorage.setItem('lastOnlineYear', today.getFullYear());
+  Model.checkNewDay();
+  Model.updateLastOnline();
 }
 
 
@@ -265,7 +255,7 @@ const init = () => {
   state.longBreak = {};
 
   // Get setting
-  settingOnload();
+  settingInit();
 
   state.currentTab = "focus";
   state.newTab = "";
@@ -276,7 +266,7 @@ const init = () => {
   state.remainingTime = 0;
 
   // Check & create history if it doesn't exist
-  historyCheck();
+  historyInit();
   // Check for new date & reset today pomodoro
   resetPomodoroToday();
   // Render default timer
