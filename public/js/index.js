@@ -208,7 +208,7 @@ elements.settingSubmit.addEventListener('click', (e) => {
 window.addEventListener('beforeunload', settingSubmit);
 
 
-// Save form after reload, keep storage not empty
+// Create (default or custom) setting
 function settingOnload() {
   if (localStorage.getItem('focus') === null) {
     Model.updateLocalStorage();
@@ -219,12 +219,52 @@ function settingOnload() {
 };
 
 
+
+
+/////////////////////////////////
+//                             //
+//           History           //
+//                             //
+/////////////////////////////////
+
+function historyCheck() {
+  // Total pomodoro
+  if (localStorage.getItem('totalPomodoro') === null /*|| localStorage.getItem('totalPomodoro') == "NaN"*/) {
+    localStorage.setItem('totalPomodoro', '0');
+  }
+  // Today pomodoro
+  if (localStorage.getItem('todayPomodoro') === null /*|| localStorage.getItem('todayPomodoro') == "NaN"*/) {
+    localStorage.setItem('todayPomodoro', '0');
+  }
+}
+
+function resetPomodoroToday() {
+  let today = new Date();
+
+  // Check if it's a new day ? reset = yes : reset = no;
+  if (today.getFullYear() > localStorage.lastOnlineYear) {
+    localStorage.setItem('todayPomodoro', '0');
+  } else if (today.getMonth() > localStorage.lastOnlineMonth) {
+    localStorage.setItem('todayPomodoro', '0');
+  } else if (today.getDate() > localStorage.lastOnlineDate && today.getMonth() == localStorage.lastOnlineMonth) {
+    localStorage.setItem('todayPomodoro', '0');
+  }
+
+  // Update last online dates
+  localStorage.setItem('lastOnlineDate', today.getDate());
+  localStorage.setItem('lastOnlineMonth', today.getMonth());
+  localStorage.setItem('lastOnlineYear', today.getFullYear());
+}
+
+
+
 // Init - set default state
 const init = () => {
   state.focus = {}; 
   state.break = {};
   state.longBreak = {};
 
+  // Get setting
   settingOnload();
 
   state.currentTab = "focus";
@@ -235,10 +275,11 @@ const init = () => {
 
   state.remainingTime = 0;
 
-  if (localStorage.getItem('totalPomodoro') == null || localStorage.getItem('totalPomodoro') == "NaN") {
-    localStorage.setItem('totalPomodoro', '0');
-  }
-
+  // Check & create history if it doesn't exist
+  historyCheck();
+  // Check for new date & reset today pomodoro
+  resetPomodoroToday();
+  // Render default timer
   View.renderTimer();
 }
 init();

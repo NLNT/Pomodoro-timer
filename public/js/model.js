@@ -34,6 +34,7 @@ export default {
   updateHistory() {
     if (state.currentTab === 'focus') {
       localStorage.totalPomodoro = parseInt(localStorage.totalPomodoro) + 1;
+      localStorage.todayPomodoro = parseInt(localStorage.todayPomodoro) + 1;
     }
   },
 
