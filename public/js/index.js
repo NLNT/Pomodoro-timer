@@ -2,11 +2,7 @@ import Model from "./model";
 import View from "./view";
 import { elements } from './base';
 
-/////////////////////////////////
-//                             //
-//        Global State         //
-//                             //
-/////////////////////////////////
+
 window.state = {};
 
 
@@ -21,6 +17,9 @@ window.state = {};
 // Bugs
 // 1) if user double click start too fast, there will be 2 timer
 
+// Suggestion
+
+
 
 /////////////////////////////////
 //                             //
@@ -30,19 +29,15 @@ window.state = {};
 function startTimer() {
   // 1) Update State
   state.activeTimer = true;
-
   // 2) Toggle start -> pause
   View.toggleStartPause();
-
   // 3) Change timer title
   elements.timerTitle.innerHTML = 'Pomodoro Timer';
-
   // 4) Check & update timer setting
-  settingSubmit();
-  
+  // settingSubmit();
+  Model.updateLocalStorage();
   // 5) Run the timer
   Model.resetTime();
-
   // 6) Start the timming setInterval function - here
   state.timerId = setInterval( () => {
     Model.interval();
@@ -52,7 +47,6 @@ function startTimer() {
     };
   }, 1000);
 }
-
 // event listener
 elements.start.addEventListener('click', startTimer);
 
@@ -64,7 +58,6 @@ elements.start.addEventListener('click', startTimer);
 //                             //
 /////////////////////////////////
 function pauseTimer() {
-
   // Run only before timer has finished
   if (state.remainingTime > 0) {
     // 1) Toggle start/pause button
@@ -87,15 +80,12 @@ elements.pause.addEventListener('click', pauseTimer);
 function resetTimer() {
   // 1) incase timer is paused, change back to reset
   state.resetTimer = true;
-  
   // 2) Clear the existing Interval => To avoid duplicating timer
   Model.clearTimer();
-
   // 3) Start timer
   startTimer();
 };
 elements.reset.addEventListener('click', resetTimer);
-
 
 
 
@@ -115,30 +105,26 @@ function timerFinished() {
 
 
 
+
 /////////////////////////////////
 //                             //
 //         Change Tab          //
 //                             //
 /////////////////////////////////
-
 function controlTab() {
   // Tab is changed
   if (state.currentTab !== state.newTab) {
     // 1) Update previous tab in state
     state.previousTab = state.currentTab;
-
     // 2) update currentTab in state
     state.currentTab = state.newTab;
-
     // 3) Update timer settings
-    settingSubmit();
-
+    //settingSubmit();
+    Model.updateLocalStorage();
     // 4) Update default time in timer
     View.renderTimer();
-
     // 5) update the UI (bg - illustration - timer - tab)
     View.renderTab();
-
     // 6) if there's running timer => runTimer on new tab
     if (state.activeTimer) {
       resetTimer();
@@ -172,25 +158,26 @@ elements.longBreakTab.addEventListener('click', () => {
 
 
 
+
 /////////////////////////////////
 //                             //
 //           Setting           //
 //                             //
 /////////////////////////////////
+// function settingSubmit() {
+//   Model.updateLocalStorage();
+// };
+// // Save setting form before refresh
+// window.addEventListener('beforeunload', settingSubmit);
 
-// run this upon onload
-function settingSubmit() {
-  Model.updateLocalStorage();
-};
-// Submit event Listenner
-elements.settingSubmit.addEventListener('click', (e) => {
-  e.preventDefault();
-  settingSubmit();
-  if (state.activeTimer === false) {View.renderTimer();} // if there's no runnnig timer, show changes
-});
 
-// Save setting form before refresh
-window.addEventListener('beforeunload', settingSubmit);
+// // Submit event Listenner
+// elements.settingSubmit.addEventListener('click', (e) => {
+//   e.preventDefault();
+//   settingSubmit();
+//   if (state.activeTimer === false) {View.renderTimer();} // if there's no runnnig timer, show changes
+// });
+
 
 
 
@@ -236,6 +223,33 @@ elements.settingAlarm.addEventListener('change', Model.changeAudio);
 elements.alarmTester.addEventListener('click', Model.playAudio);
 
 
+// Focus setting autosave
+elements.settingFocus.addEventListener('input', () => {
+  if (state.activeTimer === false) {
+    Model.updateLocalStorage();
+    View.renderTimer();
+  }
+});
+// Break setting autosave
+elements.settingBreak.addEventListener('input', () => {
+  if (state.activeTimer === false) {
+    Model.updateLocalStorage();
+    View.renderTimer();
+  }
+});
+// Long break setting autosave
+elements.settingLongBreak.addEventListener('input', () => {
+  if (state.activeTimer === false) {
+    Model.updateLocalStorage();
+    View.renderTimer();
+  }
+});
+// Loop setting autosave
+elements.settingLoop.addEventListener('input', () => {
+    Model.updateLocalStorage();
+});
+
+
 
 /////////////////////////////////
 //                             //
@@ -264,9 +278,9 @@ function resetPomodoroToday() {
 
 // Init - set default state
 const init = () => {
-  state.focus = {}; 
-  state.break = {};
-  state.longBreak = {};
+  // state.focus = {}; 
+  // state.break = {};
+  // state.longBreak = {};
 
   // Get setting
   settingInit();
