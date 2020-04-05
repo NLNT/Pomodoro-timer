@@ -12,17 +12,14 @@ window.state = {};
 
 
 // Missing Features
-// 1) Reset pomodoro till long break everyday - done using pomodoro today
-// Formula: timeToBreak = loop - (pomoToday % loop)
-// Reset pomoToday every 24hrs at 2am
-// pomoToday&totalPomo = pomoToday&totalPomo +1 every pomo finished 
-
-// 2) Reset setting
-// 3) Data dashboard
+// 1) Reset setting
+// 2) Data dashboard
+// 3) Display indicator in title that timer is finished
+// 4) task as 3rd tab
+// 5) settings saved indicator
 
 // Bugs
 // 1) if user double click start too fast, there will be 2 timer
-// 2) if custom timer in setting = 0, the timer becomes negative
 
 
 /////////////////////////////////
@@ -196,6 +193,7 @@ elements.settingSubmit.addEventListener('click', (e) => {
 window.addEventListener('beforeunload', settingSubmit);
 
 
+
 // init setting
 function settingInit() {
   if (localStorage.getItem('focus') === null) {
@@ -204,8 +202,34 @@ function settingInit() {
   } else if (localStorage.getItem('focus') !== null) {
     View.updateSettingForm();
   }
+
+  // Create default other settings & maintain other settings after refresh
+  if (localStorage.getItem('title') === null) {
+    Model.updateOtherSettings();
+    View.updateOtherSettings();
+  } else if (localStorage.getItem('title') !== null) {
+    View.updateOtherSettings();
+  }
 };
 
+
+function otherSettings() {
+  // Title
+  if (elements.settingTitle.checked === true) {
+    localStorage.setItem('title', 'on');
+  } else if (elements.settingTitle.checked === false) {
+    localStorage.setItem('title', 'off');
+  };
+  // Notification
+  if (elements.settingNotification.checked === true) {
+    localStorage.setItem('notification', 'on');
+  } else if (elements.settingNotification.checked === false) {
+    localStorage.setItem('notification', 'off');
+  };
+};
+// Other settings
+elements.settingTitle.addEventListener('click', otherSettings);
+elements.settingNotification.addEventListener('click', otherSettings);
 
 // Sound tester
 elements.settingAlarm.addEventListener('change', Model.changeAudio);

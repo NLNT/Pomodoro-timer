@@ -49,6 +49,16 @@ export default {
   /////////////////////
 
   updateLocalStorage() {
+    // Check for invalid input & fix it
+    if (elements.settingFocus.value < 1) {elements.settingFocus.value = 1};
+    if (elements.settingFocus.value > 60) {elements.settingFocus.value = 60};
+
+    if (elements.settingBreak.value < 1) {elements.settingBreak.value = 1};
+    if (elements.settingBreak.value > 60) {elements.settingBreak.value = 60};
+
+    if (elements.settingLongBreak.value < 1) {elements.settingLongBreak.value = 1};
+    if (elements.settingLongBreak.value > 60) {elements.settingLongBreak.value = 60};
+
     // 1) push focus/break/longBreak
     localStorage.setItem('focus', elements.settingFocus.value);
     localStorage.setItem('break', elements.settingBreak.value);
@@ -59,13 +69,14 @@ export default {
 
     // 3) Alarm sound
     localStorage.setItem('alarm', elements.settingAlarm.value);
-    
-    // 4) Others - not in sync with ui
-    localStorage.setItem('title', elements.settingTitle.value);
-    localStorage.setItem('notification', elements.settingNotification.value);
 
     //TEST
     console.log(localStorage);
+  },
+
+  updateOtherSettings() {
+    localStorage.setItem('title', 'on');
+    localStorage.setItem('notification', 'on');
   },
 
 
