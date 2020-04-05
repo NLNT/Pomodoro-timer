@@ -13,7 +13,6 @@ export default {
     illustration: `<img class="my-px pt-px md:p-0 md:m-0" src="https://raw.githubusercontent.com/NLNT/Pomodoro-timer/master/img/focus-illustration.svg?sanitize=true" alt="Woman working illustration">`,
   },
   break: {
-    //time: '05:00',
     bgClass: 'bg-teal-200',
     illustration: `<img class="py-1 -my-px md:my-px md:py-px" src="https://raw.githubusercontent.com/NLNT/Pomodoro-timer/master/img/break-illustration.svg?sanitize=true" alt="Woman mediatating illustration">`,
   },
@@ -23,7 +22,7 @@ export default {
   },
 
 
-  renderTab(currentTab, previousTab) {
+  renderTab() {
     // 1) Change background color
     this.renderBackgroundColor();
     
@@ -45,11 +44,11 @@ export default {
     let active, nonActive;
     let prevTab = state.previousTab;
     let currTab = state.currentTab;
+    
     // 1) Get previousTab DOM element
     if (prevTab === 'focus') {active = elements.focusTab}
     else if (prevTab === 'break') {active = elements.breakTab}
     else if (prevTab === 'longBreak') {active = elements.longBreakTab};
-
     // 2) Get currentTab DOM element
     if (currTab === 'focus') {nonActive = elements.focusTab}
     else if (currTab === 'break') {nonActive = elements.breakTab}
