@@ -128,13 +128,12 @@ export default {
     elements.settingLoop.value = localStorage.getItem('loop');
 
     // 3) Alarm sound
+    if (localStorage.getItem('alarm') === '') {localStorage.setItem('alarm', 'beep-alarm')} // fix empty select
     elements.settingAlarm.value = localStorage.getItem('alarm');
+  },
 
-    // 4) Others
-    if (localStorage.getItem('title') === 'on') {
-      elements.settingTitle.checked = true;
-    } else {elements.settingTitle.checked = false;}
-    
-    localStorage.getItem('notification');
+  updateOtherSettings() {
+    localStorage.title === 'on' ? elements.settingTitle.checked = true : elements.settingTitle.checked = false;
+    localStorage.notification === 'on' ? elements.settingNotification.checked = true : elements.settingNotification.checked = false;
   },
 }
