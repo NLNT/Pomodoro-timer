@@ -28,6 +28,10 @@ export default {
   playAudio() {
     elements.audio.play();
   },
+
+  changeAudio() {
+    elements.audio.src = `alarms/${elements.settingAlarm.value}.mp3`;
+  },
   
   // Update total & today pomodoro every focus is finished
   updateHistory() {

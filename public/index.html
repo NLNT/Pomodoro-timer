@@ -18,11 +18,13 @@
 </head>
 <body class="font-inter bg-gray-100">
 
-  <audio id="js-alarm" src="alarms/beep-alarm.mp3" preload="auto"></audio>
-  <!-- <audio id="js-alarm" src="alarms/chime-alarm.mp3" preload="auto"></audio> -->
-  <!-- <audio id="js-alarm" src="alarms/piano-alarm.mp3" preload="auto"></audio> -->
-  <!-- <audio id="js-alarm" src="alarms/ring-alarm.mp3" preload="auto"></audio> -->
-  <!-- <audio id="js-alarm" src="alarms/soft-alarm.mp3" preload="auto"></audio> -->
+  <div id="js-audio-container">
+    <audio id="js-alarm" src="alarms/beep-alarm.mp3"></audio>
+    <!-- <audio id="js-alarm" src="alarms/chime-alarm.mp3"></audio> -->
+    <!-- <audio id="js-alarm" src="alarms/piano-alarm.mp3"></audio> -->
+    <!-- <audio id="js-alarm" src="alarms/ring-alarm.mp3"></audio> -->
+    <!-- <audio id="js-alarm" src="alarms/soft-alarm.mp3"></audio> -->
+  </div>
   
 
 
@@ -149,13 +151,13 @@
                     <option value="ring-alarm">Ring alarm</option>
                     <option value="chime-alarm">Chime alarm</option>
                     <option value="piano-alarm">Piano alarm</option>
-                    <option value="piano-alarm">Soft alarm</option>
+                    <option value="soft-alarm">Soft alarm</option>
                   </select>
                 </div>
                   
                 <!-- Test sound button -->
                 <div class="flex">
-                  <a class="cursor-pointer rounded-lg shadow flex items-center px-6 ml-4 hover:shadow-md transition-shadow duration-200">Sound<span><svg class="w-5 h-5 ml-2 stroke-current text-gray-800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs/><path d="M16 8a5 5 0 010 8m2-10a9 9 0 010 12M6 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h2l4-5 2 1v14l-2 1-4-5z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span></a>
+                  <a id="js-sound-tester" class="cursor-pointer rounded-lg shadow flex items-center px-6 ml-4 hover:shadow-md transition-shadow duration-200">Sound<span><svg class="w-5 h-5 ml-2 stroke-current text-gray-800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs/><path d="M16 8a5 5 0 010 8m2-10a9 9 0 010 12M6 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h2l4-5 2 1v14l-2 1-4-5z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span></a>
                 </div>
               </div>
 

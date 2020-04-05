@@ -9,6 +9,8 @@ export const elements = {
 
   // Audio
   audio: document.getElementById('js-alarm'),
+  alarmTester: document.getElementById('js-sound-tester'),
+  alarmDiv: document.getElementById('js-alarm-container'),
 
   // Timer
   timerTitle: document.getElementById('js-timer-title'),
@@ -37,5 +39,6 @@ export const elements = {
   
   settingTitle: document.getElementById('setting-title'),
   settingNotification: document.getElementById('setting-notification'),
+
 
 }
