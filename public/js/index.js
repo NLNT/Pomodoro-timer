@@ -207,6 +207,10 @@ function settingInit() {
 };
 
 
+// Sound tester
+elements.settingAlarm.addEventListener('change', Model.changeAudio);
+elements.alarmTester.addEventListener('click', Model.playAudio);
+
 
 
 /////////////////////////////////
