@@ -34,11 +34,10 @@ function startTimer() {
   // 3) Change timer title
   elements.timerTitle.innerHTML = 'Pomodoro Timer';
   // 4) Check & update timer setting
-  // settingSubmit();
   Model.updateLocalStorage();
   // 5) Run the timer
   Model.resetTime();
-  // 6) Start the timming setInterval function - here
+  // 6) Start the timming setInterval function
   state.timerId = setInterval( () => {
     Model.interval();
     View.formatTimer();
@@ -47,7 +46,7 @@ function startTimer() {
     };
   }, 1000);
 }
-// event listener
+// start timer event listener
 elements.start.addEventListener('click', startTimer);
 
 
@@ -66,8 +65,9 @@ function pauseTimer() {
     clearInterval(state.timerId);
     // 3) set the pausedTimer to true => So timer won't reset time value
     state.resetTimer = false;
-  }
-}
+  };
+};
+// Reset timer event listenner
 elements.pause.addEventListener('click', pauseTimer);
 
 
@@ -85,6 +85,7 @@ function resetTimer() {
   // 3) Start timer
   startTimer();
 };
+// Reset timer event listenner
 elements.reset.addEventListener('click', resetTimer);
 
 
@@ -119,8 +120,7 @@ function controlTab() {
     // 2) update currentTab in state
     state.currentTab = state.newTab;
     // 3) Update timer settings
-    //settingSubmit();
-    Model.updateLocalStorage();
+    //Model.updateLocalStorage();
     // 4) Update default time in timer
     View.renderTimer();
     // 5) update the UI (bg - illustration - timer - tab)
@@ -129,12 +129,12 @@ function controlTab() {
     if (state.activeTimer) {
       resetTimer();
       View.toggleStartPause();
-    }
-  }
-  // Tab isn't changed
-  else if (state.currentTab === state.newTab) {
-    state.newTab = "";
-  }
+    };
+  };
+  // // Tab isn't changed
+  // else if (state.currentTab === state.newTab) {
+  //   state.newTab = "";
+  // }
 }
 
 
@@ -158,96 +158,85 @@ elements.longBreakTab.addEventListener('click', () => {
 
 
 
-
 /////////////////////////////////
 //                             //
 //           Setting           //
 //                             //
 /////////////////////////////////
+
 // function settingSubmit() {
 //   Model.updateLocalStorage();
 // };
-// // Save setting form before refresh
-// window.addEventListener('beforeunload', settingSubmit);
 
 
 // // Submit event Listenner
 // elements.settingSubmit.addEventListener('click', (e) => {
-//   e.preventDefault();
-//   settingSubmit();
-//   if (state.activeTimer === false) {View.renderTimer();} // if there's no runnnig timer, show changes
-// });
-
+  //   e.preventDefault();
+  //   settingSubmit();
+  //   if (state.activeTimer === false) {View.renderTimer();} // if there's no runnnig timer, show changes
+  // });
+  
 
 
 
 // init setting
 function settingInit() {
   if (localStorage.getItem('focus') === null) {
-    Model.updateLocalStorage();
-
+    Model.updateLocalStorage(); // Form -> Storage
   } else if (localStorage.getItem('focus') !== null) {
-    View.updateSettingForm();
+    View.updateSettingForm(); // Storage -> Form
   }
+};
 
+
+// Init Other settings
+function otherSettingInit() {
   // Create default other settings & maintain other settings after refresh
-  if (localStorage.getItem('title') === null) {
-    Model.updateOtherSettings();
-    View.updateOtherSettings();
-  } else if (localStorage.getItem('title') !== null) {
-    View.updateOtherSettings();
-  }
-};
-
-
-function otherSettings() {
-  // Title
-  if (elements.settingTitle.checked === true) {
+  if (localStorage.getItem('title') === null ) {
     localStorage.setItem('title', 'on');
-  } else if (elements.settingTitle.checked === false) {
-    localStorage.setItem('title', 'off');
-  };
-  // Notification
-  if (elements.settingNotification.checked === true) {
     localStorage.setItem('notification', 'on');
-  } else if (elements.settingNotification.checked === false) {
-    localStorage.setItem('notification', 'off');
-  };
+  }
+  View.updateOtherSettings();
 };
-// Other settings
-elements.settingTitle.addEventListener('click', otherSettings);
-elements.settingNotification.addEventListener('click', otherSettings);
+// Other settings event listenner
+elements.settingTitle.addEventListener('click', Model.updateOtherSettings);
+elements.settingNotification.addEventListener('click', Model.updateOtherSettings);
 
-// Sound tester
-elements.settingAlarm.addEventListener('change', Model.changeAudio);
+
+// Sound tester event listenner
+elements.settingAlarm.addEventListener('change', () => {
+  Model.changeAudio(); 
+  Model.updateLocalStorage();
+});
 elements.alarmTester.addEventListener('click', Model.playAudio);
 
 
-// Focus setting autosave
-elements.settingFocus.addEventListener('input', () => {
-  if (state.activeTimer === false) {
-    Model.updateLocalStorage();
-    View.renderTimer();
-  }
+// Custom timer autosave event listenners
+let settingInputs = [elements.settingFocus, elements.settingBreak, elements.settingLongBreak];
+
+settingInputs.forEach((evt) => {
+  evt.addEventListener('input', () => {
+    if (state.activeTimer === false) {
+      Model.updateLocalStorage();
+      View.renderTimer();}
+  });
 });
-// Break setting autosave
-elements.settingBreak.addEventListener('input', () => {
-  if (state.activeTimer === false) {
-    Model.updateLocalStorage();
-    View.renderTimer();
-  }
-});
-// Long break setting autosave
-elements.settingLongBreak.addEventListener('input', () => {
-  if (state.activeTimer === false) {
-    Model.updateLocalStorage();
-    View.renderTimer();
-  }
-});
+
+
 // Loop setting autosave
 elements.settingLoop.addEventListener('input', () => {
-    Model.updateLocalStorage();
+  Model.updateLocalStorage();
 });
+
+
+
+// Save setting form before refresh
+//window.addEventListener('beforeunload', Model.updateLocalStorage);
+
+
+
+
+
 
 
 
@@ -257,6 +246,7 @@ elements.settingLoop.addEventListener('input', () => {
 //                             //
 /////////////////////////////////
 
+// Create / maintaint pomodoro history
 function historyInit() {
   // Total pomodoro
   if (localStorage.getItem('totalPomodoro') === null) {
@@ -268,11 +258,14 @@ function historyInit() {
   }
 }
 
-// Manage & reset pomodoro today everyday
-function resetPomodoroToday() {
+// Check for new date to reset & update last online status
+function checkPomoToday() {
   Model.checkNewDay();
   Model.updateLastOnline();
 }
+
+
+
 
 
 
@@ -282,21 +275,21 @@ const init = () => {
   // state.break = {};
   // state.longBreak = {};
 
-  // Get setting
-  settingInit();
-
+  
   state.currentTab = "focus";
   state.newTab = "";
   state.previousTab = "";
   state.activeTimer = false;
   state.resetTimer = true;
-
   state.remainingTime = 0;
-
-  // Check & create history if it doesn't exist
+  
+  // Check to get or create setting info
+  settingInit();
+  otherSettingInit();
+  // Check & create history (if doesn't exist)
   historyInit();
   // Check for new date & reset today pomodoro
-  resetPomodoroToday();
+  checkPomoToday();
   // Render default timer
   View.renderTimer();
 }

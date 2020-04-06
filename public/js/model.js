@@ -33,7 +33,7 @@ export default {
     elements.audio.src = `alarms/${elements.settingAlarm.value}.mp3`;
   },
   
-  // Update total & today pomodoro every focus is finished
+  // Update total & today pomodoro every focus
   updateHistory() {
     if (state.currentTab === 'focus') {
       localStorage.totalPomodoro = parseInt(localStorage.totalPomodoro) + 1;
@@ -44,74 +44,91 @@ export default {
 
 
 
-  /////////////////////
-  //     Setting     //
-  /////////////////////
+////////////////////////////////
+//                            //
+//          Setting           //
+//                            //
+////////////////////////////////
 
-  updateLocalStorage() {
-    // Check for invalid input & fix it
-    if (elements.settingFocus.value < 1) {elements.settingFocus.value = 1};
-    if (elements.settingFocus.value > 60) {elements.settingFocus.value = 60};
+// Push the setting form => localStorage
+updateLocalStorage() {
+  // Check for invalid inputs
+  if (elements.settingFocus.value < 1) {elements.settingFocus.value = 1};
+  if (elements.settingFocus.value > 60) {elements.settingFocus.value = 60};
+  if (elements.settingBreak.value < 1) {elements.settingBreak.value = 1};
+  if (elements.settingBreak.value > 60) {elements.settingBreak.value = 60};
+  if (elements.settingLongBreak.value < 1) {elements.settingLongBreak.value = 1};
+  if (elements.settingLongBreak.value > 60) {elements.settingLongBreak.value = 60};
 
-    if (elements.settingBreak.value < 1) {elements.settingBreak.value = 1};
-    if (elements.settingBreak.value > 60) {elements.settingBreak.value = 60};
+  // 1) Push time settings
+  localStorage.setItem('focus', elements.settingFocus.value);
+  localStorage.setItem('break', elements.settingBreak.value);
+  localStorage.setItem('longBreak', elements.settingLongBreak.value);
 
-    if (elements.settingLongBreak.value < 1) {elements.settingLongBreak.value = 1};
-    if (elements.settingLongBreak.value > 60) {elements.settingLongBreak.value = 60};
+  // 2) Push loop
+  localStorage.setItem('loop', elements.settingLoop.value);
 
-    // 1) push focus/break/longBreak
-    localStorage.setItem('focus', elements.settingFocus.value);
-    localStorage.setItem('break', elements.settingBreak.value);
-    localStorage.setItem('longBreak', elements.settingLongBreak.value);
+  // 3) Push alarm sound
+  localStorage.setItem('alarm', elements.settingAlarm.value);
 
-    // 2) Push loop
-    localStorage.setItem('loop', elements.settingLoop.value);
+  // TEST
+  console.log(localStorage);
+},
 
-    // 3) Alarm sound
-    localStorage.setItem('alarm', elements.settingAlarm.value);
 
-    //TEST
-    console.log(localStorage);
-  },
-
-  updateOtherSettings() {
+updateOtherSettings() {
+  // Title
+  if (elements.settingTitle.checked === true) {
     localStorage.setItem('title', 'on');
+  } else if (elements.settingTitle.checked === false) {
+    localStorage.setItem('title', 'off');
+  };
+  
+  // Notification
+  if (elements.settingNotification.checked === true) {
     localStorage.setItem('notification', 'on');
-  },
+  } else if (elements.settingNotification.checked === false) {
+    localStorage.setItem('notification', 'off');
+  };
+},
 
 
 
 
 
 
-  /////////////////////
-  //     History     //
-  /////////////////////
+////////////////////////////////
+//                            //
+//          History           //
+//                            //
+////////////////////////////////
 
-  // Check if it's a new day ? yes = reset
-  checkNewDay() {
-    let today = new Date();
+// Reset pomodoroToday everyday
+checkNewDay() {
+  let today = new Date();
 
-    if (today.getFullYear() > localStorage.lastOnlineYear) {
-      resetPomoToday();
-    } else if (today.getMonth() > localStorage.lastOnlineMonth) {
-      resetPomoToday();
-    } else if (today.getDate() > localStorage.lastOnlineDate && today.getMonth() == localStorage.lastOnlineMonth) {
-      resetPomoToday();
-    };
-    
-    function resetPomoToday() {
-      localStorage.setItem('todayPomodoro', '0');
-    };
-  },
+  if (today.getFullYear() > localStorage.lastOnlineYear) {
+    resetPomoToday();
+  } else if (today.getMonth() > localStorage.lastOnlineMonth) {
+    resetPomoToday();
+  } else if (today.getDate() > localStorage.lastOnlineDate && today.getMonth() == localStorage.lastOnlineMonth) {
+    resetPomoToday();
+  };
+  
+  function resetPomoToday() {
+    localStorage.setItem('todayPomodoro', '0');
+  };
+},
 
-  updateLastOnline() {
-    let today = new Date();
 
-    localStorage.setItem('lastOnlineDate', today.getDate());
-    localStorage.setItem('lastOnlineMonth', today.getMonth());
-    localStorage.setItem('lastOnlineYear', today.getFullYear());
-  },
+// Update last online status
+updateLastOnline() {
+  let today = new Date();
+
+  localStorage.setItem('lastOnlineDate', today.getDate());
+  localStorage.setItem('lastOnlineMonth', today.getMonth());
+  localStorage.setItem('lastOnlineYear', today.getFullYear());
+},
 
 
 }
