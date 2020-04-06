@@ -121,24 +121,17 @@ function controlTab() {
     state.previousTab = state.currentTab;
     // 2) update currentTab in state
     state.currentTab = state.newTab;
-    // 3) Update timer settings
-    //Model.updateLocalStorage();
-    // 4) Update default time in timer
+    // 3) Update default time in timer
     View.renderTimer();
-    // 5) update the UI (bg - illustration - timer - tab)
+    // 4) update the UI (bg - illustration - timer - tab)
     View.renderTab();
-    // 6) if there's running timer => runTimer on new tab
+    // 5) if there's running timer => runTimer on new tab
     if (state.activeTimer) {
       resetTimer();
       View.toggleStartPause();
     };
   };
-  // // Tab isn't changed
-  // else if (state.currentTab === state.newTab) {
-  //   state.newTab = "";
-  // }
-}
-
+};
 
 // Focus tab - listener
 elements.focusTab.addEventListener('click', () => {
@@ -160,26 +153,44 @@ elements.longBreakTab.addEventListener('click', () => {
 
 
 
+
+/////////////////////////////////
+//                             //
+//    Setting/History Tab      //
+//                             //
+/////////////////////////////////
+function tabSettingHistory() {
+  if (state.secondCurTab !== state.secondNewTab) {
+    // 1) update secondCurTab in state
+    state.secondCurTab = state.secondNewTab;
+
+    // 2) View.change tab content
+    View.updateTabContent();
+
+    // 3) View.change tab active style
+    View.updateSecondTabActive();
+  };
+};
+
+
+elements.tabSetting.addEventListener('click', () => {
+  state.secondNewTab = 'setting';
+  tabSettingHistory();
+});
+elements.tabHistory.addEventListener('click', () => {
+  state.secondNewTab = 'history';
+  tabSettingHistory();
+});
+
+
+
+
+
 /////////////////////////////////
 //                             //
 //           Setting           //
 //                             //
 /////////////////////////////////
-
-// function settingSubmit() {
-//   Model.updateLocalStorage();
-// };
-
-
-// // Submit event Listenner
-// elements.settingSubmit.addEventListener('click', (e) => {
-  //   e.preventDefault();
-  //   settingSubmit();
-  //   if (state.activeTimer === false) {View.renderTimer();} // if there's no runnnig timer, show changes
-  // });
-  
-
-
 
 // init setting
 function settingInit() {
@@ -291,11 +302,14 @@ const init = () => {
 
   
   state.currentTab = "focus";
-  state.newTab = "";
-  state.previousTab = "";
+  state.newTab = '';
+  state.previousTab = '';
   state.activeTimer = false;
   state.resetTimer = true;
   state.remainingTime = 0;
+  state.secondCurTab = 'setting';
+  state.secondNewTab = '';
+
   
   // Check to get or create setting info
   settingInit();
