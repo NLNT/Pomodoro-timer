@@ -26,7 +26,7 @@ export default {
   },
   
   playAudio() {
-    elements.audio.play();
+      elements.audio.play();
   },
 
   changeAudio() {
@@ -67,7 +67,6 @@ updateLocalStorage() {
 
   // 2) Push loop
   localStorage.setItem('loop', elements.settingLoop.value);
-
   // 3) Push alarm sound
   localStorage.setItem('alarm', elements.settingAlarm.value);
 

@@ -88,7 +88,9 @@ export default {
     elements.timer.innerHTML = `${minute}:${second}`;
 
     // If the setting allow:
-    elements.title.innerHTML = `${minute}:${second} - Pomodoro Online`;
+    if (localStorage.getItem('title') === 'on') {
+      elements.title.innerHTML = `${minute}:${second} - Pomodoro Online`;
+    }
   },
 
   renderTimerFinished() {

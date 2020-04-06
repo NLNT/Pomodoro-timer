@@ -96,8 +96,10 @@ elements.reset.addEventListener('click', resetTimer);
 //                             //
 /////////////////////////////////
 function timerFinished() {
-  Model.clearTimer(); 
-  Model.playAudio(); 
+  Model.clearTimer();
+  if (localStorage.getItem('notification') === 'on') { 
+    Model.playAudio(); 
+  };
   Model.updateHistory();
   View.renderTimerFinished();
 };
