@@ -205,12 +205,32 @@ elements.settingTitle.addEventListener('click', Model.updateOtherSettings);
 elements.settingNotification.addEventListener('click', Model.updateOtherSettings);
 
 
+
+/////////////////////////////////
+//                             //
+//        Reset Setting        //
+//                             //
+/////////////////////////////////
+function resetSetting() {
+  Model.resetSettingStorage();
+  View.updateSettingForm();
+  View.updateOtherSettings();
+}
+elements.settingReset.addEventListener('click', resetSetting);
+
+
+
+
+
 // Sound tester event listenner
 elements.settingAlarm.addEventListener('change', () => {
   Model.changeAudio(); 
   Model.updateLocalStorage();
 });
 elements.alarmTester.addEventListener('click', Model.playAudio);
+
+
+
 
 
 // Custom timer autosave event listenners
@@ -226,15 +246,7 @@ settingInputs.forEach((evt) => {
 
 
 // Loop setting autosave
-elements.settingLoop.addEventListener('input', () => {
-  Model.updateLocalStorage();
-});
-
-
-
-// Save setting form before refresh
-//window.addEventListener('beforeunload', Model.updateLocalStorage);
-
+elements.settingLoop.addEventListener('input',Model.updateLocalStorage);
 
 
 

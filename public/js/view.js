@@ -94,10 +94,10 @@ export default {
   },
 
   renderTimerFinished() {
-    let title,plural;
-    let timeToLongBreak = localStorage.loop - (parseInt(localStorage.todayPomodoro) % localStorage.loop);
+    let title, plural;
+    let timeToLongBreak = parseInt(localStorage.loop) - (parseInt(localStorage.todayPomodoro) % parseInt(localStorage.loop));
 
-    if (timeToLongBreak === localStorage.loop && state.currentTab === 'focus') {
+    if (timeToLongBreak === parseInt(localStorage.loop) && state.currentTab === 'focus') {
       title = 'Have a long break';
     } else if (state.currentTab === 'longBreak'){
       title = 'Start working';

@@ -92,7 +92,15 @@ updateOtherSettings() {
 },
 
 
-
+resetSettingStorage() {
+  localStorage.setItem('focus', '25');
+  localStorage.setItem('break', '5');
+  localStorage.setItem('longBreak', '30');
+  localStorage.setItem('loop', '4');
+  localStorage.setItem('alarm', 'beep-alarm');
+  localStorage.setItem('title', 'on');
+  localStorage.setItem('notification', 'on');
+},
 
 
 

@@ -27,7 +27,7 @@ export const elements = {
 
 
   // Setting - Custom time
-  //settingSubmit: document.getElementById('js-setting-submit'),
+  settingReset: document.getElementById('js-reset-setting'),
 
   settingFocus: document.getElementById('setting-focus'),
   settingBreak: document.getElementById('setting-break'),

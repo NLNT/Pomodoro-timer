@@ -24,7 +24,7 @@
   
 
 
-  <main class="md:m-4 lg:mt-8">
+  <main class="md:m-4 lg:mt-12">
   <!-- Block - component -->
     <div id="js-block-background" class="transition-colors duration-200 shadow-xl max-w-5xl mx-auto bg-red-200 p-px md:p-0 rounded-b-2xl md:rounded-2xl md:flex md:items-center">
       <!-- Illustration -->
@@ -75,13 +75,13 @@
           <a class="flex-1 px-10 sm:px-16 py-4 transition-colors duration-200 hover:text-gray-800 cursor-pointer" style="border-radius: .9rem">History</a>
         </div>
         <!-- End - Tab component  -->
-        <!-- <button class="bg-white shadow-md font-medium px-8 py-4 transition-shadow duration-300 hover:shadow-lg text-gray-800 cursor-pointer mt-10 sm:mt-0" style="border-radius: .9rem">Save Settings</button> -->
+        <!-- <a class="bg-white shadow-md font-medium px-8 py-4 transition-shadow duration-300 hover:shadow-lg text-gray-800 cursor-pointer mt-10 sm:mt-0" style="border-radius: .9rem">Reset Settings</a> -->
       </div>
       
 
 
       <!-- Tab Content -->
-      <div class="mt-4 sm:mt-8">
+      <div class="mt-8">
         <form action="#" id="setting" class="md:flex flex-1">
           <!-- Left Side -->
           <div class="md:w-5/12 bg-white p-10 rounded-t-xl md:rounded-xl md:shadow">
@@ -134,7 +134,8 @@
 
 
           <!-- Right Side -->
-          <div class="md:w-7/12 md:ml-8 bg-white rounded-b-xl md:rounded-xl pt-5 sm:pt-10 p-10 md:shadow">
+          <div class="md:w-7/12 md:ml-8 bg-white rounded-b-xl md:rounded-xl pt-5 sm:pt-10 p-10 md:shadow flex flex-col justify-between">
+          <div>
             <h5 class="text-lg font-medium text-gray-800 border-b pb-3">General Settings</h5>
 
             <h6 class="mt-10 mb-2 font-medium text-gray-700">Alarm sounds</h6>
@@ -161,27 +162,28 @@
 
 
 
-              <!-- Toggles -->
-              <h6 class="mt-10 mb-2 font-medium text-gray-700">Others</h6>
-              <!-- Row -->
+              <h6 class="mt-10 mb-2 font-medium text-gray-700">Other settings</h6>
+              <!-- Checkbox - Component -->
+              <div class="flex-1 shadow-xs p-6 py-4 cursor-pointer relative flex items-center justify-between rounded-lg">
+                <label class="absolute inset-0 rounded-lg cursor-pointer" for="setting-title">&nbsp;</label>
+                <p class="font-medium text-gray-800">Display timer in the title</p>
+                <input type="checkbox" name="setting-title" id="setting-title">
+              </div>
+              <!-- End - Checkbox Component -->
 
-                <!-- Checkbox - Component -->
-                <div class="flex-1 shadow-xs p-6 py-4 cursor-pointer relative flex items-center justify-between rounded-lg">
-                  <label class="absolute inset-0 rounded-lg cursor-pointer" for="setting-title">&nbsp;</label>
-                  <p class="font-medium text-gray-800">Display timer in the title</p>
-                  <input type="checkbox" name="setting-title" id="setting-title">
-                </div>
-                <!-- End - Checkbox Component -->
-
-                <!-- Checkbox - Component -->
-                <div class="flex-1 mt-4 shadow-xs p-6 py-4 cursor-pointer relative flex items-center justify-between rounded-lg">
-                  <label class="absolute inset-0 rounded-lg cursor-pointer" for="setting-notification">&nbsp;</label>
-                  <p class="font-medium text-gray-800">Sound notification</p>
-                  <input type="checkbox" name="setting-notification" id="setting-notification">       
-                </div>
-                <!-- End - Checkbox Component -->    
-
-                <!-- Pause history -->
+              <!-- Checkbox - Component -->
+              <div class="flex-1 mt-4 shadow-xs p-6 py-4 cursor-pointer relative flex items-center justify-between rounded-lg">
+                <label class="absolute inset-0 rounded-lg cursor-pointer" for="setting-notification">&nbsp;</label>
+                <p class="font-medium text-gray-800">Sound notification</p>
+                <input type="checkbox" name="setting-notification" id="setting-notification">       
+              </div>
+              <!-- End - Checkbox Component -->    
+            </div>
+                
+            <!-- Reset Setting -->
+            <div class="flex justify-end border-t pt-6">
+              <a id="js-reset-setting" class="text-gray-700 font-medium cursor-pointer hover:text-red-700 transition-colors duration-150">Reset settings</a>
+            </div>
 
 
             </div>
@@ -193,6 +195,13 @@
 
   </main>
 
+
+  <footer class="flex mt-6 max-w-5xl mx-auto mt-24">
+    <div class="flex-1 border-t mx-auto text-gray-600 p-6 flex flex-col justify-between items-center sm:flex-row">
+      <p class="pb-2 sm:pb-0">© 2020, All rights reserved.</p>
+      <p>A project by <span class="font-semibold hover:underline"><a href="https://github.com/NLNT">Thanh Nguyen</a></span></p>
+    </div>
+  </footer>
 
   <!-- Scripts -->
   <script type="text/javascript" src="bundle.js"></script>
