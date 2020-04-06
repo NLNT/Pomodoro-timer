@@ -41,4 +41,12 @@ export const elements = {
   settingNotification: document.getElementById('setting-notification'),
 
 
+  // Tab: Settings & History
+  tabSetting: document.getElementById('js-tab-setting'),
+  tabHistory: document.getElementById('js-tab-history'),
+
+  contentSetting: document.getElementById('js-content-setting'),
+  contentHistory: document.getElementById('js-content-history'),
+
+
 }

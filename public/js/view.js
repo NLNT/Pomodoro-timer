@@ -20,6 +20,9 @@ export default {
     bgClass: 'bg-blue-200',
     illustration: `<img class="my-1 pt-px" src="https://raw.githubusercontent.com/NLNT/Pomodoro-timer/master/img/long-break-illustartion.svg?sanitize=true" alt="two people resting during a trip illustration">`,
   },
+  settingHistory: {
+    activeTab: ['text-gray-800', 'bg-gray-300', 'shadow-sm'],
+  },
 
 
   renderTab() {
@@ -137,4 +140,26 @@ export default {
     localStorage.title === 'on' ? elements.settingTitle.checked = true : elements.settingTitle.checked = false;
     localStorage.notification === 'on' ? elements.settingNotification.checked = true : elements.settingNotification.checked = false;
   },
+
+
+  ////////////////////////////////////
+  //                                //
+  //        Setting & History       //
+  //                                //
+  ////////////////////////////////////
+  updateTabContent() {
+    elements.contentSetting.classList.toggle('hidden');
+    elements.contentHistory.classList.toggle('hidden');
+  },
+
+  updateSecondTabActive() {
+    // 1) Loop & toggle active tab for both tab
+    
+    this.settingHistory.activeTab.forEach(style => {
+      elements.tabSetting.classList.toggle(style);
+      elements.tabHistory.classList.toggle(style);
+    })
+  },
+
+
 }
