@@ -67,7 +67,7 @@
 
 
     <!-- Tab & Pannels -->
-    <div class="max-w-5xl mx-auto mt-24">
+    <div class="max-w-5xl mx-auto mt-24 px-6 md:px-0">
       <div class="flex flex-col sm:flex-row justify-center sm:justify-between">
         <!-- Tab - component  -->
         <div class="inline-flex self-center font-medium bg-white text-center border border-gray-200 text-gray-600" style="border-radius: .9rem">
@@ -81,7 +81,7 @@
 
 
       <!-- Setting Tab -->
-      <div id="js-content-setting" class="mt-8">
+      <div id="js-content-setting" class="mt-8 transition-all duration-200 opacity-0 invisible h-0">
         <form action="#" id="setting" class="md:flex flex-1">
           <!-- Left Side -->
           <div class="md:w-5/12 bg-white p-10 rounded-t-xl md:rounded-xl md:shadow">
@@ -188,8 +188,39 @@
 
 
       <!-- History -->
-      <div id="js-content-history" class="mt-8 hidden">
-        <div class="max-w-5xl mx-auto bg-white p-6 rounded-xl shadow-lg">HISTORY</div>
+      <div id="js-content-history" class="px-6 md:px-0 transition-all duration-200">
+        <div class="max-w-5xl mx-auto h-screen">
+          <!-- One Third -->
+          <div class="flex flex-col sm:flex-row sm:-mx-3">
+            <!-- Card - component -->
+            <div class="flex-1 flex flex-col items-center p-6 sm:mx-3 bg-white rounded-lg shadow-sm">
+              <p id="js-history-today" class="font-semibold text-gray-700 pb-1 leading-none" style="font-size: 3.5rem">8</p>
+              <p class="rounded-xl bg-gray-100 py-1 px-6 font-medium text-gray-800 mt-3">Today</p>
+            </div>
+            <!-- End - Card component -->
+
+            <!-- Card - component -->
+            <div class="flex-1 flex flex-col items-center p-6 mt-2 sm:mt-0 sm:mx-3 bg-white rounded-lg shadow-sm">
+              <p id="js-history-month" class="font-semibold text-gray-700 pb-1 leading-none" style="font-size: 3.5rem">26</p>
+              <p id="js-history-month-badge" class="rounded-xl bg-gray-100 py-1 px-6 font-medium text-gray-800 mt-3">In April</p>
+            </div>
+            <!-- End - Card component -->
+
+            <!-- Card - component -->
+            <div class="flex-1 flex flex-col items-center p-6 mt-2 sm:mt-0 sm:mx-3 bg-white rounded-lg shadow-sm">
+              <p id="js-history-total" class="font-semibold text-gray-700 pb-1 leading-none" style="font-size: 3.5rem">90</p>
+              <p class="rounded-xl bg-gray-100 py-1 px-6 font-medium text-gray-800 mt-3">Total</p>
+            </div>
+            <!-- End - Card component -->
+            
+          </div>
+          <!-- End - One Third -->
+
+          <div class="mt-6 rounded-lg shadow bg-white p-6 h-64">
+
+          </div>
+
+        </div>
       </div>
       <!-- End - History -->
 

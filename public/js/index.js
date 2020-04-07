@@ -8,9 +8,8 @@ window.state = {};
 
 
 // Missing Features
-// 1) Reset setting
 // 2) Data dashboard
-// 3) Display indicator in title that timer is finished
+// 3) Display indicator in page title that timer is finished
 // 4) task as 3rd tab
 // 5) settings saved indicator
 
@@ -102,6 +101,7 @@ function timerFinished() {
   };
   Model.updateHistory();
   View.renderTimerFinished();
+  View.updateHistoryContent();
 };
 
 
@@ -154,33 +154,6 @@ elements.longBreakTab.addEventListener('click', () => {
 
 
 
-/////////////////////////////////
-//                             //
-//    Setting/History Tab      //
-//                             //
-/////////////////////////////////
-function tabSettingHistory() {
-  if (state.secondCurTab !== state.secondNewTab) {
-    // 1) update secondCurTab in state
-    state.secondCurTab = state.secondNewTab;
-
-    // 2) View.change tab content
-    View.updateTabContent();
-
-    // 3) View.change tab active style
-    View.updateSecondTabActive();
-  };
-};
-
-
-elements.tabSetting.addEventListener('click', () => {
-  state.secondNewTab = 'setting';
-  tabSettingHistory();
-});
-elements.tabHistory.addEventListener('click', () => {
-  state.secondNewTab = 'history';
-  tabSettingHistory();
-});
 
 
 
@@ -252,19 +225,19 @@ settingInputs.forEach((evt) => {
     if (state.activeTimer === false) {
       Model.updateLocalStorage();
       View.renderTimer();}
+    });
   });
-});
-
-
-// Loop setting autosave
-elements.settingLoop.addEventListener('input',Model.updateLocalStorage);
-
-
-
-
-
-
-
+  
+  
+  // Loop setting autosave
+  elements.settingLoop.addEventListener('input',Model.updateLocalStorage);
+  
+  
+  
+  
+  
+  
+  
 /////////////////////////////////
 //                             //
 //           History           //
@@ -272,7 +245,7 @@ elements.settingLoop.addEventListener('input',Model.updateLocalStorage);
 /////////////////////////////////
 
 // Create / maintaint pomodoro history
-function historyInit() {
+function createHistory() {
   // Total pomodoro
   if (localStorage.getItem('totalPomodoro') === null) {
     localStorage.setItem('totalPomodoro', '0');
@@ -280,34 +253,62 @@ function historyInit() {
   // Today pomodoro
   if (localStorage.getItem('todayPomodoro') === null) {
     localStorage.setItem('todayPomodoro', '0');
-  }
-}
+  };
+  // This month pomodoro
+  if (localStorage.getItem('monthPomodoro') === null) {
+    localStorage.setItem('monthPomodoro', '0');
+  };
+};
 
 // Check for new date to reset & update last online status
-function checkPomoToday() {
+function checkDateMonth() {
   Model.checkNewDay();
+  Model.checkNewMonth();
   Model.updateLastOnline();
 }
 
 
+
+/////////////////////////////////
+//                             //
+//    Setting/History Tab      //
+//                             //
+/////////////////////////////////
+function tabSettingHistory() {
+  if (state.secondCurTab !== state.secondNewTab) {
+    // 1) update secondCurTab in state
+    state.secondCurTab = state.secondNewTab;
+
+    // 2) View.change tab content
+    View.updateTabContent();
+
+    // 3) View.change tab active style
+    View.updateSecondTabActive();
+  };
+};
+
+
+elements.tabSetting.addEventListener('click', () => {
+  state.secondNewTab = 'setting';
+  tabSettingHistory();
+});
+elements.tabHistory.addEventListener('click', () => {
+  state.secondNewTab = 'history';
+  tabSettingHistory();
+});
 
 
 
 
 // Init - set default state
 const init = () => {
-  // state.focus = {}; 
-  // state.break = {};
-  // state.longBreak = {};
-
-  
   state.currentTab = "focus";
   state.newTab = '';
   state.previousTab = '';
   state.activeTimer = false;
   state.resetTimer = true;
   state.remainingTime = 0;
-  state.secondCurTab = 'setting';
+  state.secondCurTab = 'history';
   state.secondNewTab = '';
 
   
@@ -315,10 +316,12 @@ const init = () => {
   settingInit();
   otherSettingInit();
   // Check & create history (if doesn't exist)
-  historyInit();
+  createHistory();
   // Check for new date & reset today pomodoro
-  checkPomoToday();
+  checkDateMonth();
   // Render default timer
   View.renderTimer();
+  // Render history content
+  View.updateHistoryContent();
 }
 init();

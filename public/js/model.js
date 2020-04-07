@@ -33,43 +33,36 @@ export default {
     elements.audio.src = `alarms/${elements.settingAlarm.value}.mp3`;
   },
   
-  // Update total & today pomodoro every focus
-  updateHistory() {
-    if (state.currentTab === 'focus') {
-      localStorage.totalPomodoro = parseInt(localStorage.totalPomodoro) + 1;
-      localStorage.todayPomodoro = parseInt(localStorage.todayPomodoro) + 1;
-    }
-  },
-
-
-
-
-////////////////////////////////
-//                            //
-//          Setting           //
-//                            //
-////////////////////////////////
-
-// Push the setting form => localStorage
-updateLocalStorage() {
-  // Check for invalid inputs
-  if (elements.settingFocus.value < 1) {elements.settingFocus.value = 1};
-  if (elements.settingFocus.value > 60) {elements.settingFocus.value = 60};
-  if (elements.settingBreak.value < 1) {elements.settingBreak.value = 1};
-  if (elements.settingBreak.value > 60) {elements.settingBreak.value = 60};
-  if (elements.settingLongBreak.value < 1) {elements.settingLongBreak.value = 1};
-  if (elements.settingLongBreak.value > 60) {elements.settingLongBreak.value = 60};
-
-  // 1) Push time settings
-  localStorage.setItem('focus', elements.settingFocus.value);
-  localStorage.setItem('break', elements.settingBreak.value);
-  localStorage.setItem('longBreak', elements.settingLongBreak.value);
-
-  // 2) Push loop
+  
+  
+  
+  
+  ////////////////////////////////
+  //                            //
+  //          Setting           //
+  //                            //
+  ////////////////////////////////
+  
+  // Push the setting form => localStorage
+  updateLocalStorage() {
+    // Check for invalid inputs
+    if (elements.settingFocus.value < 1) {elements.settingFocus.value = 1};
+    if (elements.settingFocus.value > 60) {elements.settingFocus.value = 60};
+    if (elements.settingBreak.value < 1) {elements.settingBreak.value = 1};
+    if (elements.settingBreak.value > 60) {elements.settingBreak.value = 60};
+    if (elements.settingLongBreak.value < 1) {elements.settingLongBreak.value = 1};
+    if (elements.settingLongBreak.value > 60) {elements.settingLongBreak.value = 60};
+    
+    // 1) Push time settings
+    localStorage.setItem('focus', elements.settingFocus.value);
+    localStorage.setItem('break', elements.settingBreak.value);
+    localStorage.setItem('longBreak', elements.settingLongBreak.value);
+    
+    // 2) Push loop
   localStorage.setItem('loop', elements.settingLoop.value);
   // 3) Push alarm sound
   localStorage.setItem('alarm', elements.settingAlarm.value);
-
+  
   // TEST
   console.log(localStorage);
 },
@@ -113,7 +106,7 @@ resetSettingStorage() {
 // Reset pomodoroToday everyday
 checkNewDay() {
   let today = new Date();
-
+  
   if (today.getFullYear() > localStorage.lastOnlineYear) {
     resetPomoToday();
   } else if (today.getMonth() > localStorage.lastOnlineMonth) {
@@ -128,10 +121,36 @@ checkNewDay() {
 },
 
 
+
+checkNewMonth() {
+  let month = new Date();
+
+  if (month.getFullYear() > localStorage.lastOnlineYear) {
+    resetPomoMonth();
+  } else if (month.getMonth() > localStorage.lastOnlineMonth) {
+    resetPomoMonth();
+  }
+
+  function resetPomoMonth() {
+    localStorage.setItem('monthPomodoro', '0');
+  }
+},
+
+
+// Update total & today pomodoro every focus
+updateHistory() {
+  if (state.currentTab === 'focus') {
+    localStorage.totalPomodoro = parseInt(localStorage.totalPomodoro) + 1;
+    localStorage.todayPomodoro = parseInt(localStorage.todayPomodoro) + 1;
+    localStorage.monthPomodoro = parseInt(localStorage.monthPomodoro) + 1;
+  }
+},
+
+
 // Update last online status
 updateLastOnline() {
   let today = new Date();
-
+  
   localStorage.setItem('lastOnlineDate', today.getDate());
   localStorage.setItem('lastOnlineMonth', today.getMonth());
   localStorage.setItem('lastOnlineYear', today.getFullYear());

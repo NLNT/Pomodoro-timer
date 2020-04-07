@@ -148,17 +148,49 @@ export default {
   //                                //
   ////////////////////////////////////
   updateTabContent() {
-    elements.contentSetting.classList.toggle('hidden');
-    elements.contentHistory.classList.toggle('hidden');
+    // elements.contentSetting.classList.toggle('hidden');
+    elements.contentSetting.classList.toggle('opacity-0');
+    elements.contentSetting.classList.toggle('invisible');
+    elements.contentSetting.classList.toggle('h-0');
+
+    // elements.contentHistory.classList.toggle('hidden');
+    elements.contentHistory.classList.toggle('opacity-0');
+    elements.contentHistory.classList.toggle('invisible');
+    elements.contentHistory.classList.toggle('h-0');
+
+
   },
 
   updateSecondTabActive() {
     // 1) Loop & toggle active tab for both tab
-    
     this.settingHistory.activeTab.forEach(style => {
       elements.tabSetting.classList.toggle(style);
       elements.tabHistory.classList.toggle(style);
-    })
+    });
+  },
+
+  updateHistoryContent() {
+    // Update today card
+    this.updateHistoryToday();
+    // Update this month card
+    this.updateHistoryMonth();
+    // Update total card
+    this.updateHistoryTotal();
+  },
+
+  updateHistoryToday() {
+    elements.historyToday.innerHTML = localStorage.getItem('todayPomodoro');
+  },
+
+  updateHistoryMonth() {
+    elements.historyMonth.innerHTML = localStorage.getItem('monthPomodoro');
+
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    elements.historyMonthBadge.innerHTML = `In ${months[parseInt(localStorage.getItem('lastOnlineMonth'))]}`
+  },
+
+  updateHistoryTotal() {
+    elements.historyTotal.innerHTML = localStorage.getItem('totalPomodoro');
   },
 
 

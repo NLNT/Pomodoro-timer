@@ -48,5 +48,10 @@ export const elements = {
   contentSetting: document.getElementById('js-content-setting'),
   contentHistory: document.getElementById('js-content-history'),
 
+  // History content
+  historyToday: document.getElementById('js-history-today'),
+  historyMonth: document.getElementById('js-history-month'),
+  historyMonthBadge: document.getElementById('js-history-month-badge'),
+  historyTotal: document.getElementById('js-history-total'),
 
 }
