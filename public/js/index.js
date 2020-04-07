@@ -307,7 +307,7 @@ const init = () => {
   state.activeTimer = false;
   state.resetTimer = true;
   state.remainingTime = 0;
-  state.secondCurTab = 'setting';
+  state.secondCurTab = 'history';
   state.secondNewTab = '';
 
   
