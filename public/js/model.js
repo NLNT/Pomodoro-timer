@@ -143,7 +143,20 @@ updateHistory() {
     localStorage.totalPomodoro = parseInt(localStorage.totalPomodoro) + 1;
     localStorage.todayPomodoro = parseInt(localStorage.todayPomodoro) + 1;
     localStorage.monthPomodoro = parseInt(localStorage.monthPomodoro) + 1;
-  }
+    
+    this.updateHistoryWeek();
+  };
+},
+
+
+updateHistoryWeek() {
+  let time = new Date();
+  let day = time.getDay();
+
+  let weekArrayChart = JSON.parse(localStorage.getItem('weekPomodoro'));
+  weekArrayChart[day] = weekArrayChart[day] + 1;
+
+  localStorage.setItem('weekPomodoro', JSON.stringify(weekArrayChart));
 },
 
 
@@ -155,6 +168,9 @@ updateLastOnline() {
   localStorage.setItem('lastOnlineMonth', today.getMonth());
   localStorage.setItem('lastOnlineYear', today.getFullYear());
 },
+
+
+
 
 
 }
