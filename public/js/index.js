@@ -102,10 +102,12 @@ function timerFinished() {
   Model.updateHistory();
   View.renderTimerFinished();
   View.updateHistoryContent();
+
+  
+  // Update week chart
+  weekchart.data.datasets[0].data = JSON.parse(localStorage.getItem('weekPomodoro'));
+  weekchart.update();
 };
-
-
-
 
 
 
@@ -258,6 +260,9 @@ function createHistory() {
   if (localStorage.getItem('monthPomodoro') === null) {
     localStorage.setItem('monthPomodoro', '0');
   };
+  if (localStorage.getItem('weekPomodoro') === null) {
+    localStorage.setItem('weekPomodoro', '[0, 0, 0, 0, 0, 0, 0]');
+  };
 };
 
 // Check for new date to reset & update last online status
@@ -305,7 +310,7 @@ elements.tabHistory.addEventListener('click', () => {
 //         Week Chart          //
 //                             //
 /////////////////////////////////
-var weekchart = new Chart(elements.weekChart, {
+window.weekchart = new Chart(elements.weekChart, {
   // The type of chart we want to create
   type: 'bar',
 
@@ -316,14 +321,13 @@ var weekchart = new Chart(elements.weekChart, {
           label: 'Pomodoros',
           backgroundColor: '#FEB2B2',
           borderColor: '#FEB2B2',
-          data: [1, 10, 5, 2, 11, 12, 8],
+          data: JSON.parse(localStorage.getItem('weekPomodoro')), // parse array in localstorage
       }]
   },
 
   // Configuration options go here
   options: {}
 });
-
 
 
 
