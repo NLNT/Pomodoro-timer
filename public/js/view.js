@@ -148,15 +148,15 @@ export default {
   //                                //
   ////////////////////////////////////
   updateTabContent() {
-    // elements.contentSetting.classList.toggle('hidden');
-    elements.contentSetting.classList.toggle('opacity-0');
-    elements.contentSetting.classList.toggle('invisible');
-    elements.contentSetting.classList.toggle('h-0');
+    elements.contentSetting.classList.toggle('hidden');
+    // elements.contentSetting.classList.toggle('opacity-0');
+    // elements.contentSetting.classList.toggle('invisible');
+    // elements.contentSetting.classList.toggle('h-0');
 
-    // elements.contentHistory.classList.toggle('hidden');
-    elements.contentHistory.classList.toggle('opacity-0');
-    elements.contentHistory.classList.toggle('invisible');
-    elements.contentHistory.classList.toggle('h-0');
+    elements.contentHistory.classList.toggle('hidden');
+    // elements.contentHistory.classList.toggle('opacity-0');
+    // elements.contentHistory.classList.toggle('invisible');
+    // elements.contentHistory.classList.toggle('h-0');
 
 
   },
