@@ -55,6 +55,7 @@ export const elements = {
   historyTotal: document.getElementById('js-history-total'),
   
   // Charts
-weekChart: document.getElementById('js-week-chart').getContext('2d'),
+  weekChart: document.getElementById('js-week-chart').getContext('2d'),
+  dayChart: document.getElementById('js-day-chart').getContext('2d'),
   
 }

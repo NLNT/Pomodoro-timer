@@ -102,11 +102,7 @@ function timerFinished() {
   Model.updateHistory();
   View.renderTimerFinished();
   View.updateHistoryContent();
-
-  
-  // Update week chart
-  weekchart.data.datasets[0].data = JSON.parse(localStorage.getItem('weekPomodoro'));
-  weekchart.update();
+  Model.updateCharts();
 };
 
 
@@ -263,6 +259,9 @@ function createHistory() {
   if (localStorage.getItem('weekPomodoro') === null) {
     localStorage.setItem('weekPomodoro', '[0, 0, 0, 0, 0, 0, 0]');
   };
+  if (localStorage.getItem('dayPomodoro') === null) {
+    localStorage.setItem('dayPomodoro', '[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]');
+  };
 };
 
 // Check for new date to reset & update last online status
@@ -326,14 +325,51 @@ window.weekchart = new Chart(elements.weekChart, {
   },
 
   // Configuration options go here
-  options: {}
+  options: {
+    scales: {
+      xAxes: [{
+          gridLines: {
+              display:false
+          }
+      }],
+    },
+    legend: {
+      display: false
+    },
+  }
+  
 });
 
 
+window.daychart = new Chart(elements.dayChart, {
+  // The type of chart we want to create
+  type: 'bar',
 
+  // The data for our dataset
+  data: {
+      labels: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
+      datasets: [{
+          label: 'Pomodoros',
+          backgroundColor: '#FEB2B2',
+          borderColor: '#FEB2B2',
+          data: JSON.parse(localStorage.getItem('dayPomodoro')), // parse array in localstorage
+      }],
+  },
 
-
-
+  // Configuration options go here
+  options: {
+    scales: {
+      xAxes: [{
+          gridLines: {
+              display:false
+          }
+      }],
+    },
+    legend: {
+      display: false
+    },
+  },
+});
 
 
 
