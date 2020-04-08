@@ -53,5 +53,8 @@ export const elements = {
   historyMonth: document.getElementById('js-history-month'),
   historyMonthBadge: document.getElementById('js-history-month-badge'),
   historyTotal: document.getElementById('js-history-total'),
-
+  
+  // Charts
+weekChart: document.getElementById('js-week-chart').getContext('2d'),
+  
 }

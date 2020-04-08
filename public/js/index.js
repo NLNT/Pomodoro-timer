@@ -298,6 +298,45 @@ elements.tabHistory.addEventListener('click', () => {
 });
 
 
+//////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////
+//                             //
+//         Week Chart          //
+//                             //
+/////////////////////////////////
+var weekchart = new Chart(elements.weekChart, {
+  // The type of chart we want to create
+  type: 'bar',
+
+  // The data for our dataset
+  data: {
+      labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+      datasets: [{
+          label: 'Pomodoros',
+          backgroundColor: '#FEB2B2',
+          borderColor: '#FEB2B2',
+          data: [1, 10, 5, 2, 11, 12, 8],
+      }]
+  },
+
+  // Configuration options go here
+  options: {}
+});
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+
 
 
 // Init - set default state
