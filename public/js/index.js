@@ -370,11 +370,21 @@ window.daychart = new Chart(elements.dayChart, {
     },
   },
 });
-
-
-
-
 //////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////
+//                             //
+//        Reset History        //
+//                             //
+/////////////////////////////////
+
+function resetHistory() {
+  Model.resetHistory();
+  Model.updateCharts();
+  View.updateHistoryContent();
+}
+
+elements.historyReset.addEventListener('click', resetHistory);
 
 
 
