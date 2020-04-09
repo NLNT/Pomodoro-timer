@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
   <meta name="description" content="Pomodoro online timer is a time-management web app to boost your work efficiency using pomodoro technique">
-  <title id="js-title">Pomodoro Online Timer | Pomodoro Technique</title>
+  <title id="js-title">Pomodoro Online Timer</title>
   <!-- CSS -->
   <link rel="stylesheet" href="tailwind.css">
   <!-- Fonts -->
@@ -39,16 +39,16 @@
       <div class="shadow-xl self-stretch flex flex-col justify-between bg-white rounded-xl m-xs mt-3 md:mt-xs" style="flex: 90;">
         <!-- Timer -->
         <div class="flex flex-col flex-1 items-center p-6 mb-3 rounded-xl">
-          <h1 id=js-timer-title class="font-medium text-gray-700 sm:text-lg">Pomodoro Online Timer</h1>
+          <h1 id=js-timer-title class="font-medium text-gray-700 sm:text-lg">Pomodoro online timer</h1>
           <h2 id="js-timer" class="text-6xl mt-4 md:mt-8 text-gray-900 font-bold leading-tight w-64 pl-1 -pr-px mx-auto" style="font-size: 5.35rem;"></h2>
           
           <!-- Pause & Reset -->
-          <div class="flex items-center font-medium mt-1 mr-2">
+          <div class="flex items-center font-medium mt-1 mr-2 mb-4 md:mb-0">
             <a id="js-start" class="flex font-semibold text-xl leading-tight items-center py-1 px-6 border-r fill-current transition-color duration-200 text-red-700 cursor-pointer hover:text-red-800"><span><svg class="w-6 h-6 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><defs/><path d="M16 10v28l22-14z"/></svg></span>Start</a>
 
-            <a id="js-pause" class="flex text-lg items-center py-1 px-6 border-r fill-current transition-color duration-200 text-gray-600 cursor-pointer hover:text-gray-900 hidden"><span><svg class="w-6 h-6 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs/><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg></span>Pause</a>
+            <a id="js-pause" class="flex text-xl items-center py-1 px-6 border-r fill-current transition-color duration-200 text-gray-600 cursor-pointer hover:text-gray-900 hidden"><span><svg class="w-6 h-6 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs/><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg></span>Pause</a>
           
-            <a id="js-reset" class="flex text-lg items-center py-1 px-6 fill-current transition-color duration-200 text-gray-600 cursor-pointer hover:text-gray-900"><span><svg class="w-6 h-6 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs/><path d="M12 5V1L7 6l5 5V7a6 6 0 11-6 6H4a8 8 0 108-8z"/></svg></span>Restart</a>
+            <a id="js-reset" class="flex text-xl items-center py-1 px-6 fill-current transition-color duration-200 text-gray-600 cursor-pointer hover:text-gray-900"><span><svg class="w-6 h-6 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs/><path d="M12 5V1L7 6l5 5V7a6 6 0 11-6 6H4a8 8 0 108-8z"/></svg></span>Restart</a>
           </div>
           <!-- Start -->
         </div>

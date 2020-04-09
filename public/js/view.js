@@ -92,11 +92,11 @@ export default {
 
     // Change title when time is running or finished, depends on user setting
     if (localStorage.getItem('title') === 'on') {
-      elements.title.innerHTML = `${minute}:${second} - Pomodoro Online`;
+      elements.title.innerHTML = `${minute}:${second} - Pomodoro Online Timer`;
       // if (state.remainingTime === 0) {elements.title.innerHTML = `Times up!`;}
 
     } else if (localStorage.getItem('title') === 'off'){
-      elements.title.innerHTML = 'Pomodoro Online';
+      elements.title.innerHTML = 'Pomodoro Online Timer';
     };
     
     if (state.remainingTime === 0) {elements.title.innerHTML = `Times up!`;}
