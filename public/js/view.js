@@ -90,10 +90,16 @@ export default {
     }
     elements.timer.innerHTML = `${minute}:${second}`;
 
-    // If the setting allow:
+    // Change title when time is running or finished, depends on user setting
     if (localStorage.getItem('title') === 'on') {
       elements.title.innerHTML = `${minute}:${second} - Pomodoro Online`;
-    }
+      // if (state.remainingTime === 0) {elements.title.innerHTML = `Times up!`;}
+
+    } else if (localStorage.getItem('title') === 'off'){
+      elements.title.innerHTML = 'Pomodoro Online';
+    };
+    
+    if (state.remainingTime === 0) {elements.title.innerHTML = `Times up!`;}
   },
 
   renderTimerFinished() {
@@ -111,6 +117,7 @@ export default {
 
     elements.timerTitle.innerHTML = title;
   },
+
 
   toggleStartPause() {
     elements.start.classList.add('hidden');
@@ -149,16 +156,7 @@ export default {
   ////////////////////////////////////
   updateTabContent() {
     elements.contentSetting.classList.toggle('hidden');
-    // elements.contentSetting.classList.toggle('opacity-0');
-    // elements.contentSetting.classList.toggle('invisible');
-    // elements.contentSetting.classList.toggle('h-0');
-
     elements.contentHistory.classList.toggle('hidden');
-    // elements.contentHistory.classList.toggle('opacity-0');
-    // elements.contentHistory.classList.toggle('invisible');
-    // elements.contentHistory.classList.toggle('h-0');
-
-
   },
 
   updateSecondTabActive() {

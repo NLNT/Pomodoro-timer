@@ -189,5 +189,12 @@ updateCharts() {
   daychart.update();
 },
 
+resetHistory() {
+  localStorage.setItem('totalPomodoro', '0');
+  localStorage.setItem('todayPomodoro', '0');
+  localStorage.setItem('monthPomodoro', '0');
+  localStorage.setItem('weekPomodoro', '[0, 0, 0, 0, 0, 0, 0]');
+  localStorage.setItem('dayPomodoro', '[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]');
+},
 
 }

@@ -57,5 +57,7 @@ export const elements = {
   // Charts
   weekChart: document.getElementById('js-week-chart').getContext('2d'),
   dayChart: document.getElementById('js-day-chart').getContext('2d'),
+
+  historyReset: document.getElementById('js-reset-history'),
   
 }
