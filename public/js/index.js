@@ -245,15 +245,15 @@ settingInputs.forEach((evt) => {
 // Create / maintaint pomodoro history
 function createHistory() {
   // Total pomodoro
-  if (localStorage.getItem('totalPomodoro') === null) {
+  if (localStorage.getItem('totalPomodoro') === null && localStorage.getItem('totalPomodoro') === 'NaN') {
     localStorage.setItem('totalPomodoro', '0');
   };
   // Today pomodoro
-  if (localStorage.getItem('todayPomodoro') === null) {
+  if (localStorage.getItem('todayPomodoro') === null && localStorage.getItem('todayPomodoro') === 'NaN') {
     localStorage.setItem('todayPomodoro', '0');
   };
   // This month pomodoro
-  if (localStorage.getItem('monthPomodoro') === null) {
+  if (localStorage.getItem('monthPomodoro') === null && localStorage.getItem('monthPomodoro') === 'NaN') {
     localStorage.setItem('monthPomodoro', '0');
   };
   if (localStorage.getItem('weekPomodoro') === null) {
