@@ -34,7 +34,7 @@ function startTimer() {
   elements.timerTitle.innerHTML = 'Pomodoro Timer';
   // 4) Check & update timer setting
   Model.updateLocalStorage();
-  // 5) Run the timer
+  // 5) Reset existing timer if needed
   Model.resetTime();
   // 6) Start the timming setInterval function
   state.timerId = setInterval( () => {

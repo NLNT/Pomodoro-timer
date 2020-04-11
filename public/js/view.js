@@ -104,9 +104,9 @@ export default {
 
   renderTimerFinished() {
     let title, plural;
-    let timeToLongBreak = parseInt(localStorage.loop) - (parseInt(localStorage.todayPomodoro) % parseInt(localStorage.loop));
+    let timeToLongBreak = parseInt(localStorage.getItem('loop')) - (parseInt(localStorage.getItem('todayPomodoro')) % parseInt(localStorage.getItem('loop')));
 
-    if (timeToLongBreak === parseInt(localStorage.loop) && state.currentTab === 'focus') {
+    if (timeToLongBreak === parseInt(localStorage.getItem('loop')) && state.currentTab === 'focus') {
       title = 'Have a long break';
     } else if (state.currentTab === 'longBreak'){
       title = 'Start working';
@@ -144,8 +144,8 @@ export default {
   },
 
   updateOtherSettings() {
-    localStorage.title === 'on' ? elements.settingTitle.checked = true : elements.settingTitle.checked = false;
-    localStorage.notification === 'on' ? elements.settingNotification.checked = true : elements.settingNotification.checked = false;
+    localStorage.getItem('title') === 'on' ? elements.settingTitle.checked = true : elements.settingTitle.checked = false;
+    localStorage.getItem('notification') === 'on' ? elements.settingNotification.checked = true : elements.settingNotification.checked = false;
   },
 
 

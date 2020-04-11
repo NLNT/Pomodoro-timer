@@ -45,12 +45,12 @@ export default {
   
   // Push the setting form => localStorage
   updateLocalStorage() {
-    // Check for invalid inputs
-    if (elements.settingFocus.value < 1) {elements.settingFocus.value = 1};
+    // Check for invalid inputs - MOVE THIS TO THE TIMER STUFF
+    if (elements.settingFocus.value < 0) {elements.settingFocus.value = 0};
     if (elements.settingFocus.value > 60) {elements.settingFocus.value = 60};
-    if (elements.settingBreak.value < 1) {elements.settingBreak.value = 1};
+    if (elements.settingBreak.value < 0) {elements.settingBreak.value = 0};
     if (elements.settingBreak.value > 60) {elements.settingBreak.value = 60};
-    if (elements.settingLongBreak.value < 1) {elements.settingLongBreak.value = 1};
+    if (elements.settingLongBreak.value < 0) {elements.settingLongBreak.value = 0};
     if (elements.settingLongBreak.value > 60) {elements.settingLongBreak.value = 60};
     
     // 1) Push time settings
@@ -107,11 +107,11 @@ resetSettingStorage() {
 checkNewDay() {
   let today = new Date();
   
-  if (today.getFullYear() > localStorage.lastOnlineYear) {
+  if (today.getFullYear() > localStorage.getItem('lastOnlineYear')) {
     resetPomoToday();
-  } else if (today.getMonth() > localStorage.lastOnlineMonth) {
+  } else if (today.getMonth() > localStorage.getItem('lastOnlineMonth')) {
     resetPomoToday();
-  } else if (today.getDate() > localStorage.lastOnlineDate && today.getMonth() == localStorage.lastOnlineMonth) {
+  } else if (today.getDate() > localStorage.getItem('lastOnlineDate') && today.getMonth() == localStorage.getItem('lastOnlineMonth')) {
     resetPomoToday();
   };
   
@@ -125,9 +125,9 @@ checkNewDay() {
 checkNewMonth() {
   let month = new Date();
 
-  if (month.getFullYear() > localStorage.lastOnlineYear) {
+  if (month.getFullYear() > localStorage.getItem('lastOnlineYear')) {
     resetPomoMonth();
-  } else if (month.getMonth() > localStorage.lastOnlineMonth) {
+  } else if (month.getMonth() > localStorage.getItem('lastOnlineMonth')) {
     resetPomoMonth();
   }
 
@@ -140,9 +140,17 @@ checkNewMonth() {
 // Update total & today pomodoro every focus
 updateHistory() {
   if (state.currentTab === 'focus') {
-    localStorage.totalPomodoro = parseInt(localStorage.totalPomodoro) + 1;
-    localStorage.todayPomodoro = parseInt(localStorage.todayPomodoro) + 1;
-    localStorage.monthPomodoro = parseInt(localStorage.monthPomodoro) + 1;
+    let total = localStorage.getItem('totalPomodoro') + 1;
+    let today = localStorage.getItem('todayPomodoro') + 1;
+    let month = localStorage.getItem('monthPomodoro') + 1;
+
+    // localStorage.totalPomodoro = parseInt(localStorage.totalPomodoro) + 1;
+    // localStorage.todayPomodoro = parseInt(localStorage.todayPomodoro) + 1;
+    // localStorage.monthPomodoro = parseInt(localStorage.monthPomodoro) + 1;
+
+    localStorage.setItem('totalPomodoro', total);
+    localStorage.setItem('todayPomodoro', today);
+    localStorage.setItem('monthPomodoro', month);
     
     this.updateHistoryWeek();
     this.updateHistoryDay();
