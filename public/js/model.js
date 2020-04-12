@@ -140,9 +140,9 @@ checkNewMonth() {
 // Update total & today pomodoro every focus
 updateHistory() {
   if (state.currentTab === 'focus') {
-    let total = localStorage.getItem('totalPomodoro') + 1;
-    let today = localStorage.getItem('todayPomodoro') + 1;
-    let month = localStorage.getItem('monthPomodoro') + 1;
+    let total = parseInt(localStorage.getItem('totalPomodoro')) + 1;
+    let today = parseInt(localStorage.getItem('todayPomodoro')) + 1;
+    let month = parseInt(localStorage.getItem('monthPomodoro')) + 1;
 
     // localStorage.totalPomodoro = parseInt(localStorage.totalPomodoro) + 1;
     // localStorage.todayPomodoro = parseInt(localStorage.todayPomodoro) + 1;
