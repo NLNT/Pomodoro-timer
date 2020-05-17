@@ -328,9 +328,14 @@ window.weekchart = new Chart(elements.weekChart, {
   options: {
     scales: {
       xAxes: [{
-          gridLines: {
-              display:false
-          }
+        gridLines: {
+          display:false
+        }
+      }],
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
       }],
     },
     legend: {
@@ -360,9 +365,14 @@ window.daychart = new Chart(elements.dayChart, {
   options: {
     scales: {
       xAxes: [{
-          gridLines: {
-              display:false
-          }
+        gridLines: {
+          display:false
+        }
+      }],
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
       }],
     },
     legend: {
