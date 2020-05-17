@@ -334,7 +334,8 @@ window.weekchart = new Chart(elements.weekChart, {
       }],
       yAxes: [{
         ticks: {
-          beginAtZero: true
+          beginAtZero: true,
+          min: 0
         }
       }],
     },
@@ -342,6 +343,7 @@ window.weekchart = new Chart(elements.weekChart, {
       display: false
     },
   }
+   
   
 });
 
@@ -371,7 +373,8 @@ window.daychart = new Chart(elements.dayChart, {
       }],
       yAxes: [{
         ticks: {
-          beginAtZero: true
+          beginAtZero: true,
+          min: 0
         }
       }],
     },
